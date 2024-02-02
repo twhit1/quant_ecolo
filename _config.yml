@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title:  Topics in Quantitative Ecology and Beyond
-author: Tom Whitehouse
+author: Tom Whitehouse [Built with Jupyter Book](https://doi.org/10.5281/zenodo.2561065)
 logo: logo.png
 copyright: "2024"
 
