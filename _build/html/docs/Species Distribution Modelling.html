@@ -171,7 +171,6 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Species Distribution Modelling with Python</a></li>
-
 </ul>
 
     </div>
@@ -335,39 +334,35 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Species Distribution Modelling with Python</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-a-name-introduction-a">Introduction <a name="introduction"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-and-packages-a-name-imports-a">Import data and packages <a name="imports"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-a-name-methods-a">Methods <a name="methods"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-area-a-name-study-a">Study area <a name="study"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panthera-onca-occurrence-data-a-name-panthera-a">Panthera onca occurrence data <a name="panthera"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojection-a-name-reprojection-a">Reprojection <a name="reprojection"></a></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation-a-name-spatial-a">Spatial autocorrelation <a name="spatial"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-and-packages">Import data and packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-area">Study area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panthera-onca-occurrence-data">Panthera onca occurrence data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojection">Reprojection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation">Spatial autocorrelation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data-a-name-climate-a">Climate and elevation data <a name="climate"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms-a-name-covariate-a">Covariate histograms <a name="covariate"></a></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data">Climate and elevation data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms">Covariate histograms</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection-a-name-feature-selection-a">Feature selection <a name="feature selection"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities-a-name-features-with-a">Features with major disconituities <a name="features with"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis-a-name-pca-a">PCA analysis <a name="pca"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis-a-name-collinearity-a">Collinearity analysis <a name="collinearity"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities">Features with major disconituities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis">PCA analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis">Collinearity analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-a-name-results-a">Results <a name="results"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-envelope-a-name-environmental-a">Environmental envelope <a name="environmental"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oneclasssvm-presence-background-models-a-name-oneclassvm-a">OneClassSVM &amp; presence-background models <a name="oneclassvm"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-envelope">Environmental envelope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oneclasssvm-presence-background-models">OneClassSVM &amp; presence-background models</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions-a-name-conclusions-a">Discussion and Conclusions <a name="conclusions"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and Conclusions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-a-name-references-a">References <a name="references"></a></a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -380,8 +375,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="species-distribution-modelling-with-python">
 <h1>Species Distribution Modelling with Python<a class="headerlink" href="#species-distribution-modelling-with-python" title="Permalink to this heading">#</a></h1>
-<section id="introduction-a-name-introduction-a">
-<h2>Introduction <a name="introduction"></a><a class="headerlink" href="#introduction-a-name-introduction-a" title="Permalink to this heading">#</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Today, a wealth of biodiversity and earth observation data sets, available from sources like the Global Biodiversity Information Facility (GBIF) [1], and WorldClim [24], which are used in this notebook.</p>
 <p>Together with the accessibility of cheap computing power and advanced computational modelling tools, the range of applications of datasets like these is broad and growing.</p>
 <p>This notebook considers one such application: Species Distribution Modelling. Species Distribution Models (SDMs) link environmental covariates, such as spatial distributions of climate or topographical variables, to spatially-explicit biodiversity data, such as species occurrence records [8, 13, 25].</p>
@@ -390,8 +385,8 @@ document.write(`
 Whilst SDM tools seem well-developed in the R programming language [26, 27, 28], I was only able to find one Python package, the companion publication of which notes the lack of Python SDM tools [13].</p>
 <p>This notebook aims to present a basic SDM modelling workflow in Python, with example SDMs fitted to a sample of Panthera onca (Jaguar) occurrence observations downloaded from the GBIF, with WorldClim covariates. After presenting the methods used, specifically on data sourcing, preprocessing, and model selection and scoring, I go on to plot and discuss habitat suitability maps before concluding.</p>
 </section>
-<section id="import-data-and-packages-a-name-imports-a">
-<h2>Import data and packages <a name="imports"></a><a class="headerlink" href="#import-data-and-packages-a-name-imports-a" title="Permalink to this heading">#</a></h2>
+<section id="import-data-and-packages">
+<h2>Import data and packages<a class="headerlink" href="#import-data-and-packages" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -446,10 +441,10 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </details>
 </div>
 </section>
-<section id="methods-a-name-methods-a">
-<h2>Methods <a name="methods"></a><a class="headerlink" href="#methods-a-name-methods-a" title="Permalink to this heading">#</a></h2>
-<section id="study-area-a-name-study-a">
-<h3>Study area <a name="study"></a><a class="headerlink" href="#study-area-a-name-study-a" title="Permalink to this heading">#</a></h3>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<section id="study-area">
+<h3>Study area<a class="headerlink" href="#study-area" title="Permalink to this heading">#</a></h3>
 <p>The Jaguar’s global range is mostly limited to the South American continent, though the distribution extends into Central America [29].</p>
 <p>To speed up and simplify calculations and plotting, I selected the contiguous part of the South American continent as the study area, shown in the figure below, using a standard ESRI continent shapefile [10]. Reducing the study area in this way is not typical of the SDM workflows referenced in this notebook, but makes sense for an introductory study, as the majority of the Jaguar range is covered, and we don’t have to oversimplify the ecological processes governing movement and dispersal to/from islands.</p>
 <p>Note that all plots are shown and calculations performed in projected coordinates. I’m using an equal-area projection with units of metres - see details in the reprojection section.</p>
@@ -498,8 +493,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </section>
-<section id="panthera-onca-occurrence-data-a-name-panthera-a">
-<h3>Panthera onca occurrence data <a name="panthera"></a><a class="headerlink" href="#panthera-onca-occurrence-data-a-name-panthera-a" title="Permalink to this heading">#</a></h3>
+<section id="panthera-onca-occurrence-data">
+<h3>Panthera onca occurrence data<a class="headerlink" href="#panthera-onca-occurrence-data" title="Permalink to this heading">#</a></h3>
 <p>Panthera onca (Jaguar) occurrence data was downloaded from the GBIF, for South America [1].</p>
 <p>As WorldClim covariates are used in the next section, which detail large scale climate data for the period 1970 - 2000, the same period should be used for occurrence records.</p>
 <p>Using a longer window (1960 - 2010) results in a four-fold increase in the number of records returned from GBIF. I retain the larger dataset under the assumption that averaged climate variables will have changed little on the longer window. For species distribution modelling aimed at studying changing habitat suitability with future climate scenarios, this kind of assumption would not apply.</p>
@@ -555,8 +550,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <p>In addition [33] notes that known coordinate uncertainty values (301,3036,999,9999) should be cleaned, as they represent defaults (e.g. country centroids). However, none of the coordinate uncertainty values in records retrieved here match those values.</p>
 <p>With reference to lat / lon data, transformation errors (1.), systematic coordinate swaps (2.), missed or appended negative signs (3.) should be very obvious on plotting the occurrence records on a map, and likely filtered by the clip to study area operation performed below.</p>
 <p>Precision issues (4., 5., 6.) are harder to deal with - in fact most records don’t provide coordinate precision and typically a lot of data is lost if this field is filtered out - so the suggestion is not to do so [33].</p>
-<section id="reprojection-a-name-reprojection-a">
-<h4>Reprojection <a name="reprojection"></a><a class="headerlink" href="#reprojection-a-name-reprojection-a" title="Permalink to this heading">#</a></h4>
+<section id="reprojection">
+<h4>Reprojection<a class="headerlink" href="#reprojection" title="Permalink to this heading">#</a></h4>
 <p>Here I’m using an equal-area projection (recommended in for SDMs in [9]), ESRI:102033: Albers equal area conic.</p>
 <p>Using equal-area projections in place of geodetic coordiantes is recommended to avoid possible bias, though in practice this has little effect on SDM coefficients [9].</p>
 <div class="cell tag_hide-input docutils container">
@@ -586,8 +581,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </section>
-<section id="spatial-autocorrelation-a-name-spatial-a">
-<h4>Spatial autocorrelation <a name="spatial"></a><a class="headerlink" href="#spatial-autocorrelation-a-name-spatial-a" title="Permalink to this heading">#</a></h4>
+<section id="spatial-autocorrelation">
+<h4>Spatial autocorrelation<a class="headerlink" href="#spatial-autocorrelation" title="Permalink to this heading">#</a></h4>
 <p>Both covariate and response variables used to build SDMs on single-species occurrence datasets often display autocorrelation properties [6, 15-18].</p>
 <p>Whilst spatial autocorrelation due to exogenous (abiotic) factors exists [34] though can be entirely removed with a comprehensive set of environmental covariates. However, endogenous (biotic) factors (which include dispersal, colonial breeding, home-range size, competition, predation etc.) are harder to deal with [14].</p>
 <p>Spatial bias is often present in occurrence datasets (particularly those aggregated from multiple studies, or sourced from citizen science repositories) for instance due to accessibility of the sample area: species are sampled near roads, rivers and research stations [15-18, 34].</p>
@@ -702,8 +697,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </section>
 </section>
-<section id="climate-and-elevation-data-a-name-climate-a">
-<h3>Climate and elevation data <a name="climate"></a><a class="headerlink" href="#climate-and-elevation-data-a-name-climate-a" title="Permalink to this heading">#</a></h3>
+<section id="climate-and-elevation-data">
+<h3>Climate and elevation data<a class="headerlink" href="#climate-and-elevation-data" title="Permalink to this heading">#</a></h3>
 <p>Worldclim [24] climate variables were downloaded from <a class="reference external" href="http://worldclim.org">worldclim.org</a>, along with SRTM elevation data, all at 30s spatial resolution.</p>
 <p>I start with the same set of variables as used by a Jaguar SDM study [8]:</p>
 <ul class="simple">
@@ -778,8 +773,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 <p>This is equivalent to selecting from the underlying covariate distributions, at occurrence observation points.</p>
-<section id="covariate-histograms-a-name-covariate-a">
-<h4>Covariate histograms <a name="covariate"></a><a class="headerlink" href="#covariate-histograms-a-name-covariate-a" title="Permalink to this heading">#</a></h4>
+<section id="covariate-histograms">
+<h4>Covariate histograms<a class="headerlink" href="#covariate-histograms" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -854,12 +849,12 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </section>
 </section>
 </section>
-<section id="feature-selection-a-name-feature-selection-a">
-<h2>Feature selection <a name="feature selection"></a><a class="headerlink" href="#feature-selection-a-name-feature-selection-a" title="Permalink to this heading">#</a></h2>
+<section id="feature-selection">
+<h2>Feature selection<a class="headerlink" href="#feature-selection" title="Permalink to this heading">#</a></h2>
 <p>Now proceeding with climatic and topographic features as identified above, I’m running an additional feature selection routine as outlined in [6], which entails testing pairwise Spearman rank values, and for each pair where r &gt; 0.8, discarding the feature with the lower PCA loading.</p>
 <p>For SDM applications, it’s also possible to assess histogram shape to aid in feature selection, with normally distributed or skewed bioclimatic distributions corresponding to relevant covariates, and no pattern or truncated histograms being irrelevant [11].</p>
-<section id="features-with-major-disconituities-a-name-features-with-a">
-<h3>Features with major disconituities <a name="features with"></a><a class="headerlink" href="#features-with-major-disconituities-a-name-features-with-a" title="Permalink to this heading">#</a></h3>
+<section id="features-with-major-disconituities">
+<h3>Features with major disconituities<a class="headerlink" href="#features-with-major-disconituities" title="Permalink to this heading">#</a></h3>
 <p>Due to calculation methodologies [25], some WorldClim variables show major discontinuities, which are visible in the continent-level plots above and will therefore be removed ([25] notes 84 publications taking such an approach)).</p>
 <p>Note that bio_8 and bio_9 are highly correlated with elevation, the latter having a higher PCA loading, and therefore these variables would be dropped in the following feature selection process regardless.</p>
 <div class="cell docutils container">
@@ -882,8 +877,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </section>
-<section id="pca-analysis-a-name-pca-a">
-<h3>PCA analysis <a name="pca"></a><a class="headerlink" href="#pca-analysis-a-name-pca-a" title="Permalink to this heading">#</a></h3>
+<section id="pca-analysis">
+<h3>PCA analysis<a class="headerlink" href="#pca-analysis" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bio_sample_rand_df_norm</span> <span class="o">=</span> <span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
@@ -930,8 +925,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </section>
-<section id="collinearity-analysis-a-name-collinearity-a">
-<h3>Collinearity analysis <a name="collinearity"></a><a class="headerlink" href="#collinearity-analysis-a-name-collinearity-a" title="Permalink to this heading">#</a></h3>
+<section id="collinearity-analysis">
+<h3>Collinearity analysis<a class="headerlink" href="#collinearity-analysis" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
@@ -1072,10 +1067,10 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </section>
 </section>
-<section id="results-a-name-results-a">
-<h2>Results <a name="results"></a><a class="headerlink" href="#results-a-name-results-a" title="Permalink to this heading">#</a></h2>
-<section id="environmental-envelope-a-name-environmental-a">
-<h3>Environmental envelope <a name="environmental"></a><a class="headerlink" href="#environmental-envelope-a-name-environmental-a" title="Permalink to this heading">#</a></h3>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
+<section id="environmental-envelope">
+<h3>Environmental envelope<a class="headerlink" href="#environmental-envelope" title="Permalink to this heading">#</a></h3>
 <p>Here I run a simple envelope model similar to BIOCLIM [7], in which the minimal rectilinear envelope in covariate space is established with reference to covariate values at occurrence record locations.</p>
 <p>This method is sensitive to outliers, so we can look at a percentiles of the climatic profile corresponding to proportions of occurrence records included [36]. Here I calculate the “full” range envelope (corresponding to all occurrence locations) and also a “core” range envelope [11] corresponding to the 5th to 95th percentiles.</p>
 <div class="cell docutils container">
@@ -1275,8 +1270,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </section>
-<section id="oneclasssvm-presence-background-models-a-name-oneclassvm-a">
-<h3>OneClassSVM &amp; presence-background models <a name="oneclassvm"></a><a class="headerlink" href="#oneclasssvm-presence-background-models-a-name-oneclassvm-a" title="Permalink to this heading">#</a></h3>
+<section id="oneclasssvm-presence-background-models">
+<h3>OneClassSVM &amp; presence-background models<a class="headerlink" href="#oneclasssvm-presence-background-models" title="Permalink to this heading">#</a></h3>
 <p>In this section several SDMs are compiled based on the occurrence datasets, randomly generated background coordinates, and the selected abiotic covariates.</p>
 <p>The study area is reduced to the full extent of the surface range envelope computed in the previous section, which can reduce overfitting [13].</p>
 <div class="cell docutils container">
@@ -1581,17 +1576,16 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <p>For the bioclimatic envelope, the output is binary, as described in the previous section.</p>
 </section>
 </section>
-<section id="discussion-and-conclusions-a-name-conclusions-a">
-<h2>Discussion and Conclusions <a name="conclusions"></a><a class="headerlink" href="#discussion-and-conclusions-a-name-conclusions-a" title="Permalink to this heading">#</a></h2>
+<section id="discussion-and-conclusions">
+<h2>Discussion and Conclusions<a class="headerlink" href="#discussion-and-conclusions" title="Permalink to this heading">#</a></h2>
 <p>The main objective here was to show an end-to-end SDM workflow in Python. Due to lack of support for SDM work in the Python language, this notebook was lengthier and more involved than an equivalent in R, with the benefit of perhaps being more explicit, with relatively little in the way of hidden computations.</p>
 <p>Looking at the SDM results, ROC AUC scores are generally high, with the highest scoring models assigning high suitabilities to localities corresponding to occurrence records, for which there could be several explanations. This looks like overfitting, perhaps due to insufficient correction of spatial bias in the underlying datasets.</p>
 <p>Spatial thinning of occurrence data within 5km of other observations is not actually very effective, and often performs poorly, particularly with low sample prevalence [15]. We can also expect our accuracy measures to be overinflated in spatially autocorrelated datasets [34]. As mentioned already, an approach like spatial block cross validation could be used to alleviate overfitting [35]. However, [39] concludes that care should be taken to correct presence-background SDMs without independent test data.</p>
 <p>The selection of background points should also be considered; is 10,000 really enough to fully sample the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better path to take - and there are several options (environmentally, spatially stratified) [4], and weighting sampling selection of background points such that spatial bias is similar in both the occurrence dataset and background point dataset [39].</p>
 <p>Finally, on the applicability of SDMs developed on abiotic data, it should be said that no explicit allowance is made for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [30]. For instance, [21] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions”, though biotic information can be included for instance by adding other species distributions as covariates [30].</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="references-a-name-references-a">
-<h1>References <a name="references"></a><a class="headerlink" href="#references-a-name-references-a" title="Permalink to this heading">#</a></h1>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. GBIF Occurrence Download.  <a class="reference external" href="https://doi.org/10.15468/dl.kwbc6x">https://doi.org/10.15468/dl.kwbc6x</a> [Accessed 11/01/2024].</p></li>
 <li><p>Furman D. A Brief Introduction to Species Distribution Models in Python. <a class="reference external" href="https://daniel-furman.github.io/Python-species-distribution-modeling/">https://daniel-furman.github.io/Python-species-distribution-modeling/</a> [Accessed 11/01/2024].</p></li>
@@ -1633,6 +1627,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <li><p>Allouche O, Tsoar A and Kadmon R. Assessing the Accuracy of Species Distribution Models: Prevalence, Kappa and the True Skill Statistic (TSS). Journal of Applied Ecology. 2006; 43(6): 1223-1232. <a class="reference external" href="https://doi.org/10.1111/j.1365-2664.2006.01214.x">https://doi.org/10.1111/j.1365-2664.2006.01214.x</a>.</p></li>
 <li><p>Baker DJ, Maclean IMD and Gaston KJ. Effective Strategies for Correcting Spatial Sampling Bias in Species Distribution Models Without Independent Test Data. Diversity and Distributions. 2023; 1–13. <a class="reference external" href="https://doi.org/10.1111/ddi.13802">https://doi.org/10.1111/ddi.13802</a>.</p></li>
 </ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1690,39 +1685,35 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Species Distribution Modelling with Python</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-a-name-introduction-a">Introduction <a name="introduction"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-and-packages-a-name-imports-a">Import data and packages <a name="imports"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-a-name-methods-a">Methods <a name="methods"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-area-a-name-study-a">Study area <a name="study"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panthera-onca-occurrence-data-a-name-panthera-a">Panthera onca occurrence data <a name="panthera"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojection-a-name-reprojection-a">Reprojection <a name="reprojection"></a></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation-a-name-spatial-a">Spatial autocorrelation <a name="spatial"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-and-packages">Import data and packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-area">Study area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panthera-onca-occurrence-data">Panthera onca occurrence data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojection">Reprojection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation">Spatial autocorrelation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data-a-name-climate-a">Climate and elevation data <a name="climate"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms-a-name-covariate-a">Covariate histograms <a name="covariate"></a></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data">Climate and elevation data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms">Covariate histograms</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection-a-name-feature-selection-a">Feature selection <a name="feature selection"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities-a-name-features-with-a">Features with major disconituities <a name="features with"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis-a-name-pca-a">PCA analysis <a name="pca"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis-a-name-collinearity-a">Collinearity analysis <a name="collinearity"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities">Features with major disconituities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis">PCA analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis">Collinearity analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-a-name-results-a">Results <a name="results"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-envelope-a-name-environmental-a">Environmental envelope <a name="environmental"></a></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oneclasssvm-presence-background-models-a-name-oneclassvm-a">OneClassSVM &amp; presence-background models <a name="oneclassvm"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-envelope">Environmental envelope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oneclasssvm-presence-background-models">OneClassSVM &amp; presence-background models</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions-a-name-conclusions-a">Discussion and Conclusions <a name="conclusions"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and Conclusions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-a-name-references-a">References <a name="references"></a></a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
