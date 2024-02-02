@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
-<a href="https://github.com/twhit1/quant_eco" target="_blank"
+<a href="https://github.com/twhit1/quant_ecolo" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
    data-bs-placement="bottom" data-bs-toggle="tooltip"
@@ -345,7 +345,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation-a-name-spatial-a">Spatial autocorrelation <a name="spatial"></a></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-topographic-data-a-name-climate-a">Climate and topographic data <a name="climate"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data-a-name-climate-a">Climate and elevation data <a name="climate"></a></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms-a-name-covariate-a">Covariate histograms <a name="covariate"></a></a></li>
 </ul>
 </li>
@@ -362,7 +362,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oneclasssvm-presence-background-models-a-name-oneclassvm-a">OneClassSVM &amp; presence-background models <a name="oneclassvm"></a></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions-a-name-conclusions-a">Conclusions <a name="conclusions"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions-a-name-conclusions-a">Discussion and Conclusions <a name="conclusions"></a></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-a-name-references-a">References <a name="references"></a></a></li>
@@ -382,17 +382,22 @@ document.write(`
 <h1>Species Distribution Modelling with Python<a class="headerlink" href="#species-distribution-modelling-with-python" title="Permalink to this heading">#</a></h1>
 <section id="introduction-a-name-introduction-a">
 <h2>Introduction <a name="introduction"></a><a class="headerlink" href="#introduction-a-name-introduction-a" title="Permalink to this heading">#</a></h2>
-<p>Increasing availability of global biodiversity datasets, such as those hosted by the Global Biodiversity Information Facility (GBIF) [1], together with large-scale remote sensing data such as the WorldClim climate data [24] has allowed widespread development of computational tools for studying the spatial distributions of species and biodiversity metrics.</p>
-<p>One popular approach to making use of this wealth of data is Species Distribution Modelling [25]. Species Distribution Models (SDMs) link environmental covariates, such as spatial distributions of climate or topographical variables, to spatially-explicit biodiversity data, such as species occurrence records [8, 13].</p>
-<p>SDMs have found applications across conservation, ecology, evolution and other fields [22]; more specifically for purposes like guiding field research, informing conservation strategies and predicting ecological impacts of climate change [8, 23].</p>
-<p>What does this notebook do (high level)
+<p>Today, a wealth of biodiversity and earth observation data sets, available from sources like the Global Biodiversity Information Facility (GBIF) [1], and WorldClim [24], which are used in this notebook.</p>
+<p>Together with the accessibility of cheap computing power and advanced computational modelling tools, the range of applications of datasets like these is broad and growing.</p>
+<p>This notebook considers one such application: Species Distribution Modelling. Species Distribution Models (SDMs) link environmental covariates, such as spatial distributions of climate or topographical variables, to spatially-explicit biodiversity data, such as species occurrence records [8, 13, 25].</p>
+<p>SDMs have found applications in conservation, ecology, evolution and other fields [22], for purposes like guiding field research, informing conservation strategies and predicting ecological impacts of climate change [8, 23].</p>
+<p><strong>What is covered in this notebook?</strong> <br>
 Whilst SDM tools seem well-developed in the R programming language [26, 27, 28], I was only able to find one Python package, the companion publication of which notes the lack of Python SDM tools [13].</p>
-<p>This notebook aims to cover a basic SDM modelling workflow in Python, with example SDMs fitted to a sample of Jaguar occurrence observations downloaded from the GBIF, with WorldClim covariates. After presenting the methods used, specifically on data sourcing, preprocessing, and model selection and scoring, I go on to plot and discuss habitat suitability maps in the results and discussion sections before concluding.</p>
-<p>Are these habitat suitability maps? Check book: file:///C:/Users/twhit/Downloads/Petal_NicheBook_2011.pdf</p>
+<p>This notebook aims to present a basic SDM modelling workflow in Python, with example SDMs fitted to a sample of Panthera onca (Jaguar) occurrence observations downloaded from the GBIF, with WorldClim covariates. After presenting the methods used, specifically on data sourcing, preprocessing, and model selection and scoring, I go on to plot and discuss habitat suitability maps before concluding.</p>
 </section>
 <section id="import-data-and-packages-a-name-imports-a">
 <h2>Import data and packages <a name="imports"></a><a class="headerlink" href="#import-data-and-packages-a-name-imports-a" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector processing</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -438,19 +443,22 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="methods-a-name-methods-a">
 <h2>Methods <a name="methods"></a><a class="headerlink" href="#methods-a-name-methods-a" title="Permalink to this heading">#</a></h2>
 <section id="study-area-a-name-study-a">
 <h3>Study area <a name="study"></a><a class="headerlink" href="#study-area-a-name-study-a" title="Permalink to this heading">#</a></h3>
-<p>Panthera onca global range mostly limited to the South American continent, though the distribution extends into Central America [29]. This being an introductory SDM study, I made some simplifications to the study area.</p>
-<p>Firstly, I’m looking only at the South American part of the Jaguar distribution - the majority of the range is covered, and plotting &amp; calculations are faster and simpler.</p>
-<p>Also with simplicity in mind, doing vector and raster operations on complex multipolygons - like those making up continent shapefiles - would add unnecessary overhead to an introductory study. In this case, where the vast majority of the South American land mass is contiguous, retaining a multigeometry representation does not add much value. Also, islands introduce physical species dispersal constraints - and any large-scale SDM workflows should include consideration of dispersal constraints [21], which is beyond the scope of this notebook.</p>
-<p>So I am taking only the contigous part of the South American continent, as shown in the figure below.</p>
-<p>Note that other physical barriers such as mountains, and anthropogenic barriers such as urban sprawls have are not taken into account from a disperal constraint perspective. This is a study of the relationship between climatic variables (+ elevation) and species occurrence records, and does not take into account biotic factors. Including biotic factors (e.g. competition, movement, dispersal) is beyond the scope here, though is possible within the framework presented in this notebook if other species distributions are included as covariates [30].</p>
+<p>The Jaguar’s global range is mostly limited to the South American continent, though the distribution extends into Central America [29].</p>
+<p>To speed up and simplify calculations and plotting, I selected the contiguous part of the South American continent as the study area, shown in the figure below, using a standard ESRI continent shapefile [10]. Reducing the study area in this way is not typical of the SDM workflows referenced in this notebook, but makes sense for an introductory study, as the majority of the Jaguar range is covered, and we don’t have to oversimplify the ecological processes governing movement and dispersal to/from islands.</p>
 <p>Note that all plots are shown and calculations performed in projected coordinates. I’m using an equal-area projection with units of metres - see details in the reprojection section.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WORKING_CRS</span> <span class="o">=</span> <span class="s1">&#39;ESRI:102033&#39;</span>
 <span class="n">_sa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;data/world_continents/&#39;</span><span class="p">)</span>
@@ -484,6 +492,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/8b90ab6d8187da51a6495d0c5f1f094bef1e25a4e609d43ded7c914289ba4ee0.png" src="../_images/8b90ab6d8187da51a6495d0c5f1f094bef1e25a4e609d43ded7c914289ba4ee0.png" />
 </div>
@@ -493,82 +502,48 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <h3>Panthera onca occurrence data <a name="panthera"></a><a class="headerlink" href="#panthera-onca-occurrence-data-a-name-panthera-a" title="Permalink to this heading">#</a></h3>
 <p>Panthera onca (Jaguar) occurrence data was downloaded from the GBIF, for South America [1].</p>
 <p>As WorldClim covariates are used in the next section, which detail large scale climate data for the period 1970 - 2000, the same period should be used for occurrence records.</p>
-<p>Using a longer window (1960 - 2010) results in a four-fold increase in the number of records returned from GBIF. I’m going to assume that climate variables have remained largely the same on this longer window - though for species distribution modelling aimed at studying changing habitat suitability with future climate scenarios, this kind of assumption would clearly not be viable.</p>
-<p>Basis of record types were filtered to include human and machine observations, and records labelled as “occurrence” - this had the effect of removing 42 preserved specimen records from the dataset.</p>
-<p>As an initial spatial cleaning step I am dropping exact geometry duplicates - this is a rudimentary cleanup of erroneous geomtries where the data provider used a centroid or building location (e.g. an lab location) instead of the actual occurrence location. I take a deeper look at spatial data quality below.</p>
-<p>There is a much more sophisticated way to do spatial cleaning on GBIF data with the R package CoordinateCleaner [31], with explicit functions to filter on country capitals, country centroids, known herbaria and zoo locations etc.
-r.</p>
+<p>Using a longer window (1960 - 2010) results in a four-fold increase in the number of records returned from GBIF. I retain the larger dataset under the assumption that averaged climate variables will have changed little on the longer window. For species distribution modelling aimed at studying changing habitat suitability with future climate scenarios, this kind of assumption would not apply.</p>
+<p>Basis of record types were filtered to include human and machine observations, and records labelled as “occurrence”, which removed 42 preserved specimen records from the dataset.</p>
+<p>As an initial spatial cleaning step, exact geometry duplicates are dropped - this is a crude cleanup of erroneous geometries where the data provider used a centroid or building location (e.g. an lab location) instead of the actual occurrence location, and potentially a couple of good records that genuinely were detected at the same location (within precision). Spatial data quality is examined in more detail below.</p>
+<p>There is a much more sophisticated way to do spatial cleaning on GBIF data with the R package CoordinateCleaner [31], with explicit functions to filter on country capitals, country centroids, known herbaria and zoo locations etc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="p">[[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;countryCode&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLatitude&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLongitude&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinateUncertaintyInMeters&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinatePrecision&#39;</span><span class="p">,</span><span class="s1">&#39;eventDate&#39;</span><span class="p">,</span> <span class="s1">&#39;basisOfRecord&#39;</span><span class="p">,</span> <span class="s1">&#39;issue&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retain only columns of interest</span>
+<span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="p">[[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;countryCode&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLatitude&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLongitude&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinateUncertaintyInMeters&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinatePrecision&#39;</span><span class="p">,</span><span class="s1">&#39;eventDate&#39;</span><span class="p">,</span> <span class="s1">&#39;basisOfRecord&#39;</span><span class="p">,</span> <span class="s1">&#39;issue&#39;</span><span class="p">]]</span>
 
+<span class="c1"># Set geometry from lat/lon and delete redundant columns</span>
 <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;decimalLongitude&#39;</span><span class="p">],</span> 
                                                     <span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;decimalLatitude&#39;</span><span class="p">]),</span>
                                  <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
 <span class="n">occ_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;decimalLongitude&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLatitude&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">])</span>
 
-<span class="c1"># Filter date range to match Worldclim date range</span>
+<span class="c1"># Convert to datetime format and filter date range to match Worldclim date range extended by +-10 years</span>
+<span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">])</span>
 <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="p">[(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s1">&#39;01/01/2011&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s1">&#39;01/01/1960&#39;</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data date range: </span><span class="si">{0}</span><span class="s1"> to </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;eventDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
 
+<span class="c1"># Drop exact duplicates on geometry</span>
 <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span> <span class="c1"># Will do spatial thinning later anyway</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">70</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="p">[[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;countryCode&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLatitude&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLongitude&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinateUncertaintyInMeters&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinatePrecision&#39;</span><span class="p">,</span><span class="s1">&#39;eventDate&#39;</span><span class="p">,</span> <span class="s1">&#39;basisOfRecord&#39;</span><span class="p">,</span> <span class="s1">&#39;issue&#39;</span><span class="p">]]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;decimalLongitude&#39;</span><span class="p">],</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                                     <span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;decimalLatitude&#39;</span><span class="p">]),</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                  <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">occ_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;decimalLongitude&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLatitude&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Retain only columns of interest</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="p">[[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;countryCode&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLatitude&#39;</span><span class="p">,</span> <span class="s1">&#39;decimalLongitude&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinateUncertaintyInMeters&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinatePrecision&#39;</span><span class="p">,</span><span class="s1">&#39;eventDate&#39;</span><span class="p">,</span> <span class="s1">&#39;basisOfRecord&#39;</span><span class="p">,</span> <span class="s1">&#39;issue&#39;</span><span class="p">]]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Set geometry from lat/lon and delete redundant columns</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;decimalLongitude&#39;</span><span class="p">],</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                                                     <span class="n">occ_data</span><span class="p">[</span><span class="s1">&#39;decimalLatitude&#39;</span><span class="p">]),</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                                  <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/venvs/working_0/lib/python3.9/site-packages/geopandas/geodataframe.py:1474,</span> in <span class="ni">GeoDataFrame.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1468</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1469</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1470</span><span class="sd">     If the result is a column containing only &#39;geometry&#39;, return a</span>
-<span class="g g-Whitespace">   </span><span class="mi">1471</span><span class="sd">     GeoSeries. If it&#39;s a DataFrame with any columns of GeometryDtype,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1472</span><span class="sd">     return a GeoDataFrame.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1473</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1474</span>     <span class="n">result</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1475</span>     <span class="c1"># Custom logic to avoid waiting for pandas GH51895</span>
-<span class="g g-Whitespace">   </span><span class="mi">1476</span>     <span class="c1"># result is not geometry dtype for multi-indexes</span>
-<span class="g g-Whitespace">   </span><span class="mi">1477</span>     <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1478</span>         <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_scalar</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1479</span>         <span class="ow">and</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1482</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_geometry_type</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1483</span>     <span class="p">):</span>
-
-<span class="nn">File ~/venvs/working_0/lib/python3.9/site-packages/pandas/core/frame.py:3902,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3900</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3901</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">3902</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">3904</span> <span class="c1"># take() does not accept boolean indexers</span>
-<span class="g g-Whitespace">   </span><span class="mi">3905</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
-
-<span class="nn">File ~/venvs/working_0/lib/python3.9/site-packages/pandas/core/indexes/base.py:6114,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6111</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6112</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">6114</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6116</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6117</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">6118</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
-
-<span class="nn">File ~/venvs/working_0/lib/python3.9/site-packages/pandas/core/indexes/base.py:6178,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6175</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6177</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="ne">-&gt; </span><span class="mi">6178</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
-
-<span class="ne">KeyError</span>: &quot;[&#39;decimalLatitude&#39;, &#39;decimalLongitude&#39;] not in index&quot;
+<span class="ne">NameError</span>: name &#39;occ_data&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
-<p>Spatial measurement issues could be problematic for SDM and there are several sources of error here, as listed on the GBIF website [32]:</p>
+<p>Spatial accuracy and precision issues could be problematic for developing SDMs. The GBIF website lists several common error sources [32]:</p>
 <ol class="arabic simple">
 <li><p>Transformation errors</p></li>
 <li><p>Value swapping (lat / lon)</p></li>
@@ -577,14 +552,19 @@ r.</p>
 <li><p>Requirements to intentionally blur precision in the case of protection of sensitive species</p></li>
 <li><p>Precision on gridded data (e.g. grid centroids listed, potentially without a coordinate uncertainty)</p></li>
 </ol>
-<p>In addition [33] notes that known coordinate uncertainty values (301,3036,999,9999) should be cleaned, as they represent defaults (e.g. country centroids). However, none of the coordainte uncertainty values in records retrieved here match those values.</p>
-<p>With reference to lat / lon data, transformation errors (1.), systematic coordinate swaps (2.), missed or appended negative signs (3.) should be very obvious on plotting the occurrence records on a map. Therefore I’ll investigate later if necessary.</p>
+<p>In addition [33] notes that known coordinate uncertainty values (301,3036,999,9999) should be cleaned, as they represent defaults (e.g. country centroids). However, none of the coordinate uncertainty values in records retrieved here match those values.</p>
+<p>With reference to lat / lon data, transformation errors (1.), systematic coordinate swaps (2.), missed or appended negative signs (3.) should be very obvious on plotting the occurrence records on a map, and likely filtered by the clip to study area operation performed below.</p>
 <p>Precision issues (4., 5., 6.) are harder to deal with - in fact most records don’t provide coordinate precision and typically a lot of data is lost if this field is filtered out - so the suggestion is not to do so [33].</p>
 <section id="reprojection-a-name-reprojection-a">
 <h4>Reprojection <a name="reprojection"></a><a class="headerlink" href="#reprojection-a-name-reprojection-a" title="Permalink to this heading">#</a></h4>
-<p>Here I’m using an equal-area projection (recommended in [9]), ESRI:102033: Albers equal area conic.</p>
-<p>Using equal-area projections in place of geodetic coords is recommended to avoid possible bias, though in practice this has little effect on SDM coefficients [9].</p>
-<div class="cell docutils container">
+<p>Here I’m using an equal-area projection (recommended in for SDMs in [9]), ESRI:102033: Albers equal area conic.</p>
+<p>Using equal-area projections in place of geodetic coordiantes is recommended to avoid possible bias, though in practice this has little effect on SDM coefficients [9].</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">occ_data</span> <span class="o">=</span> <span class="n">occ_data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span>
 <span class="n">occ_data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">occ_data</span><span class="p">,</span> <span class="n">SA</span><span class="p">)</span> <span class="c1"># clip to SA polygon for consistency</span>
@@ -600,6 +580,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/3eeb45ed3a5d7f43325332ec92aec014b8001e784ac2a998d36e388f20070b14.png" src="../_images/3eeb45ed3a5d7f43325332ec92aec014b8001e784ac2a998d36e388f20070b14.png" />
 </div>
@@ -607,13 +588,11 @@ r.</p>
 </section>
 <section id="spatial-autocorrelation-a-name-spatial-a">
 <h4>Spatial autocorrelation <a name="spatial"></a><a class="headerlink" href="#spatial-autocorrelation-a-name-spatial-a" title="Permalink to this heading">#</a></h4>
-<p>There are various sources of spatial autocorrelation to consider in relation to single-species occurrence datasets [6, 15-18].</p>
-<p>Whilst spatial autocorrelation due to endogenous factors can be entirely removed with a comprehensive set of environmental covariates, endogenous factors include dispersal, colonial breeding, home-range size, competition, predation etc. are harder to deal with [14].</p>
-<p>Spatial bias is often present in occurence datasets (particularly those aggregated from multiple studies, or sourced from citizen science repositories) for instance due to accessibility of the sample area: species are sampled near roads, rivers and research stations [15-18, 34].</p>
-<p>In addition, environmental covariates also display spatial autocorrelation [34].</p>
-<p>Combined, these effects lead to bias in models such as those explored in this notebook.</p>
-<p>One approach to tackling this problem is spatial rarefication / thinning of occurrence data; in [6] only one record per 5 square km is allowed. Here points are filtered based on a circle of radius 2.5 km.</p>
-<p>There are more sophisticated approaches to handling biases in this scenario, for example thinning occurence and background points to be equidistant in geographical or environmental space [34], or by spatial block cross-validation [35].</p>
+<p>Both covariate and response variables used to build SDMs on single-species occurrence datasets often display autocorrelation properties [6, 15-18].</p>
+<p>Whilst spatial autocorrelation due to exogenous (abiotic) factors exists [34] though can be entirely removed with a comprehensive set of environmental covariates. However, endogenous (biotic) factors (which include dispersal, colonial breeding, home-range size, competition, predation etc.) are harder to deal with [14].</p>
+<p>Spatial bias is often present in occurrence datasets (particularly those aggregated from multiple studies, or sourced from citizen science repositories) for instance due to accessibility of the sample area: species are sampled near roads, rivers and research stations [15-18, 34].</p>
+<p>Combined, these effects lead to bias in SDMs. One approach to tackling this problem is spatial rarefication / thinning of occurrence data; in [6] only one record per 5 square km is allowed. Here points are filtered based on a circle of radius 2.5 km.</p>
+<p>There are more sophisticated approaches to handling biases in this scenario, for example thinning occurrence and background points to be equidistant in geographical or environmental space [34], passing weight arrays into SDM fitting procedures, or by spatial block cross-validation [35].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There&#39;s no built-in geodataframe thinning routine so do this manually</span>
@@ -634,9 +613,18 @@ r.</p>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">left_index</span> <span class="ow">in</span> <span class="n">thin_list</span><span class="p">):</span>
         <span class="n">keep_list</span> <span class="o">=</span> <span class="n">keep_list</span> <span class="o">|</span> <span class="p">{</span><span class="n">left_index</span><span class="p">}</span>
         <span class="n">thin_list</span> <span class="o">=</span> <span class="n">thin_list</span> <span class="o">|</span>  <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;index_right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">-</span> <span class="p">{</span><span class="n">left_index</span><span class="p">})</span>
-
-<span class="c1"># Plot results of thinning at different scales</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results of thinning at different scales</span>
 <span class="c1"># Set up bboxes to zoom</span>
 <span class="n">ex1_bbox</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4.7e5</span><span class="p">,</span> <span class="mf">6.8e5</span><span class="p">,</span> <span class="mf">13.5e5</span><span class="p">,</span> <span class="mf">12.0e5</span><span class="p">)</span>
 <span class="n">ar</span> <span class="o">=</span> <span class="p">(</span><span class="n">ex1_bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">ex1_bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">ex1_bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">ex1_bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -678,9 +666,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/cc19d41fa43621441b7d2be643a11782b6404aaf6763d8fa9c244c3afc759888.png" src="../_images/cc19d41fa43621441b7d2be643a11782b6404aaf6763d8fa9c244c3afc759888.png" />
-</div>
+</details>
 </div>
 <p>The high-level spatial distribution of sampling positions remains largely unchanged, but filtering at smaller spatial scales has reduced the dataset by a third.</p>
 <div class="cell docutils container">
@@ -716,10 +702,10 @@ r.</p>
 </div>
 </section>
 </section>
-<section id="climate-and-topographic-data-a-name-climate-a">
-<h3>Climate and topographic data <a name="climate"></a><a class="headerlink" href="#climate-and-topographic-data-a-name-climate-a" title="Permalink to this heading">#</a></h3>
+<section id="climate-and-elevation-data-a-name-climate-a">
+<h3>Climate and elevation data <a name="climate"></a><a class="headerlink" href="#climate-and-elevation-data-a-name-climate-a" title="Permalink to this heading">#</a></h3>
 <p>Worldclim [24] climate variables were downloaded from <a class="reference external" href="http://worldclim.org">worldclim.org</a>, along with SRTM elevation data, all at 30s spatial resolution.</p>
-<p>To start with, I’m loading the same set of variables as used by a Jaguar SDM study [8]:</p>
+<p>I start with the same set of variables as used by a Jaguar SDM study [8]:</p>
 <ul class="simple">
 <li><p>precipitation of coldest quarter,</p></li>
 <li><p>precipitation of warmest quarter,</p></li>
@@ -794,7 +780,12 @@ r.</p>
 <p>This is equivalent to selecting from the underlying covariate distributions, at occurrence observation points.</p>
 <section id="covariate-histograms-a-name-covariate-a">
 <h4>Covariate histograms <a name="covariate"></a><a class="headerlink" href="#covariate-histograms-a-name-covariate-a" title="Permalink to this heading">#</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">FIGSIZE</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
@@ -816,11 +807,17 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/beb0d3931adb3d2419fcd46939b1a27cd2ae76d5badf1841d23aeb2e546159ff.png" src="../_images/beb0d3931adb3d2419fcd46939b1a27cd2ae76d5badf1841d23aeb2e546159ff.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 
@@ -849,6 +846,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/9feff2e043b3eceb68ed6e194d6975aaeae7ba683a2e8b4bb0005307325186fd.png" src="../_images/9feff2e043b3eceb68ed6e194d6975aaeae7ba683a2e8b4bb0005307325186fd.png" />
 </div>
@@ -858,12 +856,12 @@ r.</p>
 </section>
 <section id="feature-selection-a-name-feature-selection-a">
 <h2>Feature selection <a name="feature selection"></a><a class="headerlink" href="#feature-selection-a-name-feature-selection-a" title="Permalink to this heading">#</a></h2>
-<p>Now proceeding with climatic and topographic features as identified above, with some additional feature selection processing in line with [6], that entails testing pairwise spearman rank values, and for each pair where r &gt; 0.8, discarding the feature with the lower PCA loading.</p>
-<p>For SDM applications, it’s also possible to assess histogram shape to aid in feature selection, with normally distributed or skewed bioclimatic distributions corresponding to relevant covariates and no pattern or truncated histograms being irrelevant [11].</p>
+<p>Now proceeding with climatic and topographic features as identified above, I’m running an additional feature selection routine as outlined in [6], which entails testing pairwise Spearman rank values, and for each pair where r &gt; 0.8, discarding the feature with the lower PCA loading.</p>
+<p>For SDM applications, it’s also possible to assess histogram shape to aid in feature selection, with normally distributed or skewed bioclimatic distributions corresponding to relevant covariates, and no pattern or truncated histograms being irrelevant [11].</p>
 <section id="features-with-major-disconituities-a-name-features-with-a">
 <h3>Features with major disconituities <a name="features with"></a><a class="headerlink" href="#features-with-major-disconituities-a-name-features-with-a" title="Permalink to this heading">#</a></h3>
 <p>Due to calculation methodologies [25], some WorldClim variables show major discontinuities, which are visible in the continent-level plots above and will therefore be removed ([25] notes 84 publications taking such an approach)).</p>
-<p>Note that these bio_8 and bio_9 are highly correlated with elevation, the latter having a higher PCA loading, and therefore these variables would be dropped in the following feature selection process regardless.</p>
+<p>Note that bio_8 and bio_9 are highly correlated with elevation, the latter having a higher PCA loading, and therefore these variables would be dropped in the following feature selection process regardless.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bio_8&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_9&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_18&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_19&#39;</span><span class="p">]</span>
@@ -904,7 +902,12 @@ r.</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pc_pair</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]:</span> <span class="c1">#, [1, 3]]:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -920,6 +923,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/79410b550cd18e8a0d8f7e9af546ffc2b695259dbabd4d47923b1188c3fe40a2.png" src="../_images/79410b550cd18e8a0d8f7e9af546ffc2b695259dbabd4d47923b1188c3fe40a2.png" />
 <img alt="../_images/31d750072a54c3ba6148e92fc492fd509a376c4072feb1fa88e081f9db4024d1.png" src="../_images/31d750072a54c3ba6148e92fc492fd509a376c4072feb1fa88e081f9db4024d1.png" />
@@ -931,7 +935,18 @@ r.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
-<span class="n">tick_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tick_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -940,6 +955,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/e77f2d37be170809a5cef0136a2066939f2c3e3e4b1b3c763b9871d839162b51.png" src="../_images/e77f2d37be170809a5cef0136a2066939f2c3e3e4b1b3c763b9871d839162b51.png" />
 </div>
@@ -961,7 +977,12 @@ r.</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">bio_sample_rand_df</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
@@ -975,6 +996,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/31dac74bb14208a613bbcc8e98a6b9a5e056d805a74b55aa32c8b14ace69be74.png" src="../_images/31dac74bb14208a613bbcc8e98a6b9a5e056d805a74b55aa32c8b14ace69be74.png" />
 </div>
@@ -984,7 +1006,8 @@ r.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covar_contributions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">bio_sample_rand_df_norm</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span> 
                                <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">explained_variance_</span><span class="p">),</span> 
                                               <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
-<span class="n">covar_contributions</span>
+<span class="n">display</span><span class="p">(</span><span class="n">covar_contributions</span><span class="p">)</span>
+<span class="n">to_drop</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="nb">sorted</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">covar_contributions</span><span class="p">[</span><span class="n">x</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">corr_pairs</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1000,11 +1023,14 @@ r.</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">to_drop</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="nb">sorted</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">covar_contributions</span><span class="p">[</span><span class="n">x</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">corr_pairs</span><span class="p">]))</span>
-
-<span class="n">axs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">to_drop</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">to_drop</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
@@ -1016,6 +1042,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Drop those columns in relevant data structures:</p>
 <div class="cell docutils container">
@@ -1049,7 +1076,7 @@ r.</p>
 <h2>Results <a name="results"></a><a class="headerlink" href="#results-a-name-results-a" title="Permalink to this heading">#</a></h2>
 <section id="environmental-envelope-a-name-environmental-a">
 <h3>Environmental envelope <a name="environmental"></a><a class="headerlink" href="#environmental-envelope-a-name-environmental-a" title="Permalink to this heading">#</a></h3>
-<p>Here I run a simple envelope model similar to BIOCLIM [7], in which the minimal rectilinear enevelope in covariate space is established with reference to covariate values at occurrence record locations.</p>
+<p>Here I run a simple envelope model similar to BIOCLIM [7], in which the minimal rectilinear envelope in covariate space is established with reference to covariate values at occurrence record locations.</p>
 <p>This method is sensitive to outliers, so we can look at a percentiles of the climatic profile corresponding to proportions of occurrence records included [36]. Here I calculate the “full” range envelope (corresponding to all occurrence locations) and also a “core” range envelope [11] corresponding to the 5th to 95th percentiles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1161,8 +1188,18 @@ r.</p>
 <span class="c1"># Mask to study area</span>
 <span class="n">full_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">full_range</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">),</span> <span class="n">SA_mask</span><span class="p">)</span>
 <span class="n">core_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">core_range</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">),</span> <span class="n">SA_mask</span><span class="p">)</span>
-
-<span class="c1"># Plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot</span>
 <span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([</span><span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="o">.</span><span class="n">get_bad</span><span class="p">(),</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)])</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
@@ -1193,9 +1230,7 @@ r.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/5bc45448fb9822d076178a8be617e0060b061d5f143330b2ff1c007fd3b057be.png" src="../_images/5bc45448fb9822d076178a8be617e0060b061d5f143330b2ff1c007fd3b057be.png" />
-</div>
+</details>
 </div>
 <p>Note that the full range includes the core range (is the union of blue regions in figure).</p>
 <p>Repeat analysis using out-the-box equivalent and check consistency:</p>
@@ -1308,7 +1343,7 @@ r.</p>
 </div>
 </div>
 </div>
-<p>MaxEnt is also a density estimator, though it uses presence/background data. It’s used widely in the SDM literature XXXX CITE XXXXX; here a standard implementation is used [13]. [13] suggests beta at 2.0, [16] suggests that maxent beta (regularization factor) should be empirically found, that it is by default 1.0 in MaxEnt, [20] conducts such an empirical study, using beta values in  {0.01, 0.1, 0.5, 1, 1.5, 2, 3, 5}</p>
+<p>MaxEnt is also a density estimator, though it uses presence/background data. It is used widely in the SDM literature [20, 36]; here a standard implementation is used [13], with a variety of values for the regularization parameter (beta): [16] suggests that beta should be empirically found. I use a similar set of beta values to those used in [20].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_ent_model</span> <span class="o">=</span> <span class="p">[</span><span class="n">ela</span><span class="o">.</span><span class="n">MaxentModel</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;cloglog&#39;</span><span class="p">,</span> <span class="n">beta_multiplier</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
@@ -1316,8 +1351,8 @@ r.</p>
 </div>
 </div>
 </div>
-<p>LogisticRegression is a type of Generalized Linear Model (GLM) with a logit link function. GLMs are also very popular approaches to building SDMs XXXXX CITE XXXXX</p>
-<p>In general, GLMs/GAMs can be used with background data instead of absence/pseudo-absence but requires case-control design [36, 37]. This is difficult in practice - especially in Python with scikit-learn, because it requires modification of the underlying logistic function to include a correction term based on the proportions of occupied and unoccupied locations in the study area, which is rarely known [37]. Therefore this model (and in fact the others) are making relative predictions about species presence, instead of outputting a direct probabiltiy of species presence.</p>
+<p>LogisticRegression is a type of Generalized Linear Model (GLM) with a logit link function. GLMs (and also Generalized Additive Models (GAMs)) are very popular SDM approaches [36].</p>
+<p>In general, GLMs/GAMs can be used with background data instead of absence/pseudo-absence but requires case-control design [36, 37]. This is difficult in practice - especially in Python with scikit-learn, because it requires modification of the underlying logistic function to include a correction term based on the proportions of occupied and unoccupied locations in the study area, which is rarely known [37]. Therefore this model (and in fact the others) are making relative predictions about species presence, instead of outputting a direct probability of species presence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">()</span>
@@ -1325,9 +1360,7 @@ r.</p>
 </div>
 </div>
 </div>
-<p>RandomForest is a tree-based model, another popular class of SDM approaches. Implemented as in [2, 19].
-Note that RFs are sensitive to class imbalance &amp; overlap - both present here by default due to the requirement that background points
-fully sample the study are - and there are several ways to deal with this issue [19]. Beyond the scope of this notebook.</p>
+<p>RandomForest is a tree-based model, another popular class of SDM approaches. Here it’s implemented as in [2, 19]. Note that RFs are sensitive to class imbalance &amp; overlap, both of which are present here by default due to the requirement that background points fully sample the study area. There are several ways to deal with this issue [19], though these methods are beyond the scope of this notebook - here I just use a standard parameter of the scikit-learn RandomForest class to weight the samples based on class prevalence in the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_classifier</span> <span class="o">=</span> <span class="p">[</span><span class="n">sklearn</span><span class="o">.</span><span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">),</span> <span class="c1"># Using gini (this is the default), and 500 trees as suggested in [19]</span>
@@ -1336,8 +1369,8 @@ fully sample the study are - and there are several ways to deal with this issue 
 </div>
 </div>
 </div>
-<p>One of the out-the-box models (MaxEnt) doesn’t behave with scikit-learn scoring, so let’s do CV manually.</p>
-<p>Use AUC as described in [19]; Mention threshold dependent scoring (e.g. omission rate)</p>
+<p>One of the out-the-box models (MaxEnt) doesn’t behave with scikit-learn scoring, so I’m implementing a cross validation routine manually here.</p>
+<p>The area under the curve (AUC) of the receiver operating characteristic (ROC) is a measure of the performance of binary classifiers and takes values in the range [0.5, 1]. The measure is commonly used to assess performance of SDMs, often alongside a threshold-dependent scorer (e.g. True Skill Statistic, TSS) [19, 38].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">max_ent_model</span><span class="p">,</span> <span class="n">svm_1cl</span><span class="p">,</span> <span class="o">*</span><span class="n">rf_classifier</span><span class="p">,</span> <span class="n">lr_classifier</span><span class="p">]</span>
@@ -1375,7 +1408,7 @@ fully sample the study are - and there are several ways to deal with this issue 
 </div>
 </div>
 </div>
-<p>Filter for the best performing model in each model family - but keep best and worst Maxent models for comparison.</p>
+<p>Filter for the best performing model in each model family - but keep the best and worst MaxEnt models for comparison.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_models</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">model_full_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">model_full_name</span> <span class="ow">in</span> <span class="n">test_scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()]))</span>
@@ -1449,7 +1482,12 @@ fully sample the study are - and there are several ways to deal with this issue 
 </div>
 </div>
 <p>And now let’s look at the suitabiltiy distributions for the best models, starting with envelope and density estimation models:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in vars from here so that the model does not have to be re-run every time</span>
 <span class="n">_res_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;data/models/*.tif&#39;</span><span class="p">)</span>
@@ -1491,11 +1529,17 @@ fully sample the study are - and there are several ways to deal with this issue 
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<p>And also the models which produce probability-style outputs:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Followed by models which produce probability-style outputs</span>
-<span class="n">env_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_res_paths</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">suit_paths</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;ela&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">i</span><span class="p">)]</span> <span class="c1"># And ignore the elapid model, as it is the same as the manual envelope</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_res_paths</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">suit_paths</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;ela&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">i</span><span class="p">)]</span> <span class="c1"># And ignore the elapid model, as it is the same as the manual envelope</span>
 <span class="n">env_models</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;.tif&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">env_paths</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">suit_models</span><span class="p">)</span> <span class="o">//</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">suit_models</span><span class="p">)</span> <span class="o">//</span> <span class="o">-</span><span class="mi">2</span><span class="p">)))</span>
@@ -1527,6 +1571,7 @@ fully sample the study are - and there are several ways to deal with this issue 
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/8085773c0f5dd5b5944fdcd10ca534834c3da79905e54f87014fac3bbea340f5.png" src="../_images/8085773c0f5dd5b5944fdcd10ca534834c3da79905e54f87014fac3bbea340f5.png" />
 </div>
@@ -1536,72 +1581,58 @@ fully sample the study are - and there are several ways to deal with this issue 
 <p>For the bioclimatic envelope, the output is binary, as described in the previous section.</p>
 </section>
 </section>
-<section id="conclusions-a-name-conclusions-a">
-<h2>Conclusions <a name="conclusions"></a><a class="headerlink" href="#conclusions-a-name-conclusions-a" title="Permalink to this heading">#</a></h2>
-<p>ROC AUC scores are high, and the highest scoring models are spatially biased to localities corresponding to occurrence records, for which there could be several explanations.</p>
-<p>Spatial thinning of occurrence data within 5km of other observations may not have sufficiently remove spatial bias in the occurrence data. Indeed spatial thinning often performs poorly, particularly with low sample prevalence [15]. We can expect our accuracy measures to be overinflated in spatially autocorrelated datasets [34], and an approach like spatial block cross validation could be used to alleviate overfitting [35].</p>
-<p>Another consideration is selection of background points; is 10,000 really enough to fully sample the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better path to take - and there are several options (environmentally, spatially stratified) [4]. In a similar vein, according to [13], MaxEnt is commonly criticized as “not really a spatial model” - owing to its lack of spatial variables in the model inputs.</p>
-<p>The main objective here was to show an end-to-end SDM workflow in Python. Due to lack of support for SDM work in the Python language, this notebook was lengthier and more involved than an equivalent in R - a benefit being a more explicit workflow, with relatively little in the way of hidden computations.nts</p>
+<section id="discussion-and-conclusions-a-name-conclusions-a">
+<h2>Discussion and Conclusions <a name="conclusions"></a><a class="headerlink" href="#discussion-and-conclusions-a-name-conclusions-a" title="Permalink to this heading">#</a></h2>
+<p>The main objective here was to show an end-to-end SDM workflow in Python. Due to lack of support for SDM work in the Python language, this notebook was lengthier and more involved than an equivalent in R, with the benefit of perhaps being more explicit, with relatively little in the way of hidden computations.</p>
+<p>Looking at the SDM results, ROC AUC scores are generally high, with the highest scoring models assigning high suitabilities to localities corresponding to occurrence records, for which there could be several explanations. This looks like overfitting, perhaps due to insufficient correction of spatial bias in the underlying datasets.</p>
+<p>Spatial thinning of occurrence data within 5km of other observations is not actually very effective, and often performs poorly, particularly with low sample prevalence [15]. We can also expect our accuracy measures to be overinflated in spatially autocorrelated datasets [34]. As mentioned already, an approach like spatial block cross validation could be used to alleviate overfitting [35]. However, [39] concludes that care should be taken to correct presence-background SDMs without independent test data.</p>
+<p>The selection of background points should also be considered; is 10,000 really enough to fully sample the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better path to take - and there are several options (environmentally, spatially stratified) [4], and weighting sampling selection of background points such that spatial bias is similar in both the occurrence dataset and background point dataset [39].</p>
+<p>Finally, on the applicability of SDMs developed on abiotic data, it should be said that no explicit allowance is made for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [30]. For instance, [21] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions”, though biotic information can be included for instance by adding other species distributions as covariates [30].</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="references-a-name-references-a">
 <h1>References <a name="references"></a><a class="headerlink" href="#references-a-name-references-a" title="Permalink to this heading">#</a></h1>
-<p>CHECK FORMATTING</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a> (11 January 2024) GBIF Occurrence Download  <a class="reference external" href="https://doi.org/10.15468/dl.kwbc6x">https://doi.org/10.15468/dl.kwbc6x</a></p></li>
-<li><p>Furman D. A brief introduction to Species Distribution Models in Python. <a class="reference external" href="https://daniel-furman.github.io/Python-species-distribution-modeling/">https://daniel-furman.github.io/Python-species-distribution-modeling/</a> [Accessed 11/01/2024].</p></li>
-<li><p>Scikit-Learn. Species Distribution Modelling. <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html">https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html</a> [Accessed  11/01/2024].</p></li>
-<li><p>Barbet-Massin M, Jiguet F, Albert CH and Thuiller W. Selecting pseudo-absences for species distribution models: how, where and how many?. Methods in Ecology and Evolution, 3: 327-338. <a class="reference external" href="https://doi.org/10.1111/j.2041-210X.2011.00172.x">https://doi.org/10.1111/j.2041-210X.2011.00172.x</a></p></li>
-<li><p>Biosecurity Commmons. <em>Maxent SDM Explained</em>. <a class="reference external" href="https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained">https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained</a> [Accessed 12/01/2024].</p></li>
-<li><p>Xie C, Chen L, Li M, Jim CY, Liu D. BIOCLIM Modeling for Predicting Suitable Habitat for Endangered Tree Tapiscia sinensis (Tapisciaceae) in China. Forests. 2023; 14(11):2275. <a class="reference external" href="https://doi.org/10.3390/f14112275">https://doi.org/10.3390/f14112275</a></p></li>
-<li><p>Busby, JR. BIOCLIM - a bioclimate analysis and prediction system. <a class="reference external" href="https://caws.org.nz/PPQ567/PPQ%2006-1%20pp008-9%20Busby.pdf">https://caws.org.nz/PPQ567/PPQ 06-1 pp008-9 Busby.pdf</a> [Accessed 12/01/2024]</p></li>
-<li><p>Tôrres NM, De Marco Júnior P, Santos, T, Silveira L, de Almeida Jácomo AT and Diniz-Filho JAF. Can species distribution modelling provide estimates of population densities? A case study with jaguars in the Neotropics. Diversity and Distributions, 18: 615-627. <a class="reference external" href="https://doi.org/10.1111/j.1472-4642.2012.00892.x">https://doi.org/10.1111/j.1472-4642.2012.00892.x</a> [Accessed 12/01/2024]</p></li>
-<li><p>Budic L, Didenko G and Dormann CF. Squares of different sizes: effect of geographical projection on model parameter estimates in species distribution modeling. Ecol Evol, 6: 202-211. <a class="reference external" href="https://doi.org/10.1002/ece3.1838">https://doi.org/10.1002/ece3.1838</a> [Accessed 15/01/2024]</p></li>
+<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. GBIF Occurrence Download.  <a class="reference external" href="https://doi.org/10.15468/dl.kwbc6x">https://doi.org/10.15468/dl.kwbc6x</a> [Accessed 11/01/2024].</p></li>
+<li><p>Furman D. A Brief Introduction to Species Distribution Models in Python. <a class="reference external" href="https://daniel-furman.github.io/Python-species-distribution-modeling/">https://daniel-furman.github.io/Python-species-distribution-modeling/</a> [Accessed 11/01/2024].</p></li>
+<li><p>Prettenhofer P, Vanderplas J. Species Distribution Modelling (Scikit-Learn examples). <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html">https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html</a> [Accessed  11/01/2024].</p></li>
+<li><p>Barbet-Massin M, Jiguet F, Albert CH and Thuiller W. Selecting Pseudo-Absences for Species Distribution Models: How, Where and How Many? Methods in Ecology and Evolution. 2012; 3(2): 327-338. <a class="reference external" href="https://doi.org/10.1111/j.2041-210X.2011.00172.x">https://doi.org/10.1111/j.2041-210X.2011.00172.x</a>.</p></li>
+<li><p>Biosecurity Commmons. Maxent SDM Explained. <a class="reference external" href="https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained">https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained</a> [Accessed 12/01/2024].</p></li>
+<li><p>Xie C, Chen L, Li M, Jim CY, Liu D. BIOCLIM Modeling for Predicting Suitable Habitat for Endangered Tree Tapiscia sinensis (Tapisciaceae) in China. Forests. 2023; 14(11): 2275. <a class="reference external" href="https://doi.org/10.3390/f14112275">https://doi.org/10.3390/f14112275</a>.</p></li>
+<li><p>Busby, JR. BIOCLIM - a Bioclimate Analysis and Prediction System. <a class="reference external" href="https://caws.org.nz/PPQ567/PPQ%2006-1%20pp008-9%20Busby.pdf">https://caws.org.nz/PPQ567/PPQ 06-1 pp008-9 Busby.pdf</a>.</p></li>
+<li><p>Tôrres NM, De Marco Júnior P, Santos T, Silveira L, de Almeida Jácomo AT and Diniz-Filho JAF. Can Species Distribution Modelling Provide Estimates of Population Densities? A Case Study with Jaguars in the Neotropics. Diversity and Distributions. 2012; 18(6): 615-627. <a class="reference external" href="https://doi.org/10.1111/j.1472-4642.2012.00892.x">https://doi.org/10.1111/j.1472-4642.2012.00892.x</a>.</p></li>
+<li><p>Budic L, Didenko G and Dormann CF. Squares of Different Sizes: Effect of Geographical Projection on Model Parameter Estimates in Species Distribution Modeling. Ecol Evol. 2016; 6(1): 202-211. <a class="reference external" href="https://doi.org/10.1002/ece3.1838">https://doi.org/10.1002/ece3.1838</a>.</p></li>
 <li><p>ESRI. <em>World Continents [Web Map]</em>. Scale Not Given. <a class="reference external" href="https://hub.arcgis.com/datasets/esri::world-continents/about">https://hub.arcgis.com/datasets/esri::world-continents/about</a>. [Accessed 15/01/2024].</p></li>
-<li><p>Beaumont LJ, Hughes L, Poulsen M. Predicting species distributions: use of climatic parameters in BIOCLIM and its impact on predictions of species’ current and future distributions. Ecological Modelling, Volume 186, Issue 22, 251-270. 2005. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.01.030">https://doi.org/10.1016/j.ecolmodel.2005.01.030</a>. [Accessed 15/01/2024].</p></li>
-<li><p>Kellner CJ, Brawn JD, Karr JR. What Is Habitat Suitability and how Should it be Measured?. In: McCullough, D.R., Barrett, R.H. (eds) Wildlife 2001: Populations. Springer, Dordrecht. <a class="reference external" href="https://doi.org/10.1007/978-94-011-2868-1_36">https://doi.org/10.1007/978-94-011-2868-1_36</a> [Accessed 17/01/2024].</p></li>
-<li><p>Anderson C. elapid: Species distribution modeling tools for Python. <a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.04930">https://joss.theoj.org/papers/10.21105/joss.04930</a>. [Accessed 17/01/2024].</p></li>
-<li><p>Dormann CF. Effects of incorporating spatial autocorrelation into the analysis of species distribution data. Global Ecology and Biogeography, 16: 129-138. <a class="reference external" href="https://doi.org/10.1111/j.1466-8238.2006.00279.x">https://doi.org/10.1111/j.1466-8238.2006.00279.x</a> [Accessed 17/01/2024]</p></li>
-<li><p>Steen VA, Tingley MW, Paton PWC, Elphick CS. Spatial thinning and class balancing: Key choices lead to variation in the performance of species distribution models with citizen science data. Methods Ecol Evol. 2021; 12: 216–226. <a class="reference external" href="https://doi.org/10.1111/2041-210X.13525">https://doi.org/10.1111/2041-210X.13525</a> [Accessed 22/01/2024].</p></li>
-<li><p>Lissovsky AA, Dudov SV. Species-Distribution Modeling: Advantages and Limitations of Its Application. 2. MaxEnt. Biol Bull Rev 11, 265–275 (2021). <a class="reference external" href="https://doi.org/10.1134/S2079086421030087">https://doi.org/10.1134/S2079086421030087</a> [Accessed 22/01/2024].</p></li>
-<li><p>Brown J, et al. SDMtoolbox Technical Info. <a class="reference external" href="http://www.sdmtoolbox.org/technical-info">http://www.sdmtoolbox.org/technical-info</a> [Accessed 22/01/2024].</p></li>
-<li><p>Phillips SJ, Dudík M, Elith J, Graham CH, Lehmann A, Leathwick J and Ferrier S. Sample selection bias and presence-only distribution models: implications for background and pseudo-absence data. Ecological Applications, 19: 181-197. <a class="reference external" href="https://doi.org/10.1890/07-2153.1">https://doi.org/10.1890/07-2153.1</a> [Accessed 22/01/2024].</p></li>
-<li><p>Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. Modelling species presence-only data with random forests. Ecography, 2021. 44: 1731-1742. <a class="reference external" href="https://doi.org/10.1111/ecog.05615">https://doi.org/10.1111/ecog.05615</a> [Accessed 23/01/2024]</p></li>
-<li><p>Anderson R, Gonzalez I. (2011). Species-specific tuning increases robustness to sampling bias in models of species distributions: an implementation with MAXENT. Ecological Modelling. 222. 2796-2811. 10.1016/j.ecolmodel.2011.04.011. [Accessed 23/01/2024]</p></li>
-<li><p>Lee-Yaw JA, McCune JL, Pironon S and Sheth SN. (2022), Species distribution models rarely predict the biology of real populations. Ecography, 2022: e05877. <a class="reference external" href="https://doi.org/10.1111/ecog.05877">https://doi.org/10.1111/ecog.05877</a> [Accessed 24/01/2024]</p></li>
-<li><p>Steven J. Phillips, Robert P. Anderson, Robert E. Schapire,
-Maximum entropy modeling of species geographic distributions,
-Ecological Modelling,
-Volume 190, Issues 3–4,
-2006,
-Pages 23
-<a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.03.026">https://doi.org/10.1016/j.ecolmodel.2005.03.026</a> [Accessed 30/01/2024]</p></li>
-<li><p>Booth, T.H., Nix, H.A., Busby, J.R. and Hutchinson, M.F. (2014), bioclim: the first species distribution modelling package, its early applications and relevance to most current MaxEnt studies. Diversity Distrib., 20: 1-9. <a class="reference external" href="https://doi.org/10.1111/ddi.12144">https://doi.org/10.1111/ddi.12144</a>. [Accessed 30/01/2024].</p></li>
-<li><p>Fick, S.E. and Hijmans, R.J. (2017), WorldClim 2: new 1-km spatial resolution climate surfaces for global land areas. Int. J. Climatol, 37: 4302-4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a> [Accessed 30/01/2024].</p></li>
+<li><p>Beaumont LJ, Hughes L, Poulsen M. Predicting Species Distributions: Use of Climatic Parameters in Bioclim and Its Impact on Predictions of Species’ Current and Future Distributions. Ecological Modelling. 2005; 186(22): 251-270. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.01.030">https://doi.org/10.1016/j.ecolmodel.2005.01.030</a>. [Accessed 15/01/2024].</p></li>
+<li><p>Kellner CJ, Brawn JD, Karr JR. What Is Habitat Suitability and How Should It Be Measured?. In: McCullough DR, Barrett RH (eds) Wildlife 2001: Populations. Springer, Dordrecht. <a class="reference external" href="https://doi.org/10.1007/978-94-011-2868-1_36">https://doi.org/10.1007/978-94-011-2868-1_36</a> [Accessed 17/01/2024].</p></li>
+<li><p>Anderson CB. elapid: Species Distribution Modeling Tools for Python. Journal of Open Source Software. 2023; 8(84): 4930. <a class="reference external" href="https://doi.org/10.21105/joss.04930">https://doi.org/10.21105/joss.04930</a>.</p></li>
+<li><p>Dormann CF. Effects of Incorporating Spatial Autocorrelation Into the Analysis of Species Distribution Data. Global Ecology and Biogeography. 2007; 16(2): 129-138. <a class="reference external" href="https://doi.org/10.1111/j.1466-8238.2006.00279.x">https://doi.org/10.1111/j.1466-8238.2006.00279.x</a>.</p></li>
+<li><p>Steen VA, Tingley MW, Paton PWC and Elphick CS. Spatial Thinning and Class Balancing: Key Choices Lead to Variation in the Performance of Species Distribution Models With Citizen Science Data. Methods Ecol Evol. 2021; 12(2): 216–226. <a class="reference external" href="https://doi.org/10.1111/2041-210X.13525">https://doi.org/10.1111/2041-210X.13525</a>.</p></li>
+<li><p>Lissovsky AA, Dudov SV. Species-Distribution Modeling: Advantages and Limitations of Its Application. 2. MaxEnt. Biol Bull Rev. 2021; 11(3): 265–275. <a class="reference external" href="https://doi.org/10.1134/S2079086421030087">https://doi.org/10.1134/S2079086421030087</a>.</p></li>
+<li><p>Brown JL, Bennett JR and French CM. SDMtoolbox Technical Info. <a class="reference external" href="http://www.sdmtoolbox.org/technical-info">http://www.sdmtoolbox.org/technical-info</a> [Accessed 22/01/2024].</p></li>
+<li><p>Phillips SJ, Dudík M, Elith J, Graham CH, Lehmann A, Leathwick J and Ferrier S. Sample Selection Bias and Presence-Only Distribution Models: Implications for Background and Pseudo-Absence Data. Ecological Applications. 2009; 19(1): 181-197. <a class="reference external" href="https://doi.org/10.1890/07-2153.1">https://doi.org/10.1890/07-2153.1</a>.</p></li>
+<li><p>Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. Modelling Species Presence-Only Data With Random Forests. Ecography. 2021; 44(12): 1731-1742. <a class="reference external" href="https://doi.org/10.1111/ecog.05615">https://doi.org/10.1111/ecog.05615</a>.</p></li>
+<li><p>Anderson R and Gonzalez I. Species-Specific Tuning Increases Robustness to Sampling Bias in Models of Species Distributions: An Implementation With MAXENT. Ecological Modelling. 2011; 222(15): 2796-2811. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2011.04.011">https://doi.org/10.1016/j.ecolmodel.2011.04.011</a>.</p></li>
+<li><p>Lee-Yaw JA, McCune JL, Pironon S and Sheth SN. Species Distribution Models Rarely Predict the Biology of Real Populations. Ecography. 2022; 2022(6): e05877. <a class="reference external" href="https://doi.org/10.1111/ecog.05877">https://doi.org/10.1111/ecog.05877</a>.</p></li>
+<li><p>Phillips SJ, Anderson RP and Schapire RE. Maximum Entropy Modeling of Species Geographic Distributions. Ecological Modelling. 2006; 190(3): 231-259. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.03.026">https://doi.org/10.1016/j.ecolmodel.2005.03.026</a>.</p></li>
+<li><p>Booth TH, Nix HA, Busby JR and Hutchinson MF. Bioclim: The First Species Distribution Modelling Package, Its Early Applications and Relevance to Most Current MAXENT Studies. Diversity Distrib. 2014; 20(1): 1-9. <a class="reference external" href="https://doi.org/10.1111/ddi.12144">https://doi.org/10.1111/ddi.12144</a>.</p></li>
+<li><p>Fick SE and Hijmans RJ.  WorldClim 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas. Int. J. Climatol. 2017; 37(12); 4302-4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a>.</p></li>
 <li><p>Franklin J. Mapping Species Distributions: Spatial Inference and Prediction. Cambridge University Press; 2010.</p></li>
-<li><p>Freeman, E. A., and G. Moisen. 2008. “PresenceAbsence: An R Package for Presence Absence Analysis.” Journal of Statistical Software 23: 1–31.</p></li>
-<li><p>Hijmans, R. J. 2019. Raster: Geographic Data Analysis and Modeling. <a class="reference external" href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p></li>
-<li><p>Naimi, B. and Araújo, M.B. (2016), sdm: a reproducible and extensible R platform for species distribution modelling. Ecography, 39: 368-375. <a class="reference external" href="https://doi.org/10.1111/ecog.01881">https://doi.org/10.1111/ecog.01881</a>. [Accessed 30/01/2024].</p></li>
-<li><p>Quigley, H., Foster, R., Petracca, L., Payan, E., Salom, R. &amp; Harmsen, B. 2017. Panthera onca
-(errata version published in 2018). The IUCN Red List of Threatened Species 2017:
-e.T15953A123791436. <a class="reference external" href="http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693">http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693</a>.. [Accessed 01/02/2024]</p></li>
-<li><p>Katie Leach, W. Ian Montgomery, Neil Reid,
-Modelling the influence of biotic factors on species distribution patterns,
-Ecological Modelling,
-Volume 337,
-2016,
-Pages 96-106,
-ISSN 0304-3800,
-<a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2016">https://doi.org/10.1016/j.ecolmodel.2016</a>. [Accessed 01/02/2024]</p></li>
-<li><p>Zizka A, Silvestro D, Andermann T, Azevedo J, Duarte Ritter C, Edler D, Farooq H, Herdean A, Ariza M, Scharn R, Svanteson S, Wengtrom N, Zizka V &amp; Antonelli A (2019) CoordinateCleaner: standardized cleaning of occurrence records from biological collection databases. Methods in Ecology and Evolution, 10(5):744-751, doi:10.1111/2041-210X.13152, <a class="github reference external" href="https://github.com/ropensci/CoordinateCleaner">ropensci/CoordinateCleaner</a></p></li>
-<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. Data quality requirements: Occurrence datasets. <a class="reference external" href="https://www.gbif.org/data-quality-requirements-occurrences">https://www.gbif.org/data-quality-requirements-occurrences</a> [Accessed 01/02/2024]</p></li>
-<li><p>Waller J. Common things to look out for when post-processing GBIF downloads. <a class="reference external" href="http://GBIF.org">GBIF.org</a>. (2021-02-17). <a class="reference external" href="https://data-blog.gbif.org/post/gbif-filtering-guide/">https://data-blog.gbif.org/post/gbif-filtering-guide/</a> [Accessed 01/02/2024].</p></li>
-<li><p>de Oliveira, G., Rangel, T.F., Lima-Ribeiro, M.S., Terribile, L.C. and Diniz-Filho, J.A.F. (2014), Evaluating, partitioning, and mapping the spatial autocorrelation component in ecological niche modeling: a new approach based on environmentally equidistant records. Ecography, 37: 637-647. <a class="reference external" href="https://doi.org/10.1111/j.1600-0587.2013.00564.x">https://doi.org/10.1111/j.1600-0587.2013.00564.x</a> [Accessed 01/02/2024]</p></li>
-<li><p>Valavi R, Elith J, Lahoz-Monfort JJ, Guillera-Arroita G. blockCV: An r package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models. Methods Ecol Evol. 2019; 10: 225–232. <a class="reference external" href="https://doi.org/10.1111/2041-210X.13107">https://doi.org/10.1111/2041-210X.13107</a></p></li>
-<li><p>Peterson, A. Townsend, et al. Ecological Niches and Geographic Distributions (MPB-49). Princeton University Press, 2011. JSTOR, <a class="reference external" href="http://www.jstor.org/stable/j.ctt7stnh">http://www.jstor.org/stable/j.ctt7stnh</a>. [Accessed 01/02/2024].</p></li>
-<li><p>PEARCE, J.L. and BOYCE, M.S. (2006), Modelling distribution and abundance with presence-only data. Journal of Applied Ecology, 43: 405-412. <a class="reference external" href="https://doi.org/10.1111/j.1365-2664.2005.01112.x">https://doi.org/10.1111/j.1365-2664.2005.01112.x</a>. [Accessed 01/02/2024].</p></li>
+<li><p>Freeman, E. A., and G. Moisen. 2008. “PresenceAbsence: An R Package for Presence Absence Analysis.” Journal of Statistical Software. 2008; 23(11): 1–31. <a class="reference external" href="https://doi.org/10.18637/jss.v023.i11">https://doi.org/10.18637/jss.v023.i11</a>.</p></li>
+<li><p>Hijmans RJ. Raster: Geographic Data Analysis and Modeling. <a class="reference external" href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p></li>
+<li><p>Naimi B and Araújo MB. SDM: A Reproducible and Extensible R Platform for Species Distribution Modelling. Ecography. 2016; 39(4): 368-375. <a class="reference external" href="https://doi.org/10.1111/ecog.01881">https://doi.org/10.1111/ecog.01881</a>.</p></li>
+<li><p>Quigley H, Foster R, Petracca L, Payan E, Salom R and Harmsen B. Panthera onca (errata version published in 2018). The IUCN Red List of Threatened Species 2017: e.T15953A123791436. <a class="reference external" href="https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en">https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en</a>. [Accessed 01/02/2024].</p></li>
+<li><p>Leach K, Montgomery IW and Reid N. Modelling the Influence of Biotic Factors on Species Distribution Patterns. Ecological Modelling. 2016; 337: 96-106.<a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2016.06.008">https://doi.org/10.1016/j.ecolmodel.2016.06.008</a>.</p></li>
+<li><p>Zizka A, Silvestro D, Andermann T, Azevedo J, Duarte Ritter C et al. CoordinateCleaner: Standardized Cleaning of Occurrence Records From Biological Collection Databases. Methods in Ecology and Evolution. 2019; 10(5): 744-751, <a class="reference external" href="https://doi.org/10.1111/2041-210X.13152">https://doi.org/10.1111/2041-210X.13152</a>.</p></li>
+<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. Data Quality Requirements: Occurrence Datasets. <a class="reference external" href="https://www.gbif.org/data-quality-requirements-occurrences">https://www.gbif.org/data-quality-requirements-occurrences</a> [Accessed 01/02/2024].</p></li>
+<li><p>Waller J. Common Things to Look out for When Post-processing GBIF Downloads. <a class="reference external" href="http://GBIF.org">GBIF.org</a>. <a class="reference external" href="https://data-blog.gbif.org/post/gbif-filtering-guide/">https://data-blog.gbif.org/post/gbif-filtering-guide/</a> [Accessed 01/02/2024].</p></li>
+<li><p>de Oliveira G, Rangel TF, Lima-Ribeiro MS, Terribile LC and Diniz-Filho JAF. Evaluating, Partitioning, and Mapping the Spatial Autocorrelation Component in Ecological Niche Modeling: A New Approach Based on Environmentally Equidistant Records. Ecography. 2014; 37(7): 637-647. <a class="reference external" href="https://doi.org/10.1111/j.1600-0587.2013.00564.x">https://doi.org/10.1111/j.1600-0587.2013.00564.x</a>.</p></li>
+<li><p>Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. blockCV: An R Package for Generating Spatially or Environmentally Separated Folds for K-Fold Cross-Validation of Species Distribution Models. Methods Ecol Evol. 2019; 10(2): 225–232. <a class="reference external" href="https://doi.org/10.1111/2041-210X.13107">https://doi.org/10.1111/2041-210X.13107</a>.</p></li>
+<li><p>Peterson AT, et al. Ecological Niches and Geographic Distributions (MPB-49). Princeton University Press, 2011. JSTOR, <a class="reference external" href="http://www.jstor.org/stable/j.ctt7stnh">http://www.jstor.org/stable/j.ctt7stnh</a>.</p></li>
+<li><p>Pearce JL and Boyce MS. Modelling Distribution and Abundance With Presence-Only Data. Journal of Applied Ecology. 2006; 43(3): 405-412. <a class="reference external" href="https://doi.org/10.1111/j.1365-2664.2005.01112.x">https://doi.org/10.1111/j.1365-2664.2005.01112.x</a>.</p></li>
+<li><p>Allouche O, Tsoar A and Kadmon R. Assessing the Accuracy of Species Distribution Models: Prevalence, Kappa and the True Skill Statistic (TSS). Journal of Applied Ecology. 2006; 43(6): 1223-1232. <a class="reference external" href="https://doi.org/10.1111/j.1365-2664.2006.01214.x">https://doi.org/10.1111/j.1365-2664.2006.01214.x</a>.</p></li>
+<li><p>Baker DJ, Maclean IMD and Gaston KJ. Effective Strategies for Correcting Spatial Sampling Bias in Species Distribution Models Without Independent Test Data. Diversity and Distributions. 2023; 1–13. <a class="reference external" href="https://doi.org/10.1111/ddi.13802">https://doi.org/10.1111/ddi.13802</a>.</p></li>
 </ol>
-<p>06.008.en1-259</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1669,7 +1700,7 @@ ISSN 0304-3800,
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation-a-name-spatial-a">Spatial autocorrelation <a name="spatial"></a></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-topographic-data-a-name-climate-a">Climate and topographic data <a name="climate"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data-a-name-climate-a">Climate and elevation data <a name="climate"></a></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms-a-name-covariate-a">Covariate histograms <a name="covariate"></a></a></li>
 </ul>
 </li>
@@ -1686,7 +1717,7 @@ ISSN 0304-3800,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oneclasssvm-presence-background-models-a-name-oneclassvm-a">OneClassSVM &amp; presence-background models <a name="oneclassvm"></a></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions-a-name-conclusions-a">Conclusions <a name="conclusions"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions-a-name-conclusions-a">Discussion and Conclusions <a name="conclusions"></a></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references-a-name-references-a">References <a name="references"></a></a></li>
@@ -1715,7 +1746,7 @@ By Tom Whitehouse
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2024.
       <br/>
     
   </p>
