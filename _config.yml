@@ -4,19 +4,21 @@
 title:  Topics in Quantitative Ecology and Beyond
 author: Tom Whitehouse
 logo: logo.png
+copyright: "2024"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: off
+  timeout: 100000
 
 # Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
+# bibtex_bibfiles:
+#  - references.bib
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/twhit1/quant_eco  # Online location of your book
+  url: https://github.com/twhit1/quant_ecolo  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
