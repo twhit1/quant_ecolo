@@ -1,0 +1,38 @@
+# References <a name="references"></a>
+1. GBIF.org. GBIF Occurrence Download.  https://doi.org/10.15468/dl.kwbc6x [Accessed 11/01/2024].
+2. Furman D. A Brief Introduction to Species Distribution Models in Python. https://daniel-furman.github.io/Python-species-distribution-modeling/ [Accessed 11/01/2024].
+3. Prettenhofer P, Vanderplas J. Species Distribution Modelling (Scikit-Learn examples). https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html [Accessed  11/01/2024].
+4. Barbet-Massin M, Jiguet F, Albert CH and Thuiller W. Selecting Pseudo-Absences for Species Distribution Models: How, Where and How Many? Methods in Ecology and Evolution. 2012; 3(2): 327-338. https://doi.org/10.1111/j.2041-210X.2011.00172.x.
+5. Biosecurity Commmons. Maxent SDM Explained. https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained [Accessed 12/01/2024].
+6. Xie C, Chen L, Li M, Jim CY, Liu D. BIOCLIM Modeling for Predicting Suitable Habitat for Endangered Tree Tapiscia sinensis (Tapisciaceae) in China. Forests. 2023; 14(11): 2275. https://doi.org/10.3390/f14112275.
+7. Busby, JR. BIOCLIM - a Bioclimate Analysis and Prediction System. https://caws.org.nz/PPQ567/PPQ%2006-1%20pp008-9%20Busby.pdf.
+8. Tôrres NM, De Marco Júnior P, Santos T, Silveira L, de Almeida Jácomo AT and Diniz-Filho JAF. Can Species Distribution Modelling Provide Estimates of Population Densities? A Case Study with Jaguars in the Neotropics. Diversity and Distributions. 2012; 18(6): 615-627. https://doi.org/10.1111/j.1472-4642.2012.00892.x.
+9. Budic L, Didenko G and Dormann CF. Squares of Different Sizes: Effect of Geographical Projection on Model Parameter Estimates in Species Distribution Modeling. Ecol Evol. 2016; 6(1): 202-211. https://doi.org/10.1002/ece3.1838.
+10. ESRI. _World Continents [Web Map]_. Scale Not Given. https://hub.arcgis.com/datasets/esri::world-continents/about. [Accessed 15/01/2024].
+11. Beaumont LJ, Hughes L, Poulsen M. Predicting Species Distributions: Use of Climatic Parameters in Bioclim and Its Impact on Predictions of Species’ Current and Future Distributions. Ecological Modelling. 2005; 186(22): 251-270. https://doi.org/10.1016/j.ecolmodel.2005.01.030. [Accessed 15/01/2024].
+12. Kellner CJ, Brawn JD, Karr JR. What Is Habitat Suitability and How Should It Be Measured?. In: McCullough DR, Barrett RH (eds) Wildlife 2001: Populations. Springer, Dordrecht. https://doi.org/10.1007/978-94-011-2868-1_36 [Accessed 17/01/2024].
+13. Anderson CB. elapid: Species Distribution Modeling Tools for Python. Journal of Open Source Software. 2023; 8(84): 4930. https://doi.org/10.21105/joss.04930.
+14. Dormann CF. Effects of Incorporating Spatial Autocorrelation Into the Analysis of Species Distribution Data. Global Ecology and Biogeography. 2007; 16(2): 129-138. https://doi.org/10.1111/j.1466-8238.2006.00279.x.
+15. Steen VA, Tingley MW, Paton PWC and Elphick CS. Spatial Thinning and Class Balancing: Key Choices Lead to Variation in the Performance of Species Distribution Models With Citizen Science Data. Methods Ecol Evol. 2021; 12(2): 216–226. https://doi.org/10.1111/2041-210X.13525.
+16. Lissovsky AA, Dudov SV. Species-Distribution Modeling: Advantages and Limitations of Its Application. 2. MaxEnt. Biol Bull Rev. 2021; 11(3): 265–275. https://doi.org/10.1134/S2079086421030087.
+17. Brown JL, Bennett JR and French CM. SDMtoolbox Technical Info. http://www.sdmtoolbox.org/technical-info [Accessed 22/01/2024].
+18. Phillips SJ, Dudík M, Elith J, Graham CH, Lehmann A, Leathwick J and Ferrier S. Sample Selection Bias and Presence-Only Distribution Models: Implications for Background and Pseudo-Absence Data. Ecological Applications. 2009; 19(1): 181-197. https://doi.org/10.1890/07-2153.1.
+19. Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. Modelling Species Presence-Only Data With Random Forests. Ecography. 2021; 44(12): 1731-1742. https://doi.org/10.1111/ecog.05615.
+20. Anderson R and Gonzalez I. Species-Specific Tuning Increases Robustness to Sampling Bias in Models of Species Distributions: An Implementation With MAXENT. Ecological Modelling. 2011; 222(15): 2796-2811. https://doi.org/10.1016/j.ecolmodel.2011.04.011.
+21. Lee-Yaw JA, McCune JL, Pironon S and Sheth SN. Species Distribution Models Rarely Predict the Biology of Real Populations. Ecography. 2022; 2022(6): e05877. https://doi.org/10.1111/ecog.05877.
+22. Phillips SJ, Anderson RP and Schapire RE. Maximum Entropy Modeling of Species Geographic Distributions. Ecological Modelling. 2006; 190(3): 231-259. https://doi.org/10.1016/j.ecolmodel.2005.03.026.
+23. Booth TH, Nix HA, Busby JR and Hutchinson MF. Bioclim: The First Species Distribution Modelling Package, Its Early Applications and Relevance to Most Current MAXENT Studies. Diversity Distrib. 2014; 20(1): 1-9. https://doi.org/10.1111/ddi.12144.
+24. Fick SE and Hijmans RJ.  WorldClim 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas. Int. J. Climatol. 2017; 37(12); 4302-4315. https://doi.org/10.1002/joc.5086.
+25. Franklin J. Mapping Species Distributions: Spatial Inference and Prediction. Cambridge University Press; 2010.
+26. Freeman, E. A., and G. Moisen. 2008. “PresenceAbsence: An R Package for Presence Absence Analysis.” Journal of Statistical Software. 2008; 23(11): 1–31. https://doi.org/10.18637/jss.v023.i11.
+27. Hijmans RJ. Raster: Geographic Data Analysis and Modeling. https://CRAN.R-project.org/package=raster.
+28. Naimi B and Araújo MB. SDM: A Reproducible and Extensible R Platform for Species Distribution Modelling. Ecography. 2016; 39(4): 368-375. https://doi.org/10.1111/ecog.01881.
+29. Quigley H, Foster R, Petracca L, Payan E, Salom R and Harmsen B. Panthera onca (errata version published in 2018). The IUCN Red List of Threatened Species 2017: e.T15953A123791436. https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en. [Accessed 01/02/2024].
+30. Leach K, Montgomery IW and Reid N. Modelling the Influence of Biotic Factors on Species Distribution Patterns. Ecological Modelling. 2016; 337: 96-106.https://doi.org/10.1016/j.ecolmodel.2016.06.008.
+31. Zizka A, Silvestro D, Andermann T, Azevedo J, Duarte Ritter C et al. CoordinateCleaner: Standardized Cleaning of Occurrence Records From Biological Collection Databases. Methods in Ecology and Evolution. 2019; 10(5): 744-751, https://doi.org/10.1111/2041-210X.13152.
+32. GBIF.org. Data Quality Requirements: Occurrence Datasets. https://www.gbif.org/data-quality-requirements-occurrences [Accessed 01/02/2024].
+33. Waller J. Common Things to Look out for When Post-processing GBIF Downloads. GBIF.org. https://data-blog.gbif.org/post/gbif-filtering-guide/ [Accessed 01/02/2024].
+34. de Oliveira G, Rangel TF, Lima-Ribeiro MS, Terribile LC and Diniz-Filho JAF. Evaluating, Partitioning, and Mapping the Spatial Autocorrelation Component in Ecological Niche Modeling: A New Approach Based on Environmentally Equidistant Records. Ecography. 2014; 37(7): 637-647. https://doi.org/10.1111/j.1600-0587.2013.00564.x.
+35. Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. blockCV: An R Package for Generating Spatially or Environmentally Separated Folds for K-Fold Cross-Validation of Species Distribution Models. Methods Ecol Evol. 2019; 10(2): 225–232. https://doi.org/10.1111/2041-210X.13107.
+36. Peterson AT, et al. Ecological Niches and Geographic Distributions (MPB-49). Princeton University Press, 2011. JSTOR, http://www.jstor.org/stable/j.ctt7stnh.
+37. Pearce JL and Boyce MS. Modelling Distribution and Abundance With Presence-Only Data. Journal of Applied Ecology. 2006; 43(3): 405-412. https://doi.org/10.1111/j.1365-2664.2005.01112.x.
