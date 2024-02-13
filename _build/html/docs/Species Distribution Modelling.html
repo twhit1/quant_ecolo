@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Species Distribution Modelling with Python</a></li>
+
 </ul>
 
     </div>
@@ -334,6 +335,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Species Distribution Modelling with Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-and-packages">Import data and packages</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
@@ -362,6 +364,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and conclusions</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -1596,6 +1602,10 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 <p>Spatial thinning of occurrence data within 5km of other observations is not actually very effective, and often performs poorly, particularly with low sample prevalence [17]. We can also expect our accuracy measures to be overinflated in spatially autocorrelated datasets [21]. As mentioned already, an approach like spatial block cross validation could be used to alleviate overfitting [23]. However, [37] concludes that care should be taken to correct presence-background SDMs without independent test data.</p>
 <p>The selection of background points should also be considered; is 10,000 really enough to adequately represent the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better option. There are several options to select the background points in a non-uniform random manner (environmentally, spatially stratified) [28]. Spatial weighting sampling probabilities for the background points such that spatial bias is similar in both the occurrence dataset and background point dataset is also possible [37].</p>
 <p>Finally, on the applicability of SDMs developed on abiotic data, it should be said that no explicit allowance is made here for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [38]. For instance, [39] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions” (abstract, [38]), though biotic information can be included for instance by adding other species distributions as covariates [38].</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. GBIF Occurrence Download. <a class="reference external" href="https://doi.org/10.15468/dl.kwbc6x">https://doi.org/10.15468/dl.kwbc6x</a> [Accessed 11/01/2024].</p></li>
 <li><p>Fick SE and Hijmans RJ. WorldClim 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas. Int. J. Climatol. 2017; 37(12); 4302-4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a>.</p></li>
@@ -1637,7 +1647,6 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 <li><p>Leach K, Montgomery IW and Reid N. Modelling the Influence of Biotic Factors on Species Distribution Patterns. Ecological Modelling. 2016; 337: 96-106. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2016.06.008">https://doi.org/10.1016/j.ecolmodel.2016.06.008</a>.</p></li>
 <li><p>Lee-Yaw JA, McCune JL, Pironon S and Sheth SN. Species Distribution Models Rarely Predict the Biology of Real Populations. Ecography. 2022; 2022(6): e05877. <a class="reference external" href="https://doi.org/10.1111/ecog.05877">https://doi.org/10.1111/ecog.05877</a>.</p></li>
 </ol>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1695,6 +1704,7 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Species Distribution Modelling with Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-and-packages">Import data and packages</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
@@ -1723,6 +1733,10 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and conclusions</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
