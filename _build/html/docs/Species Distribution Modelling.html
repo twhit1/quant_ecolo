@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Species Distribution Modelling with Python &#8212; Topics in Quantitative Ecology and Beyond</title>
   
@@ -361,7 +361,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and conclusions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -378,11 +377,11 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Today, a wealth of biodiversity and earth observation datasets are freely available. Alongside advances in data processing technologies and availability of cheap computing resources, data sources such as those used in this notebook -
-the Global Biodiversity Information Facility (GBIF) [1], and WorldClim [24] - present extensive opportunities to build large-scale models which can act as a valuable tool for decision-making in diverse fields.</p>
-<p>This notebook considers one such application: Species Distribution Modelling. Species Distribution Models allow us to predict likely species distributions by linking information in environmental space (e.g. climatic varibales) to spatially referenced biodiversity data (e.g. occurrence datasets) [23].</p>
-<p>SDMs have found applications in conservation, ecology, evolution and other fields [22], for purposes like guiding field research, informing conservation strategies and predicting ecological impacts of climate change [8, 23].</p>
+the Global Biodiversity Information Facility (GBIF) [1], and WorldClim [2] - present extensive opportunities to build large-scale models which can act as a valuable tool for decision-making in diverse fields.</p>
+<p>This notebook considers one such application: Species Distribution Modelling. Species Distribution Models allow us to predict likely species distributions by linking information in environmental space (e.g. climatic varibales) to spatially referenced biodiversity data (e.g. occurrence datasets) [3].</p>
+<p>SDMs have found applications in conservation, ecology, evolution and other fields [4], for purposes like guiding field research, informing conservation strategies and predicting ecological impacts of climate change [3, 5].</p>
 <p><strong>What is covered in this notebook?</strong> <br>
-Whilst SDM tools seem well-developed in the R programming language [26, 27, 28], I was only able to find one relevant (but limited) Python package, the companion publication of which notes the lack of Python SDM tools [13].</p>
+Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I was only able to find one relevant (but limited) Python package, the companion publication of which notes the lack of Python SDM tools [9].</p>
 <p>This notebook aims to present a basic SDM workflow in Python, with example SDMs fitted to a sample of Panthera onca (Jaguar) occurrence observations downloaded from the GBIF, with WorldClim covariates. After presenting the methods used (data sourcing, preprocessing, and model selection and scoring), I go on to plot and discuss habitat suitability maps before concluding.</p>
 </section>
 <section id="import-data-and-packages">
@@ -445,8 +444,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <section id="study-area">
 <h3>Study area<a class="headerlink" href="#study-area" title="Permalink to this heading">#</a></h3>
-<p>The Jaguar’s global range is mostly limited to the South American continent, though the distribution extends into Central America [29].</p>
-<p>To speed up and simplify calculations and plotting, I select the contiguous part of the South American continent as the study area, shown in the figure below, using a standard ESRI continent shapefile [10]. Reducing the study area in this way is not typical of the SDM workflows referenced in this notebook, but makes sense for an introductory study, as the majority of the Jaguar range is covered, and we don’t have to oversimplify the ecological processes governing movement and dispersal to/from islands.</p>
+<p>The Jaguar’s global range is mostly limited to the South American continent, though the distribution extends into Central America [10].</p>
+<p>To speed up and simplify calculations and plotting, I select the contiguous part of the South American continent as the study area, shown in the figure below, using a standard ESRI continent shapefile [11]. Reducing the study area in this way is not typical of the SDM workflows referenced in this notebook, but makes sense for an introductory study, as the majority of the Jaguar range is covered, and we don’t have to oversimplify the ecological processes governing movement and dispersal to/from islands.</p>
 <p>Note that all plots are shown and calculations performed in projected coordinates. I’m using an equal-area projection with units of metres - see details in the reprojection section.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -500,7 +499,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <p>Using a longer window (1960 - 2010) results in a four-fold increase in the number of records returned from GBIF. I retain the larger dataset under the assumption that averaged climate variables will have changed little on the longer window. For species distribution modelling aimed at studying changing habitat suitability with future climate scenarios, this kind of assumption would not apply.</p>
 <p>Basis of record types were filtered to include human and machine observations, and records labelled as “occurrence”, which removed 42 preserved specimen records from the dataset.</p>
 <p>As an initial spatial cleaning step, exact geometry duplicates are dropped - this is a crude cleanup of erroneous geometries where the data provider used a centroid or building location (e.g. a lab location) instead of the actual occurrence location, and potentially drops some good records that genuinely were detected at the same location (within precision). Spatial data quality is examined in more detail below.</p>
-<p>There is a much more sophisticated way to do spatial cleaning on GBIF data with the R package CoordinateCleaner [31], with explicit functions to filter on country capitals, country centroids, known herbaria and zoo locations etc.</p>
+<p>There is a much more sophisticated way to do spatial cleaning on GBIF data with the R package CoordinateCleaner [12], with explicit functions to filter on country capitals, country centroids, known herbaria and zoo locations etc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retain only columns of interest</span>
@@ -529,7 +528,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </div>
-<p>Spatial accuracy and precision issues could be problematic for developing SDMs. The GBIF website lists several common error sources [32]:</p>
+<p>Spatial accuracy and precision issues could be problematic for developing SDMs. The GBIF website lists several common error sources [13]:</p>
 <ol class="arabic simple">
 <li><p>Transformation errors</p></li>
 <li><p>Value swapping (lat / lon)</p></li>
@@ -538,13 +537,13 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <li><p>Requirements to intentionally blur precision in the case of protection of sensitive species</p></li>
 <li><p>Precision on gridded data (e.g. grid centroids listed, potentially without a coordinate uncertainty)</p></li>
 </ol>
-<p>In addition, [33] notes that known default coordinate uncertainty values (301,3036,999,9999) should be cleaned, as they represent spurious location records (e.g. country centroids). However, none of the coordinate uncertainty values in records retrieved here match those values.</p>
+<p>In addition, [14] notes that known default coordinate uncertainty values (301,3036,999,9999) should be cleaned, as they represent spurious location records (e.g. country centroids). However, none of the coordinate uncertainty values in records retrieved here match those values.</p>
 <p>With reference to lat / lon data, transformation errors (1.), systematic coordinate swaps (2.) and missed or appended negative signs (3.) should be very obvious when plotting the occurrence records on a map, and are likely filtered by the clip to study area operation performed below.</p>
-<p>Precision issues (4., 5., 6.) are harder to deal with - in fact most records don’t provide coordinate precision and typically a lot of data is lost if this field is filtered out - so the suggestion is not to do so [33].</p>
+<p>Precision issues (4., 5., 6.) are harder to deal with - in fact most records don’t provide coordinate precision and typically a lot of data is lost if this field is filtered out - so the suggestion is not to do so [14].</p>
 <section id="reprojection">
 <h4>Reprojection<a class="headerlink" href="#reprojection" title="Permalink to this heading">#</a></h4>
-<p>Here I use an equal-area projection (recommended for SDMs in [9]), ESRI:102033: Albers equal-area conic.</p>
-<p>Using equal-area projections in place of geodetic coordinates is recommended to avoid possible bias, though in practice this has little effect on SDM coefficients [9].</p>
+<p>Here I use an equal-area projection (recommended for SDMs in [15]), ESRI:102033: Albers equal-area conic.</p>
+<p>Using equal-area projections in place of geodetic coordinates is recommended to avoid possible bias, though in practice this has little effect on SDM coefficients [15].</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -574,11 +573,11 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </section>
 <section id="spatial-autocorrelation">
 <h4>Spatial autocorrelation<a class="headerlink" href="#spatial-autocorrelation" title="Permalink to this heading">#</a></h4>
-<p>Both covariate and response variables used to build SDMs on single-species occurrence datasets often display autocorrelation properties [6, 15-18].</p>
-<p>Spatial autocorrelation due to exogenous (abiotic) factors exists [34] though can be entirely removed with a comprehensive set of environmental covariates [14]. However, endogenous (biotic) factors (which include dispersal, colonial breeding, home-range size, competition, predation etc.) are harder to deal with [14].</p>
-<p>Spatial bias is often present in occurrence datasets (particularly those aggregated from multiple studies, or sourced from citizen science repositories) for instance due to accessibility of the sample area: species are sampled near roads, rivers and research stations [15-18, 34].</p>
-<p>Combined, these effects lead to biased SDMs. One approach to tackling this problem is spatial rarefication / thinning of occurrence data: in [6] only one record per 5 square km is kept. Here points are filtered based on a circle of radius 2.5 km.</p>
-<p>There are more sophisticated approaches to handling biases in this scenario, for example thinning occurrence and background points to be equidistant in geographical or environmental space [34], passing weight arrays into SDM fitting procedures, or by spatial block cross-validation [35].</p>
+<p>Both covariate and response variables used to build SDMs on single-species occurrence datasets often display autocorrelation properties [16-20].</p>
+<p>Spatial autocorrelation due to exogenous (abiotic) factors exists [21] though can be entirely removed with a comprehensive set of environmental covariates [22]. However, endogenous (biotic) factors (which include dispersal, colonial breeding, home-range size, competition, predation etc.) are harder to deal with [22].</p>
+<p>Spatial bias is often present in occurrence datasets (particularly those aggregated from multiple studies, or sourced from citizen science repositories) for instance due to accessibility of the sample area: species are sampled near roads, rivers and research stations [17-21].</p>
+<p>Combined, these effects lead to biased SDMs. One approach to tackling this problem is spatial rarefication / thinning of occurrence data: in [16] only one record per 5 square km is kept. Here points are filtered based on a circle of radius 2.5 km.</p>
+<p>There are more sophisticated approaches to handling biases in this scenario, for example thinning occurrence and background points to be equidistant in geographical or environmental space [21], passing weight arrays into SDM fitting procedures, or by spatial block cross-validation [23].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There&#39;s no built-in geodataframe thinning routine so do this manually</span>
@@ -693,8 +692,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </section>
 <section id="climate-and-elevation-data">
 <h3>Climate and elevation data<a class="headerlink" href="#climate-and-elevation-data" title="Permalink to this heading">#</a></h3>
-<p>Worldclim [24] climate variables were downloaded from <a class="reference external" href="http://worldclim.org">worldclim.org</a>, along with SRTM elevation data, all at 30s spatial resolution.</p>
-<p>I start with the same set of variables as used by another Jaguar SDM study [8]:</p>
+<p>Worldclim [2] climate variables were downloaded from <a class="reference external" href="http://worldclim.org">worldclim.org</a>, along with SRTM elevation data, all at 30s spatial resolution.</p>
+<p>I start with the same set of variables as used by another Jaguar SDM study [5]:</p>
 <ul class="simple">
 <li><p>precipitation of coldest quarter,</p></li>
 <li><p>precipitation of warmest quarter,</p></li>
@@ -845,8 +844,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </section>
 <section id="feature-selection">
 <h2>Feature selection<a class="headerlink" href="#feature-selection" title="Permalink to this heading">#</a></h2>
-<p>Now proceeding with climatic and topographic features as identified above, I’m running an additional feature selection routine as outlined in [6], which entails testing pairwise Spearman rank values, and for each pair where r &gt; 0.8, discarding the feature with the lower PCA loading.</p>
-<p>For SDM applications, it’s also possible to assess histogram shape to aid in feature selection, with normally distributed or skewed bioclimatic distributions corresponding to relevant covariates, and no pattern or truncated histograms being irrelevant [11].</p>
+<p>Now proceeding with climatic and topographic features as identified above, I’m running an additional feature selection routine as outlined in [16], which entails testing pairwise Spearman rank values, and for each pair where r &gt; 0.8, discarding the feature with the lower PCA loading.</p>
+<p>For SDM applications, it’s also possible to assess histogram shape to aid in feature selection, with normally distributed or skewed bioclimatic distributions corresponding to relevant covariates, and no pattern or truncated histograms being irrelevant [24].</p>
 <section id="features-with-major-disconituities">
 <h3>Features with major disconituities<a class="headerlink" href="#features-with-major-disconituities" title="Permalink to this heading">#</a></h3>
 <p>Due to calculation methodologies [25], some WorldClim variables show major discontinuities, which are visible in the continent-level plots above and will therefore be removed ([25] notes 84 publications taking such an approach)).</p>
@@ -1065,8 +1064,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
 <section id="environmental-envelope">
 <h3>Environmental envelope<a class="headerlink" href="#environmental-envelope" title="Permalink to this heading">#</a></h3>
-<p>Here I run a simple envelope model similar to BIOCLIM [7], in which the minimal rectilinear envelope in covariate space is established with reference to covariate values at occurrence record locations.</p>
-<p>This method is sensitive to outliers, so we can look at a percentiles of the climatic profile corresponding to proportions of occurrence records included [36]. I calculate the “full” range envelope (corresponding to all occurrence locations) and also a “core” range envelope [11] corresponding to the 5th to 95th percentiles.</p>
+<p>Here I run a simple envelope model similar to BIOCLIM [26], in which the minimal rectilinear envelope in covariate space is established with reference to covariate values at occurrence record locations.</p>
+<p>This method is sensitive to outliers, so we can look at a percentiles of the climatic profile corresponding to proportions of occurrence records included [27]. I calculate the “full” range envelope (corresponding to all occurrence locations) and also a “core” range envelope [24] corresponding to the 5th to 95th percentiles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">range_distribution</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
@@ -1144,7 +1143,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 <p>Each pixel on the entire study area can then be examined with reference to these bounds, for each covariate.</p>
 <p>There is a choice regarding how to accept or reject each pixel - as some covariates may be in the range evelope, whilst others may not. Clearly a pixel for which all covariates fall inside or outside the range envelope would be accepted or rejected respectively.</p>
-<p>For pixels with mixed results, we can take the intersection, average or union of covariate pass/fail values for each pixel to create the surface range maps [13] - here the intersection is taken, which is a strong constraint.</p>
+<p>For pixels with mixed results, we can take the intersection, average or union of covariate pass/fail values for each pixel to create the surface range maps [9] - here the intersection is taken, which is a strong constraint.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ref_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
@@ -1220,7 +1219,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 <p>Note that the full range includes the core range (is the union of blue regions in figure).</p>
-<p>Repeat analysis using “out-the-box” equivalent [13] and check consistency:</p>
+<p>Repeat analysis using “out-the-box” equivalent [9] and check consistency:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">envelope_ela</span>  <span class="o">=</span> <span class="n">ela</span><span class="o">.</span><span class="n">NicheEnvelopeModel</span><span class="p">(</span><span class="n">percentile_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">overlay</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">)</span>
@@ -1265,7 +1264,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <section id="oneclasssvm-presence-background-models">
 <h3>OneClassSVM &amp; presence-background models<a class="headerlink" href="#oneclasssvm-presence-background-models" title="Permalink to this heading">#</a></h3>
 <p>In this section several SDMs are fitted against the selected covariates, using covariate values at the Jaguar occurrence locations and also at a random sample of background points.</p>
-<p>The study area is reduced to the full extent of the surface range envelope computed in the previous section, which can reduce overfitting [13].</p>
+<p>The study area is reduced to the full extent of the surface range envelope computed in the previous section, which can reduce overfitting [9].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##### First generate background points #####</span>
@@ -1284,7 +1283,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </div>
-<p>Background points are generated as a random sample on that area. Seed 10,000 points [4, 5, 16], and sample covariates at those points.</p>
+<p>Background points are generated as a random sample on that area. Seed 10,000 points [18, 28, 29], and sample covariates at those points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">background_coords</span> <span class="o">=</span> <span class="n">envelope_geoseries</span><span class="o">.</span><span class="n">sample_points</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span>
@@ -1322,7 +1321,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 <p>Now define the models: I am using four classes of model, two with multiple parameter sets.</p>
-<p>OneClassSVM is an unsupervised outlier detection model, applied in a scikit-learn tutorial [3] as a density estimator trained on presence-only data.</p>
+<p>OneClassSVM is an unsupervised outlier detection model, applied in a scikit-learn tutorial [30] as a density estimator trained on presence-only data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svm_1cl</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">OneClassSVM</span><span class="p">(</span><span class="n">nu</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -1330,7 +1329,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </div>
-<p>MaxEnt is also a density estimator, though it uses presence/background data. It is used widely in the SDM literature [20, 36]; here a standard implementation is used [13], with a variety of values for the regularization parameter (beta): [16] suggests that beta should be empirically found. I use a similar set of beta values to those used in [20].</p>
+<p>MaxEnt is also a density estimator, though it uses presence/background data. It is used widely in the SDM literature [27, 31]; here a standard implementation is used [9], with a variety of values for the regularization parameter (beta): [18] suggests that beta should be empirically found. I use a similar set of beta values to those used in [31].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_ent_model</span> <span class="o">=</span> <span class="p">[</span><span class="n">ela</span><span class="o">.</span><span class="n">MaxentModel</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="s1">&#39;cloglog&#39;</span><span class="p">,</span> <span class="n">beta_multiplier</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
@@ -1338,8 +1337,8 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </div>
-<p>LogisticRegression is a type of Generalized Linear Model (GLM) with a logit link function. GLMs (and also Generalized Additive Models (GAMs)) are very popular SDM approaches [36].</p>
-<p>In general, GLMs/GAMs can be used with background data instead of absence/pseudo-absence but this requires case-control design [36, 37]. This is difficult in practice - especially in Python with scikit-learn, because it requires modification of the underlying logistic function to include a correction term based on the proportions of occupied and unoccupied locations in the study area, which is rarely known [37]. Therefore we accept that this model (and in fact the others) are making relative predictions about species presence, instead of outputting a direct probability of species presence.</p>
+<p>LogisticRegression is a type of Generalized Linear Model (GLM) with a logit link function. GLMs (and also Generalized Additive Models (GAMs)) are very popular SDM approaches [27].</p>
+<p>In general, GLMs/GAMs can be used with background data instead of absence/pseudo-absence but this requires case-control design [27, 32]. This is difficult in practice - especially in Python with scikit-learn, because it requires modification of the underlying logistic function to include a correction term based on the proportions of occupied and unoccupied locations in the study area, which is rarely known [32]. Therefore we accept that this model (and in fact the others) are making relative predictions about species presence, instead of outputting a direct probability of species presence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_classifier</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">()</span>
@@ -1347,7 +1346,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 </div>
-<p>RandomForest is a tree-based model, another popular class of SDM approaches. Here it’s implemented as in [2, 19]. Note that RFs are sensitive to class imbalance &amp; overlap, both of which are present here by default due to the requirement that background points fully sample the study area. There are several ways to deal with this issue [19], though these methods are beyond the scope of this notebook - here I just use a standard parameter of the scikit-learn RandomForest class to weight the samples based on class prevalence in the dataset.</p>
+<p>RandomForest is a tree-based model, another popular class of SDM approaches. Here it’s implemented as in [33, 34]. Note that RFs are sensitive to class imbalance &amp; overlap, both of which are present here by default due to the requirement that background points fully sample the study area. There are several ways to deal with this issue [34], though these methods are beyond the scope of this notebook - here I just use a standard parameter of the scikit-learn RandomForest class to weight the samples based on class prevalence in the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_classifier</span> <span class="o">=</span> <span class="p">[</span><span class="n">sklearn</span><span class="o">.</span><span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">),</span> <span class="c1"># Using gini (this is the default), and 500 trees as suggested in [19]</span>
@@ -1357,7 +1356,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </div>
 </div>
 <p>The MaxEnt model doesn’t behave with scikit-learn scoring, so I’m implementing a cross validation routine manually here.</p>
-<p>The area under the curve (AUC) of the receiver operating characteristic (ROC) is a measure of the performance of binary classifiers and takes values in the range [0.5, 1] (in practice - theoretically between [0, 1]). The measure is commonly used to assess performance of SDMs, often alongside a threshold-dependent scorer (e.g. True Skill Statistic, TSS) [19, 38].</p>
+<p>The area under the curve (AUC) of the receiver operating characteristic (ROC) is a measure of the performance of binary classifiers and takes values in the range [0.5, 1] (in practice - theoretically between [0, 1]). The measure is commonly used to assess performance of SDMs, often alongside a threshold-dependent scorer (e.g. True Skill Statistic, TSS) [34, 35].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">max_ent_model</span><span class="p">,</span> <span class="n">svm_1cl</span><span class="p">,</span> <span class="o">*</span><span class="n">rf_classifier</span><span class="p">,</span> <span class="n">lr_classifier</span><span class="p">]</span>
@@ -1585,7 +1584,7 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <img alt="../_images/e6ab9d5788eccd63cc360336ab3d8447feddbbabb79f1e1114e3ff99a8d0ad7c.png" src="../_images/e6ab9d5788eccd63cc360336ab3d8447feddbbabb79f1e1114e3ff99a8d0ad7c.png" />
 </div>
 </div>
-<p>I’m using the term habitat suitability for the output, as although all these models (with the exception of SVM) are outputting a probability measure, they were not trained on true absence data and instead on presences and background points.</p>
+<p>I’m using the term habitat suitability (how well a habitat supports a population over time [36]) for the output, as although all these models (with the exception of SVM) are outputting a probability measure, they were not trained on true absence data and instead on presences and background points.</p>
 <p>The OneClassSVM output can be interpreted similarly (as a suitability - though it’s closer to a observation density measure). For clarity - as there are negative values, and the output is not in [0, 1] - it’s labelled ‘distance to decision boundary’ here, which is the statistical interpretation of the output.</p>
 <p>For the bioclimatic envelope, the output is binary, as described in the previous section.</p>
 </section>
@@ -1594,52 +1593,49 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 <h2>Discussion and conclusions<a class="headerlink" href="#discussion-and-conclusions" title="Permalink to this heading">#</a></h2>
 <p>The main objective was to show an end-to-end SDM workflow in Python. Due to lack of support for SDMs in the Python language, this notebook was lengthier and more involved than an equivalent in R, with the benefit of perhaps being more explicit, with relatively little in the way of hidden computations.</p>
 <p>Looking at the SDM results, ROC AUC scores are generally high, with the RandomForest with balanced class weights performing best. The best models assign high suitabilities to localities corresponding to occurrence records, for which there could be several explanations.</p>
-<p>Spatial thinning of occurrence data within 5km of other observations is not actually very effective, and often performs poorly, particularly with low sample prevalence [15]. We can also expect our accuracy measures to be overinflated in spatially autocorrelated datasets [34]. As mentioned already, an approach like spatial block cross validation could be used to alleviate overfitting [35]. However, [39] concludes that care should be taken to correct presence-background SDMs without independent test data.</p>
-<p>The selection of background points should also be considered; is 10,000 really enough to adequately represent the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better option. There are several options to select the background points in a non-uniform random manner (environmentally, spatially stratified) [4]. Spatial weighting sampling probabilities for the background points such that spatial bias is similar in both the occurrence dataset and background point dataset is also possible [39].</p>
-<p>Finally, on the applicability of SDMs developed on abiotic data, it should be said that no explicit allowance is made here for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [30]. For instance, [21] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions” (abstract, [30]), though biotic information can be included for instance by adding other species distributions as covariates [30].</p>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p>Spatial thinning of occurrence data within 5km of other observations is not actually very effective, and often performs poorly, particularly with low sample prevalence [17]. We can also expect our accuracy measures to be overinflated in spatially autocorrelated datasets [21]. As mentioned already, an approach like spatial block cross validation could be used to alleviate overfitting [23]. However, [37] concludes that care should be taken to correct presence-background SDMs without independent test data.</p>
+<p>The selection of background points should also be considered; is 10,000 really enough to adequately represent the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better option. There are several options to select the background points in a non-uniform random manner (environmentally, spatially stratified) [28]. Spatial weighting sampling probabilities for the background points such that spatial bias is similar in both the occurrence dataset and background point dataset is also possible [37].</p>
+<p>Finally, on the applicability of SDMs developed on abiotic data, it should be said that no explicit allowance is made here for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [38]. For instance, [39] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions” (abstract, [38]), though biotic information can be included for instance by adding other species distributions as covariates [38].</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. GBIF Occurrence Download.  <a class="reference external" href="https://doi.org/10.15468/dl.kwbc6x">https://doi.org/10.15468/dl.kwbc6x</a> [Accessed 11/01/2024].</p></li>
-<li><p>Furman D. A Brief Introduction to Species Distribution Models in Python. <a class="reference external" href="https://daniel-furman.github.io/Python-species-distribution-modeling/">https://daniel-furman.github.io/Python-species-distribution-modeling/</a> [Accessed 11/01/2024].</p></li>
-<li><p>Prettenhofer P, Vanderplas J. Species Distribution Modelling (Scikit-Learn examples). <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html">https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html</a> [Accessed  11/01/2024].</p></li>
-<li><p>Barbet-Massin M, Jiguet F, Albert CH and Thuiller W. Selecting Pseudo-Absences for Species Distribution Models: How, Where and How Many? Methods in Ecology and Evolution. 2012; 3(2): 327-338. <a class="reference external" href="https://doi.org/10.1111/j.2041-210X.2011.00172.x">https://doi.org/10.1111/j.2041-210X.2011.00172.x</a>.</p></li>
-<li><p>Biosecurity Commmons. Maxent SDM Explained. <a class="reference external" href="https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained">https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained</a> [Accessed 12/01/2024].</p></li>
-<li><p>Xie C, Chen L, Li M, Jim CY, Liu D. BIOCLIM Modeling for Predicting Suitable Habitat for Endangered Tree Tapiscia sinensis (Tapisciaceae) in China. Forests. 2023; 14(11): 2275. <a class="reference external" href="https://doi.org/10.3390/f14112275">https://doi.org/10.3390/f14112275</a>.</p></li>
-<li><p>Busby, JR. BIOCLIM - a Bioclimate Analysis and Prediction System. <a class="reference external" href="https://caws.org.nz/PPQ567/PPQ%2006-1%20pp008-9%20Busby.pdf">https://caws.org.nz/PPQ567/PPQ 06-1 pp008-9 Busby.pdf</a>.</p></li>
+<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. GBIF Occurrence Download. <a class="reference external" href="https://doi.org/10.15468/dl.kwbc6x">https://doi.org/10.15468/dl.kwbc6x</a> [Accessed 11/01/2024].</p></li>
+<li><p>Fick SE and Hijmans RJ. WorldClim 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas. Int. J. Climatol. 2017; 37(12); 4302-4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a>.</p></li>
+<li><p>Booth TH, Nix HA, Busby JR and Hutchinson MF. Bioclim: The First Species Distribution Modelling Package, Its Early Applications and Relevance to Most Current MAXENT Studies. Diversity Distrib. 2014; 20(1): 1-9. <a class="reference external" href="https://doi.org/10.1111/ddi.12144">https://doi.org/10.1111/ddi.12144</a>.</p></li>
+<li><p>Phillips SJ, Anderson RP and Schapire RE. Maximum Entropy Modeling of Species Geographic Distributions. Ecological Modelling. 2006; 190(3): 231-259. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.03.026">https://doi.org/10.1016/j.ecolmodel.2005.03.026</a>.</p></li>
 <li><p>Tôrres NM, De Marco Júnior P, Santos T, Silveira L, de Almeida Jácomo AT and Diniz-Filho JAF. Can Species Distribution Modelling Provide Estimates of Population Densities? A Case Study with Jaguars in the Neotropics. Diversity and Distributions. 2012; 18(6): 615-627. <a class="reference external" href="https://doi.org/10.1111/j.1472-4642.2012.00892.x">https://doi.org/10.1111/j.1472-4642.2012.00892.x</a>.</p></li>
-<li><p>Budic L, Didenko G and Dormann CF. Squares of Different Sizes: Effect of Geographical Projection on Model Parameter Estimates in Species Distribution Modeling. Ecol Evol. 2016; 6(1): 202-211. <a class="reference external" href="https://doi.org/10.1002/ece3.1838">https://doi.org/10.1002/ece3.1838</a>.</p></li>
-<li><p>ESRI. <em>World Continents [Web Map]</em>. Scale Not Given. <a class="reference external" href="https://hub.arcgis.com/datasets/esri::world-continents/about">https://hub.arcgis.com/datasets/esri::world-continents/about</a>. [Accessed 15/01/2024].</p></li>
-<li><p>Beaumont LJ, Hughes L, Poulsen M. Predicting Species Distributions: Use of Climatic Parameters in Bioclim and Its Impact on Predictions of Species’ Current and Future Distributions. Ecological Modelling. 2005; 186(22): 251-270. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.01.030">https://doi.org/10.1016/j.ecolmodel.2005.01.030</a>. [Accessed 15/01/2024].</p></li>
-<li><p>Kellner CJ, Brawn JD, Karr JR. What Is Habitat Suitability and How Should It Be Measured?. In: McCullough DR, Barrett RH (eds) Wildlife 2001: Populations. Springer, Dordrecht. <a class="reference external" href="https://doi.org/10.1007/978-94-011-2868-1_36">https://doi.org/10.1007/978-94-011-2868-1_36</a> [Accessed 17/01/2024].</p></li>
+<li><p>Freeman, E. A., and G. Moisen. 2008. “PresenceAbsence: An R Package for Presence Absence Analysis.” Journal of Statistical Software. 2008; 23(11): 1–31. <a class="reference external" href="https://doi.org/10.18637/jss.v023.i11">https://doi.org/10.18637/jss.v023.i11</a>.</p></li>
+<li><p>Hijmans RJ. Raster: Geographic Data Analysis and Modeling. <a class="reference external" href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p></li>
+<li><p>Naimi B and Araújo MB. SDM: A Reproducible and Extensible R Platform for Species Distribution Modelling. Ecography. 2016; 39(4): 368-375. <a class="reference external" href="https://doi.org/10.1111/ecog.01881">https://doi.org/10.1111/ecog.01881</a>.</p></li>
 <li><p>Anderson CB. elapid: Species Distribution Modeling Tools for Python. Journal of Open Source Software. 2023; 8(84): 4930. <a class="reference external" href="https://doi.org/10.21105/joss.04930">https://doi.org/10.21105/joss.04930</a>.</p></li>
-<li><p>Dormann CF. Effects of Incorporating Spatial Autocorrelation Into the Analysis of Species Distribution Data. Global Ecology and Biogeography. 2007; 16(2): 129-138. <a class="reference external" href="https://doi.org/10.1111/j.1466-8238.2006.00279.x">https://doi.org/10.1111/j.1466-8238.2006.00279.x</a>.</p></li>
+<li><p>Quigley H, Foster R, Petracca L, Payan E, Salom R and Harmsen B. Panthera onca (errata version published in 2018). The IUCN Red List of Threatened Species 2017: e.T15953A123791436. <a class="reference external" href="https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en">https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en</a>. [Accessed 01/02/2024].</p></li>
+<li><p>ESRI. World Continents [Web Map]. Scale Not Given. <a class="reference external" href="https://hub.arcgis.com/datasets/esri::world-continents/about">https://hub.arcgis.com/datasets/esri::world-continents/about</a>. [Accessed 15/01/2024].</p></li>
+<li><p>Zizka A, Silvestro D, Andermann T, Azevedo J, Duarte Ritter C et al. CoordinateCleaner: Standardized Cleaning of Occurrence Records From Biological Collection Databases. Methods in Ecology and Evolution. 2019; 10(5): 744-751, <a class="reference external" href="https://doi.org/10.1111/2041-210X.13152">https://doi.org/10.1111/2041-210X.13152</a>.</p></li>
+<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. Data Quality Requirements: Occurrence Datasets. <a class="reference external" href="https://www.gbif.org/data-quality-requirements-occurrences">https://www.gbif.org/data-quality-requirements-occurrences</a> [Accessed 01/02/2024].</p></li>
+<li><p>Waller J. Common Things to Look out for When Post-processing GBIF Downloads. <a class="reference external" href="http://GBIF.org">GBIF.org</a>. <a class="reference external" href="https://data-blog.gbif.org/post/gbif-filtering-guide/">https://data-blog.gbif.org/post/gbif-filtering-guide/</a> [Accessed 01/02/2024].</p></li>
+<li><p>Budic L, Didenko G and Dormann CF. Squares of Different Sizes: Effect of Geographical Projection on Model Parameter Estimates in Species Distribution Modeling. Ecol Evol. 2016; 6(1): 202-211. <a class="reference external" href="https://doi.org/10.1002/ece3.1838">https://doi.org/10.1002/ece3.1838</a>.</p></li>
+<li><p>Xie C, Chen L, Li M, Jim CY, Liu D. BIOCLIM Modeling for Predicting Suitable Habitat for Endangered Tree Tapiscia sinensis (Tapisciaceae) in China. Forests. 2023; 14(11): 2275. <a class="reference external" href="https://doi.org/10.3390/f14112275">https://doi.org/10.3390/f14112275</a>.</p></li>
 <li><p>Steen VA, Tingley MW, Paton PWC and Elphick CS. Spatial Thinning and Class Balancing: Key Choices Lead to Variation in the Performance of Species Distribution Models With Citizen Science Data. Methods Ecol Evol. 2021; 12(2): 216–226. <a class="reference external" href="https://doi.org/10.1111/2041-210X.13525">https://doi.org/10.1111/2041-210X.13525</a>.</p></li>
 <li><p>Lissovsky AA, Dudov SV. Species-Distribution Modeling: Advantages and Limitations of Its Application. 2. MaxEnt. Biol Bull Rev. 2021; 11(3): 265–275. <a class="reference external" href="https://doi.org/10.1134/S2079086421030087">https://doi.org/10.1134/S2079086421030087</a>.</p></li>
 <li><p>Brown JL, Bennett JR and French CM. SDMtoolbox Technical Info. <a class="reference external" href="http://www.sdmtoolbox.org/technical-info">http://www.sdmtoolbox.org/technical-info</a> [Accessed 22/01/2024].</p></li>
 <li><p>Phillips SJ, Dudík M, Elith J, Graham CH, Lehmann A, Leathwick J and Ferrier S. Sample Selection Bias and Presence-Only Distribution Models: Implications for Background and Pseudo-Absence Data. Ecological Applications. 2009; 19(1): 181-197. <a class="reference external" href="https://doi.org/10.1890/07-2153.1">https://doi.org/10.1890/07-2153.1</a>.</p></li>
-<li><p>Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. Modelling Species Presence-Only Data With Random Forests. Ecography. 2021; 44(12): 1731-1742. <a class="reference external" href="https://doi.org/10.1111/ecog.05615">https://doi.org/10.1111/ecog.05615</a>.</p></li>
-<li><p>Anderson R and Gonzalez I. Species-Specific Tuning Increases Robustness to Sampling Bias in Models of Species Distributions: An Implementation With MAXENT. Ecological Modelling. 2011; 222(15): 2796-2811. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2011.04.011">https://doi.org/10.1016/j.ecolmodel.2011.04.011</a>.</p></li>
-<li><p>Lee-Yaw JA, McCune JL, Pironon S and Sheth SN. Species Distribution Models Rarely Predict the Biology of Real Populations. Ecography. 2022; 2022(6): e05877. <a class="reference external" href="https://doi.org/10.1111/ecog.05877">https://doi.org/10.1111/ecog.05877</a>.</p></li>
-<li><p>Phillips SJ, Anderson RP and Schapire RE. Maximum Entropy Modeling of Species Geographic Distributions. Ecological Modelling. 2006; 190(3): 231-259. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.03.026">https://doi.org/10.1016/j.ecolmodel.2005.03.026</a>.</p></li>
-<li><p>Booth TH, Nix HA, Busby JR and Hutchinson MF. Bioclim: The First Species Distribution Modelling Package, Its Early Applications and Relevance to Most Current MAXENT Studies. Diversity Distrib. 2014; 20(1): 1-9. <a class="reference external" href="https://doi.org/10.1111/ddi.12144">https://doi.org/10.1111/ddi.12144</a>.</p></li>
-<li><p>Fick SE and Hijmans RJ.  WorldClim 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas. Int. J. Climatol. 2017; 37(12); 4302-4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a>.</p></li>
-<li><p>Franklin J. Mapping Species Distributions: Spatial Inference and Prediction. Cambridge University Press; 2010.</p></li>
-<li><p>Freeman, E. A., and G. Moisen. 2008. “PresenceAbsence: An R Package for Presence Absence Analysis.” Journal of Statistical Software. 2008; 23(11): 1–31. <a class="reference external" href="https://doi.org/10.18637/jss.v023.i11">https://doi.org/10.18637/jss.v023.i11</a>.</p></li>
-<li><p>Hijmans RJ. Raster: Geographic Data Analysis and Modeling. <a class="reference external" href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.</p></li>
-<li><p>Naimi B and Araújo MB. SDM: A Reproducible and Extensible R Platform for Species Distribution Modelling. Ecography. 2016; 39(4): 368-375. <a class="reference external" href="https://doi.org/10.1111/ecog.01881">https://doi.org/10.1111/ecog.01881</a>.</p></li>
-<li><p>Quigley H, Foster R, Petracca L, Payan E, Salom R and Harmsen B. Panthera onca (errata version published in 2018). The IUCN Red List of Threatened Species 2017: e.T15953A123791436. <a class="reference external" href="https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en">https://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T15953A50658693.en</a>. [Accessed 01/02/2024].</p></li>
-<li><p>Leach K, Montgomery IW and Reid N. Modelling the Influence of Biotic Factors on Species Distribution Patterns. Ecological Modelling. 2016; 337: 96-106. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2016.06.008">https://doi.org/10.1016/j.ecolmodel.2016.06.008</a>.</p></li>
-<li><p>Zizka A, Silvestro D, Andermann T, Azevedo J, Duarte Ritter C et al. CoordinateCleaner: Standardized Cleaning of Occurrence Records From Biological Collection Databases. Methods in Ecology and Evolution. 2019; 10(5): 744-751, <a class="reference external" href="https://doi.org/10.1111/2041-210X.13152">https://doi.org/10.1111/2041-210X.13152</a>.</p></li>
-<li><p><a class="reference external" href="http://GBIF.org">GBIF.org</a>. Data Quality Requirements: Occurrence Datasets. <a class="reference external" href="https://www.gbif.org/data-quality-requirements-occurrences">https://www.gbif.org/data-quality-requirements-occurrences</a> [Accessed 01/02/2024].</p></li>
-<li><p>Waller J. Common Things to Look out for When Post-processing GBIF Downloads. <a class="reference external" href="http://GBIF.org">GBIF.org</a>. <a class="reference external" href="https://data-blog.gbif.org/post/gbif-filtering-guide/">https://data-blog.gbif.org/post/gbif-filtering-guide/</a> [Accessed 01/02/2024].</p></li>
 <li><p>de Oliveira G, Rangel TF, Lima-Ribeiro MS, Terribile LC and Diniz-Filho JAF. Evaluating, Partitioning, and Mapping the Spatial Autocorrelation Component in Ecological Niche Modeling: A New Approach Based on Environmentally Equidistant Records. Ecography. 2014; 37(7): 637-647. <a class="reference external" href="https://doi.org/10.1111/j.1600-0587.2013.00564.x">https://doi.org/10.1111/j.1600-0587.2013.00564.x</a>.</p></li>
+<li><p>Dormann CF. Effects of Incorporating Spatial Autocorrelation Into the Analysis of Species Distribution Data. Global Ecology and Biogeography. 2007; 16(2): 129-138. <a class="reference external" href="https://doi.org/10.1111/j.1466-8238.2006.00279.x">https://doi.org/10.1111/j.1466-8238.2006.00279.x</a>.</p></li>
 <li><p>Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. blockCV: An R Package for Generating Spatially or Environmentally Separated Folds for K-Fold Cross-Validation of Species Distribution Models. Methods Ecol Evol. 2019; 10(2): 225–232. <a class="reference external" href="https://doi.org/10.1111/2041-210X.13107">https://doi.org/10.1111/2041-210X.13107</a>.</p></li>
+<li><p>Beaumont LJ, Hughes L, Poulsen M. Predicting Species Distributions: Use of Climatic Parameters in Bioclim and Its Impact on Predictions of Species’ Current and Future Distributions. Ecological Modelling. 2005; 186(22): 251-270. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2005.01.030">https://doi.org/10.1016/j.ecolmodel.2005.01.030</a>. [Accessed 15/01/2024].</p></li>
+<li><p>Franklin J. Mapping Species Distributions: Spatial Inference and Prediction. Cambridge University Press; 2010.</p></li>
+<li><p>Busby, JR. BIOCLIM - a Bioclimate Analysis and Prediction System. <a class="reference external" href="https://caws.org.nz/PPQ567/PPQ%2006-1%20pp008-9%20Busby.pdf">https://caws.org.nz/PPQ567/PPQ 06-1 pp008-9 Busby.pdf</a>.</p></li>
 <li><p>Peterson AT, et al. Ecological Niches and Geographic Distributions (MPB-49). Princeton University Press, 2011. JSTOR, <a class="reference external" href="http://www.jstor.org/stable/j.ctt7stnh">http://www.jstor.org/stable/j.ctt7stnh</a>.</p></li>
+<li><p>Barbet-Massin M, Jiguet F, Albert CH and Thuiller W. Selecting Pseudo-Absences for Species Distribution Models: How, Where and How Many? Methods in Ecology and Evolution. 2012; 3(2): 327-338. <a class="reference external" href="https://doi.org/10.1111/j.2041-210X.2011.00172.x">https://doi.org/10.1111/j.2041-210X.2011.00172.x</a>.</p></li>
+<li><p>Biosecurity Commmons. Maxent SDM Explained. <a class="reference external" href="https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained">https://support.biosecuritycommons.org.au/support/solutions/articles/6000262266-maxent-sdm-explained</a> [Accessed 12/01/2024].</p></li>
+<li><p>Prettenhofer P, Vanderplas J. Species Distribution Modelling (Scikit-Learn examples). <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html">https://scikit-learn.org/stable/auto_examples/applications/plot_species_distribution_modeling.html</a> [Accessed 11/01/2024].</p></li>
+<li><p>Anderson R and Gonzalez I. Species-Specific Tuning Increases Robustness to Sampling Bias in Models of Species Distributions: An Implementation With MAXENT. Ecological Modelling. 2011; 222(15): 2796-2811. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2011.04.011">https://doi.org/10.1016/j.ecolmodel.2011.04.011</a>.</p></li>
 <li><p>Pearce JL and Boyce MS. Modelling Distribution and Abundance With Presence-Only Data. Journal of Applied Ecology. 2006; 43(3): 405-412. <a class="reference external" href="https://doi.org/10.1111/j.1365-2664.2005.01112.x">https://doi.org/10.1111/j.1365-2664.2005.01112.x</a>.</p></li>
+<li><p>Furman D. A Brief Introduction to Species Distribution Models in Python. <a class="reference external" href="https://daniel-furman.github.io/Python-species-distribution-modeling/">https://daniel-furman.github.io/Python-species-distribution-modeling/</a> [Accessed 11/01/2024].</p></li>
+<li><p>Valavi R, Elith J, Lahoz-Monfort JJ and Guillera-Arroita G. Modelling Species Presence-Only Data With Random Forests. Ecography. 2021; 44(12): 1731-1742. <a class="reference external" href="https://doi.org/10.1111/ecog.05615">https://doi.org/10.1111/ecog.05615</a>.</p></li>
 <li><p>Allouche O, Tsoar A and Kadmon R. Assessing the Accuracy of Species Distribution Models: Prevalence, Kappa and the True Skill Statistic (TSS). Journal of Applied Ecology. 2006; 43(6): 1223-1232. <a class="reference external" href="https://doi.org/10.1111/j.1365-2664.2006.01214.x">https://doi.org/10.1111/j.1365-2664.2006.01214.x</a>.</p></li>
+<li><p>Kellner CJ, Brawn JD, Karr JR. What Is Habitat Suitability and How Should It Be Measured?. In: McCullough DR, Barrett RH (eds) Wildlife 2001: Populations. Springer, Dordrecht. <a class="reference external" href="https://doi.org/10.1007/978-94-011-2868-1_36">https://doi.org/10.1007/978-94-011-2868-1_36</a> [Accessed 17/01/2024].</p></li>
 <li><p>Baker DJ, Maclean IMD and Gaston KJ. Effective Strategies for Correcting Spatial Sampling Bias in Species Distribution Models Without Independent Test Data. Diversity and Distributions. 2023; 1–13. <a class="reference external" href="https://doi.org/10.1111/ddi.13802">https://doi.org/10.1111/ddi.13802</a>.</p></li>
+<li><p>Leach K, Montgomery IW and Reid N. Modelling the Influence of Biotic Factors on Species Distribution Patterns. Ecological Modelling. 2016; 337: 96-106. <a class="reference external" href="https://doi.org/10.1016/j.ecolmodel.2016.06.008">https://doi.org/10.1016/j.ecolmodel.2016.06.008</a>.</p></li>
+<li><p>Lee-Yaw JA, McCune JL, Pironon S and Sheth SN. Species Distribution Models Rarely Predict the Biology of Real Populations. Ecography. 2022; 2022(6): e05877. <a class="reference external" href="https://doi.org/10.1111/ecog.05877">https://doi.org/10.1111/ecog.05877</a>.</p></li>
 </ol>
 </section>
 </section>
@@ -1726,7 +1722,6 @@ Whilst SDM tools seem well-developed in the R programming language [26, 27, 28],
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and conclusions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
