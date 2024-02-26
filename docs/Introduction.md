@@ -1,10 +1,13 @@
 # Introduction
-Welcome, <br> 
-I'm putting together some notebooks on topics that interest me, bridging themes in ecology, 
-data science, spatial analysis, sustainable agriculture...and more. This is a work in progress;
- there will be more content coming online soon!
+Welcome, <br>
+You'll find on this site a series of notebooks exploring topics that interest me,
+mainly focusing on data science applications in ecology, conservation and
+agriculture.
+<br><br>
+This is currently a work in progress; more content will be coming online soon!
+
 <br>
-[Built with Jupyter Book](https://doi.org/10.5281/zenodo.2561065) 
+[Built with Jupyter Book](https://doi.org/10.5281/zenodo.2561065)
 <br>
 <br>
 ```{tableofcontents}
