@@ -1,0 +1,1283 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Imports &#8212; Topics in Quantitative Ecology and Beyond</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/plants_agriculture';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Topics in Quantitative Ecology and Beyond</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Species%20Distribution%20Modelling.html">Species Distribution Modelling with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Remote%20Sensing%20Data%20for%20Agriculture%20Part%20I.html">Remote Sensing Data for Agriculture Part I</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/twhit1/quant_ecolo" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/plants_agriculture.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Imports</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Imports</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biodiversity-data">Biodiversity Data</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="imports">
+<h1>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector processing</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">shapely</span>
+<span class="kn">import</span> <span class="nn">osgb</span>
+<span class="kn">import</span> <span class="nn">pyproj</span>
+
+<span class="c1"># Raster processing</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">rasterio.features</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+
+<span class="c1"># Visualisation</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">cx</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> widget
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.formatter.limits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">FIGSIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Practical</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">shlex</span> <span class="kn">import</span> <span class="n">quote</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">pystac_client</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">PyStackClient</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">DaskClient</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">distributed_print</span>
+
+<span class="c1"># Calcs and modelling</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../../git_packages/PhenoloPy/scripts&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">phenolopy</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+
+<span class="c1"># Settings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">WORKING_CRS</span> <span class="o">=</span> <span class="s1">&#39;EPSG:3035&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="methods">
+<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h1>
+<section id="biodiversity-data">
+<h2>Biodiversity Data<a class="headerlink" href="#biodiversity-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">locations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../../data/Agric_data/Plant/data/locations_2015to2022.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;location_id&#39;</span><span class="p">)</span>
+<span class="n">locations</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>location_type</th>
+      <th>samplecount</th>
+    </tr>
+    <tr>
+      <th>location_id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>41159</th>
+      <td>Linear plot</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>41160</th>
+      <td>Linear plot</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>41163</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>41164</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>41165</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>303537</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>303538</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>303550</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>304259</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>304260</th>
+      <td>Square plot 5 x 5 m, most habitats</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>4748 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_temp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../../data/Agric_data/Plant/data/sampleinfowithlatlong_2015to2022.csv&#39;</span><span class="p">,</span> 
+                    <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                   <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;location_id&#39;</span><span class="p">:</span><span class="s1">&#39;Int64&#39;</span><span class="p">})</span>
+<span class="n">sample_info</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">_temp</span><span class="p">,</span>
+                                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="o">.</span><span class="n">from_xy</span><span class="p">(</span><span class="n">_temp</span><span class="p">[</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">],</span>
+                                                              <span class="n">_temp</span><span class="p">[</span><span class="s1">&#39;LATITUDE&#39;</span><span class="p">]),</span>
+                               <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+<span class="n">sample_info</span> <span class="o">=</span> <span class="n">sample_info</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span>
+<span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;date_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;date_start&#39;</span><span class="p">])</span>
+<span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;date_start&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">sample_info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survey_id</th>
+      <th>date_start</th>
+      <th>location_id</th>
+      <th>entered_sref</th>
+      <th>entered_sref_system</th>
+      <th>created_on</th>
+      <th>created_by_id</th>
+      <th>LATITUDE</th>
+      <th>LONGITUDE</th>
+      <th>monad</th>
+      <th>monadCRS</th>
+      <th>country</th>
+      <th>geometry</th>
+      <th>year</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19727875</th>
+      <td>87</td>
+      <td>2021-07-09</td>
+      <td>222035</td>
+      <td>H0851653089</td>
+      <td>OSIE</td>
+      <td>2022-07-29 17:29:37</td>
+      <td>169848</td>
+      <td>54.426207</td>
+      <td>-7.868770</td>
+      <td>H0853</td>
+      <td>OSIE</td>
+      <td>Northern_Ireland</td>
+      <td>POINT (-7.86877 54.42621)</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>19726403</th>
+      <td>87</td>
+      <td>2021-07-09</td>
+      <td>222034</td>
+      <td>H0863353204</td>
+      <td>OSIE</td>
+      <td>2022-07-29 16:44:06</td>
+      <td>169848</td>
+      <td>54.427238</td>
+      <td>-7.866964</td>
+      <td>H0853</td>
+      <td>OSIE</td>
+      <td>Northern_Ireland</td>
+      <td>POINT (-7.86696 54.42724)</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>6973078</th>
+      <td>87</td>
+      <td>2019-09-16</td>
+      <td>222035</td>
+      <td>H0851653089</td>
+      <td>OSIE</td>
+      <td>2019-10-29 14:56:26</td>
+      <td>169848</td>
+      <td>54.426207</td>
+      <td>-7.868770</td>
+      <td>H0853</td>
+      <td>OSIE</td>
+      <td>Northern_Ireland</td>
+      <td>POINT (-7.86877 54.42621)</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>6959657</th>
+      <td>87</td>
+      <td>2019-08-26</td>
+      <td>221971</td>
+      <td>J3583127831</td>
+      <td>OSIE</td>
+      <td>2019-10-26 21:33:38</td>
+      <td>228514</td>
+      <td>54.181371</td>
+      <td>-5.919232</td>
+      <td>J3527</td>
+      <td>OSIE</td>
+      <td>Northern_Ireland</td>
+      <td>POINT (-5.91923 54.18137)</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>6958813</th>
+      <td>87</td>
+      <td>2019-08-26</td>
+      <td>221939</td>
+      <td>J3533127831</td>
+      <td>OSIE</td>
+      <td>2019-10-26 14:11:05</td>
+      <td>228514</td>
+      <td>54.181503</td>
+      <td>-5.926886</td>
+      <td>J3527</td>
+      <td>OSIE</td>
+      <td>Northern_Ireland</td>
+      <td>POINT (-5.92689 54.18150)</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4026153</th>
+      <td>154</td>
+      <td>2018-09-18</td>
+      <td>203357</td>
+      <td>TR3758264170</td>
+      <td>OSGB</td>
+      <td>2018-09-19 22:34:54</td>
+      <td>172382</td>
+      <td>51.326419</td>
+      <td>1.410581</td>
+      <td>TR3764</td>
+      <td>OSGB</td>
+      <td>Britain</td>
+      <td>POINT (1.41058 51.32642)</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>1212790</th>
+      <td>154</td>
+      <td>2015-08-16</td>
+      <td>146035</td>
+      <td>TV5820095500</td>
+      <td>OSGB</td>
+      <td>2015-10-05 15:26:19</td>
+      <td>89944</td>
+      <td>50.736969</td>
+      <td>0.242221</td>
+      <td>TV5895</td>
+      <td>OSGB</td>
+      <td>Britain</td>
+      <td>POINT (0.24222 50.73697)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1210754</th>
+      <td>154</td>
+      <td>2015-08-16</td>
+      <td>146018</td>
+      <td>TV5848495493</td>
+      <td>OSGB</td>
+      <td>2015-10-05 10:00:25</td>
+      <td>89944</td>
+      <td>50.736829</td>
+      <td>0.246240</td>
+      <td>TV5895</td>
+      <td>OSGB</td>
+      <td>Britain</td>
+      <td>POINT (0.24624 50.73683)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1212572</th>
+      <td>154</td>
+      <td>2015-08-16</td>
+      <td>146033</td>
+      <td>TV5834395458</td>
+      <td>OSGB</td>
+      <td>2015-10-05 15:09:02</td>
+      <td>89944</td>
+      <td>50.736553</td>
+      <td>0.244228</td>
+      <td>TV5895</td>
+      <td>OSGB</td>
+      <td>Britain</td>
+      <td>POINT (0.24423 50.73655)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1212921</th>
+      <td>154</td>
+      <td>2015-08-22</td>
+      <td>146036</td>
+      <td>TV5883295671</td>
+      <td>OSGB</td>
+      <td>2015-10-05 15:51:43</td>
+      <td>89944</td>
+      <td>50.738334</td>
+      <td>0.251245</td>
+      <td>TV5895</td>
+      <td>OSGB</td>
+      <td>Britain</td>
+      <td>POINT (0.25125 50.73833)</td>
+      <td>2015</td>
+    </tr>
+  </tbody>
+</table>
+<p>21379 rows × 14 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_attributes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../../data/Agric_data/Plant/data/sampleattributes_2015to2022.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;sample_attribute_id&#39;</span><span class="p">)</span>
+<span class="n">sample_attributes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sample_id</th>
+      <th>caption</th>
+      <th>text_value</th>
+    </tr>
+    <tr>
+      <th>sample_attribute_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3211938</th>
+      <td>884186</td>
+      <td>NPMS Survey 1 ID</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3211939</th>
+      <td>884186</td>
+      <td>NPMS Habitat</td>
+      <td>Neutral pastures and meadows</td>
+    </tr>
+    <tr>
+      <th>3211940</th>
+      <td>884186</td>
+      <td>Management</td>
+      <td>Cutting / mowing</td>
+    </tr>
+    <tr>
+      <th>3211941</th>
+      <td>884186</td>
+      <td>Other Management</td>
+      <td>mown for recretion</td>
+    </tr>
+    <tr>
+      <th>3211942</th>
+      <td>884186</td>
+      <td>NPMS Grazers</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>69646188</th>
+      <td>21179861</td>
+      <td>Rock/gravel/scree</td>
+      <td>1. &lt; 1% (1-2 indivs)</td>
+    </tr>
+    <tr>
+      <th>69646189</th>
+      <td>21179861</td>
+      <td>Leaves/litter</td>
+      <td>4. 5-10%</td>
+    </tr>
+    <tr>
+      <th>69646190</th>
+      <td>21179861</td>
+      <td>Lichens</td>
+      <td>8. 51-75%</td>
+    </tr>
+    <tr>
+      <th>69646191</th>
+      <td>21179861</td>
+      <td>No species observed</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>69646192</th>
+      <td>21179861</td>
+      <td>NPMS Survey 1 ID</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>224739 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arable_samples</span> <span class="o">=</span> <span class="n">sample_attributes</span><span class="p">[</span><span class="n">sample_attributes</span><span class="p">[</span><span class="s1">&#39;text_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Arable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)]</span>
+<span class="n">arable_samples</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sample_id</th>
+      <th>caption</th>
+      <th>text_value</th>
+    </tr>
+    <tr>
+      <th>sample_attribute_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3376134</th>
+      <td>928802</td>
+      <td>NPMS Habitat</td>
+      <td>Arable field margins</td>
+    </tr>
+    <tr>
+      <th>3376135</th>
+      <td>928802</td>
+      <td>Management</td>
+      <td>Arable cropping</td>
+    </tr>
+    <tr>
+      <th>3384293</th>
+      <td>931623</td>
+      <td>NPMS Habitat</td>
+      <td>Arable field margins</td>
+    </tr>
+    <tr>
+      <th>3384294</th>
+      <td>931623</td>
+      <td>Management</td>
+      <td>Arable cropping</td>
+    </tr>
+    <tr>
+      <th>3384984</th>
+      <td>931906</td>
+      <td>NPMS Habitat</td>
+      <td>Arable field margins</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>68844028</th>
+      <td>20993210</td>
+      <td>Management</td>
+      <td>Arable cropping</td>
+    </tr>
+    <tr>
+      <th>68844226</th>
+      <td>20993259</td>
+      <td>NPMS Habitat</td>
+      <td>Arable field margins</td>
+    </tr>
+    <tr>
+      <th>68844227</th>
+      <td>20993259</td>
+      <td>Management</td>
+      <td>Arable cropping</td>
+    </tr>
+    <tr>
+      <th>69050931</th>
+      <td>21047265</td>
+      <td>NPMS Habitat</td>
+      <td>Arable field margins</td>
+    </tr>
+    <tr>
+      <th>69050980</th>
+      <td>21047273</td>
+      <td>NPMS Habitat</td>
+      <td>Arable field margins</td>
+    </tr>
+  </tbody>
+</table>
+<p>2840 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arable_samples_loc_yr_unique</span> <span class="o">=</span> <span class="n">sample_info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">arable_samples</span><span class="p">[</span><span class="s1">&#39;sample_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()][[</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">arable_samples_loc_yr_unique</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>year</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>928802</th>
+      <td>POINT (3605072.869 3256121.046)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>931623</th>
+      <td>POINT (3310652.883 3197122.957)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>931906</th>
+      <td>POINT (3613310.248 3353483.205)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>932789</th>
+      <td>POINT (3568858.475 3526359.419)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>951869</th>
+      <td>POINT (3436618.076 2977607.276)</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20850405</th>
+      <td>POINT (3504923.997 3616610.732)</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>20856232</th>
+      <td>POINT (3649578.992 3190670.397)</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>20992893</th>
+      <td>POINT (3516340.240 3296878.081)</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>20993210</th>
+      <td>POINT (3515506.308 3296344.360)</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>21047265</th>
+      <td>POINT (3577735.144 3216450.787)</td>
+      <td>2022</td>
+    </tr>
+  </tbody>
+</table>
+<p>1062 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">arable_samples_loc_yr_unique</span><span class="p">[(</span><span class="n">arable_samples_loc_yr_unique</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2020</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">arable_samples_loc_yr_unique</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2017</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>311
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer_radius</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;study_zone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_info</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">buffer_radius</span><span class="p">)</span>
+<span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;study_zone_bbox&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sample_info</span><span class="p">[</span><span class="s1">&#39;study_zone&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_zone_dir</span><span class="p">(</span><span class="n">dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Builds local directory structure to download data into.&#39;&#39;&#39;</span>
+    <span class="n">base_path</span> <span class="o">=</span> <span class="s1">&#39;../../../data/Agric_data/NPMS_Locations/&#39;</span>
+    <span class="n">to_make</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">to_make</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">to_make</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">to_make</span><span class="p">)</span>
+        <span class="n">distributed_print</span><span class="p">(</span><span class="s1">&#39;Created data dir at &#39;</span> <span class="o">+</span> <span class="n">to_make</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">to_make</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>CROME_layer_refs = {
+
+    &#39;2018&#39;: &#39;7cf93df9-2daf-49d7-b4fd-ca8c7126ac73&#39;,
+    &#39;2019&#39;: &#39;cf4b59e6-693a-49d3-b992-0d75f6b29e40&#39;
+}
+https://environment.data.gov.uk/backend/catalog/api/geospatial/query?layer=a82c7a21-a7dc-4717-afef-03b5502b5ad1&amp;layer=8dfba8d2-9623-4688-8647-0cf5f62366cd&amp;layer=0c3125b4-0dde-4a11-903d-0f24a7bedf04&amp;layer=a503c875-4ce6-4617-9662-11312a90cea4&amp;layer=b3d7cd5b-06d2-45b7-a965-120b5d0ad702&amp;layer=6ea58d45-21a8-4f0e-8cab-19773ac922f4&amp;layer=62847c64-52a2-428f-bc16-1dd7dc9e7563&amp;layer=36058b65-ef1e-49c5-b8e0-239bfe5de743&amp;layer=d5faafe1-2819-43d9-a18b-26ff7d4d37f7&amp;layer=5dd2e71e-4b84-4302-a721-2b64c283cde0&amp;layer=b016e3e1-283c-4ecf-abea-2dda03ec8149&amp;layer=e095b9c4-4fb1-4402-8606-37347bff2568&amp;layer=808791b7-529f-439c-804a-3b2b3c28e59d&amp;layer=2e41984b-293f-4288-9d69-4c3a664fc1a6&amp;layer=13fde310-ffe8-4468-8f6c-4d1c3efb0521&amp;layer=ec8b2cc1-4475-489c-b628-4e76ec6c7985&amp;layer=83906bf1-44f6-4ad4-9c9e-55bc99e0dfc3&amp;layer=e2b058a6-7ad1-494c-a647-59efb4cf8389&amp;layer=36526f3c-3c74-47c2-a680-5b17ad57b70f&amp;layer=a3d8845f-22e9-470d-b31d-624502356555&amp;layer=716b2438-8840-4fcf-8345-62b09ef1631e&amp;layer=89aed819-d4eb-4866-9b69-6cbb0f7fb76f&amp;layer=edf3fd25-adf8-49f8-9f83-71b25647a6ab&amp;layer=f4a3d6ad-c8b2-4885-a905-7927ff853711&amp;layer=cc864f18-7a7f-4226-a08b-793b83469253&amp;layer=5a545450-bf8c-4097-b71a-7b88fd493c69&amp;layer=297ec657-c859-42dc-a611-841a5c625560&amp;layer=20a21e2f-be47-4157-b42f-9638a8d23ff5&amp;layer=8b2c07ce-e91e-4374-b038-9acdf9fe5ffd&amp;layer=862a3576-a1b7-482b-8c33-9df53254ec33&amp;layer=e762f438-f330-4b20-8c43-9e70c0644b41&amp;layer=b1bc060d-3978-4012-8621-a01cc96fdc39&amp;layer=8b3401c8-98e9-4736-be40-ac56eaf52859&amp;layer=3fd18a98-a42a-473b-8671-b2877d44a14b&amp;layer=084b7afa-e846-4211-a213-b4d0efb5d5db&amp;layer=175c9629-b69a-4274-8103-bddd5b262553&amp;layer=81c836a9-158e-41b8-89c7-c6a2c35f9ec1&amp;layer=2d14914b-0958-4741-b0f1-c7287780f180&amp;layer=f2c71f86-442d-4079-80d1-ca6742d40695&amp;layer=27cadec6-760e-4c19-ac7d-ce191091b814&amp;layer=9d59d402-f4f8-4069-bc6d-d805828af7f2&amp;layer=2d3fc4bc-6eca-4bf0-90cb-de03e9d5430a&amp;layer=7faf2839-27ff-43a4-a433-e036cedf3f90&amp;layer=7e31d605-cda2-4ccf-801a-e79e17ab2573&amp;layer=ad46a571-fb1e-41f2-87c7-eb0c0f24ea73&amp;layer=36399584-1757-4c80-bfb4-ec94f50cb3c3&amp;layer=e2acdafb-623a-40ff-b62f-f0aa66054035
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For each location and year:</span>
+<span class="c1"># Note that a given location ID can be associated with multiple geometries (ie because</span>
+<span class="c1"># volunteers sample multiple sampling zones within one &quot;location&quot;)</span>
+<span class="n">sample_ref</span> <span class="o">=</span> <span class="n">arable_samples_loc_yr_unique</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">sample_info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sample_ref</span><span class="p">][</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
+
+<span class="c1"># Get lat lon, buffer and define bbox</span>
+<span class="n">transform_working_to_geodetic</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">pyproj</span><span class="o">.</span><span class="n">CRS</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">),</span> 
+                                                            <span class="n">pyproj</span><span class="o">.</span><span class="n">CRS</span><span class="p">(</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">),</span> 
+                                                            <span class="n">always_xy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span>
+
+<span class="n">aoi_bbox</span> <span class="o">=</span> <span class="n">sample_info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sample_ref</span><span class="p">][</span><span class="s1">&#39;study_zone_bbox&#39;</span><span class="p">]</span> <span class="c1"># in projected coords</span>
+<span class="n">aoi_bbox_geodetic</span> <span class="o">=</span> <span class="n">transform_working_to_geodetic</span><span class="p">(</span><span class="o">*</span><span class="n">aoi_bbox</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span>
+
+<span class="c1"># Send that as a request to the correct CROME dataset</span>
+
+<span class="n">dir_name</span> <span class="o">=</span> <span class="s1">&#39;location_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sample_ref</span><span class="p">)</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">create_zone_dir</span><span class="p">(</span><span class="n">dir_name</span><span class="p">)</span>
+<span class="n">crome_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s1">&#39;CROME&#39;</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;../../../data/Agric_data/get_crome.sh &#39;</span> <span class="o">+</span> \
+                       <span class="s1">&#39;</span><span class="se">\&quot;</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">crome_dir</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\&quot;</span><span class="s1"> &#39;</span> <span class="o">+</span> \
+                       <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">{{</span><span class="s1">&quot;coordinates&quot;: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array2string</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">aoi_bbox_geodetic</span><span class="p">),</span><span class="w"> </span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">suppress_small</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s1">,&quot;type&quot;:&quot;Polygon&quot;</span><span class="se">}}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span>
+           <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># If the immediately adjacent pixels are spring cereals and this sample is on agricultural</span>
+<span class="c1"># land instead of at boundary or adjacent, do not delete</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(44216, 2015)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Imports</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biodiversity-data">Biodiversity Data</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tom Whitehouse
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
