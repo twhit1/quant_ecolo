@@ -1,11 +1,10 @@
 # Introduction
 Welcome,
 
-On this site you'll find a series of notebooks exploring topics that interest me,
-mainly focusing on applications of data science in ecology, conservation and
-agriculture.
+Find below a series of pages exploring topics in sustainable agriculture, ecology, climate adaptation and beyond with an emphasis on enabling a deeper understanding of those topics through data - and in particular spatial data.
 
-This is currently a work in progress; more content will be coming online soon!
+This is a personal blog, all views are my own.
+
 <br><br>
 
 [Built with Jupyter Book](https://doi.org/10.5281/zenodo.2561065)
