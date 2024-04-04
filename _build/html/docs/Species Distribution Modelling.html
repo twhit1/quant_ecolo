@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Species Distribution Modelling';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Remote Sensing Data for Agriculture Part I" href="Remote%20Sensing%20Data%20for%20Agriculture%20Part%20I.html" />
     <link rel="prev" title="Introduction" href="Introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,6 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Species Distribution Modelling with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Remote%20Sensing%20Data%20for%20Agriculture%20Part%20I.html">Remote Sensing Data for Agriculture Part I</a></li>
 </ul>
 
     </div>
@@ -340,7 +342,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-area">Study area</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panthera-onca-occurrence-data">Panthera onca occurrence data</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojection">Reprojection</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation">Spatial autocorrelation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation-and-bias">Spatial autocorrelation and bias</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data">Climate and elevation data</a><ul class="nav section-nav flex-column">
@@ -377,13 +379,12 @@ document.write(`
 <h1>Species Distribution Modelling with Python<a class="headerlink" href="#species-distribution-modelling-with-python" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Today, a wealth of biodiversity and earth observation datasets are freely available. Alongside advances in data processing technologies and availability of cheap computing resources, data sources such as those used in this notebook -
-the Global Biodiversity Information Facility (GBIF) [1], and WorldClim [2] - present extensive opportunities to build large-scale models which can act as a valuable tool for decision-making in diverse fields.</p>
-<p>This notebook considers one such application: Species Distribution Modelling. Species Distribution Models allow us to predict likely species distributions by linking information in environmental space (e.g. climatic varibales) to spatially referenced biodiversity data (e.g. occurrence datasets) [3].</p>
+<p>The continued development of earth observation and biodiversity data availability, alongside advances in computational tools aimed at processing those data, presents broad opportunities to enable well-informed decision-making in response to the evident need for a cohesive global strategy on climate and nature.</p>
+<p>One popular tool which leverages this wealth of data is species distribution modelling. Taking spatially referenced biodiversity data and environmental covariates, such as the occurrence records from the Global Biodiversity Information Facility (GBIF) [1], and large-scale climate data from WorldClim [2] used here, correlative species distribution models (SDMs) aim to capture the relationship between those covariates and species distributions [3].</p>
 <p>SDMs have found applications in conservation, ecology, evolution and other fields [4], for purposes like guiding field research, informing conservation strategies and predicting ecological impacts of climate change [3, 5].</p>
 <p><strong>What is covered in this notebook?</strong> <br>
-Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I was only able to find one relevant (but limited) Python package, the companion publication of which notes the lack of Python SDM tools [9].</p>
-<p>This notebook aims to present a basic SDM workflow in Python, with example SDMs fitted to a sample of Panthera onca (Jaguar) occurrence observations downloaded from the GBIF, with WorldClim covariates. After presenting the methods used (data sourcing, preprocessing, and model selection and scoring), I go on to plot and discuss habitat suitability maps before concluding.</p>
+Whilst SDM tools in the R programming language are well-developed [6, 7, 8], there is a lack of Python-based SDM tools [9].</p>
+<p>This notebook aims to present a basic SDM workflow in Python, with example SDMs fitted to a sample of Panthera onca (Jaguar) occurrence observations downloaded from the GBIF, with WorldClim covariates. After describing the methods used (data sourcing, preprocessing, and model selection and scoring), the results are presented and discussed.</p>
 </section>
 <section id="import-data-and-packages">
 <h2>Import data and packages<a class="headerlink" href="#import-data-and-packages" title="Permalink to this heading">#</a></h2>
@@ -572,8 +573,8 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 </div>
 </div>
 </section>
-<section id="spatial-autocorrelation">
-<h4>Spatial autocorrelation<a class="headerlink" href="#spatial-autocorrelation" title="Permalink to this heading">#</a></h4>
+<section id="spatial-autocorrelation-and-bias">
+<h4>Spatial autocorrelation and bias<a class="headerlink" href="#spatial-autocorrelation-and-bias" title="Permalink to this heading">#</a></h4>
 <p>Both covariate and response variables used to build SDMs on single-species occurrence datasets often display autocorrelation properties [16-20].</p>
 <p>Spatial autocorrelation due to exogenous (abiotic) factors exists [21] though can be entirely removed with a comprehensive set of environmental covariates [22]. However, endogenous (biotic) factors (which include dispersal, colonial breeding, home-range size, competition, predation etc.) are harder to deal with [22].</p>
 <p>Spatial bias is often present in occurrence datasets (particularly those aggregated from multiple studies, or sourced from citizen science repositories) for instance due to accessibility of the sample area: species are sampled near roads, rivers and research stations [17-21].</p>
@@ -951,7 +952,7 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_pairs</span> <span class="o">=</span> <span class="p">(</span><span class="n">corr_matrix</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_pairs</span> <span class="o">=</span> <span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
 <span class="n">corr_pairs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">corr_pairs</span><span class="p">[</span><span class="n">corr_pairs</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
 <span class="n">corr_pairs</span>
 </pre></div>
@@ -1144,7 +1145,7 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 </div>
 <p>Each pixel on the entire study area can then be examined with reference to these bounds, for each covariate.</p>
 <p>There is a choice regarding how to accept or reject each pixel - as some covariates may be in the range evelope, whilst others may not. Clearly a pixel for which all covariates fall inside or outside the range envelope would be accepted or rejected respectively.</p>
-<p>For pixels with mixed results, we can take the intersection, average or union of covariate pass/fail values for each pixel to create the surface range maps [9] - here the intersection is taken, which is a strong constraint.</p>
+<p>For pixels with mixed results, we can take the intersection (AND), average or union (OR) of covariate pass/fail values for each pixel to create the surface range maps [9] - here the intersection is taken, which is a strong constraint.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ref_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
@@ -1592,11 +1593,13 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 </section>
 <section id="discussion-and-conclusions">
 <h2>Discussion and conclusions<a class="headerlink" href="#discussion-and-conclusions" title="Permalink to this heading">#</a></h2>
-<p>The main objective was to show an end-to-end SDM workflow in Python. Due to lack of support for SDMs in the Python language, this notebook was lengthier and more involved than an equivalent in R, with the benefit of perhaps being more explicit, with relatively little in the way of hidden computations.</p>
-<p>Looking at the SDM results, ROC AUC scores are generally high, with the RandomForest with balanced class weights performing best. The best models assign high suitabilities to localities corresponding to occurrence records, for which there could be several explanations.</p>
-<p>Spatial thinning of occurrence data within 5km of other observations is not actually very effective, and often performs poorly, particularly with low sample prevalence [17]. We can also expect our accuracy measures to be overinflated in spatially autocorrelated datasets [21]. As mentioned already, an approach like spatial block cross validation could be used to alleviate overfitting [23]. However, [37] concludes that care should be taken to correct presence-background SDMs without independent test data.</p>
-<p>The selection of background points should also be considered; is 10,000 really enough to adequately represent the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better option. There are several options to select the background points in a non-uniform random manner (environmentally, spatially stratified) [28]. Spatial weighting sampling probabilities for the background points such that spatial bias is similar in both the occurrence dataset and background point dataset is also possible [37].</p>
-<p>Finally, on the applicability of SDMs developed on abiotic data, it should be said that no explicit allowance is made here for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [38]. For instance, [39] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions” (abstract, [38]), though biotic information can be included for instance by adding other species distributions as covariates [38].</p>
+<p>The main objective of this notebook was to present an end-to-end SDM workflow in Python with a presence-only occurrence data set, following workflows found in the literature. With reliability and accuracy often limiting the usefulness of these models in practice, the remainder of this section explores assumptions and limitations of the methods presented here.</p>
+<p>ROC AUC scores are generally high across the models presented here, with the RandomForest (balanced class weights) performing best. In general, the best models assign high suitabilities to localities corresponding to occurrence records, and low suitabilities elsewhere, despite the gradual spatial variation of input covariates.</p>
+<p>It therefore appears that this is a case of overfitting, though with a well-prepared dataset, validation/test scores typically would be lower than training scores, as the model does not generalize well to unseen data.</p>
+<p>However, the validation scores here are very high, which in combination with suspected overfitted indicates data leakage between train and validation (or train and test) splits. The source of leakage here is likely a failure to properly account for the spatial structure of the data. In randomly sampling for a train / validation split from data with high spatial biases, the model learns information about the holdout set because of spatial autocorrelation in both the covariate and occurrence datasets.</p>
+<p>This is a well-known problem, though researchers continue to use methods that do not properly account for the offending issues: spatial thinning of occurrence data to combat spatial biases has been found to be generally ineffective, but particularly in cases with low sample prevalence [17]. The issue of accuracy measures being overinflated in spatially autocorrelated datasets is also well-documented [21]. Alternative approaches like spatial block cross validation can be used to alleviate overfitting [23], though care should be taken to correct presence-background SDMs without independent test data [37].</p>
+<p>Selection of background points should also be considered; is 10,000 really enough to adequately represent the conditions on an entire continent with covariates sampled at 30s resolution (around 1km at the equator)? In search of spatial bias corrections, we may throw away valuable information in occurrence datasets; refactoring the background point selection method could be a better option. There are several methods to select the background points in a non-uniform random manner (environmentally, spatially stratified) [28]. Weighting sampling probabilities for the background points such that spatial bias is similar in both the occurrence dataset and background point dataset is also possible [37].</p>
+<p>Finally, on the applicability of SDMs developed on abiotic data, it should be reiterated that no explicit allowance is made here for biotic interactions (e.g. competition, movement, dispersal), which may occur at spatial scales much larger than the grid resolution of this study [38]. For instance, [39] suggests that SDMs should be combined with dispersal constraint information and species interaction data for broad-scale mapping of species distributions. However, traditionally, most SDM studies have not incorporated biotic factors due to lack of “<em>a priori</em> knowledge on interspecific interactions” ([38] p96), though biotic information can be included for instance by adding other species distributions as covariates [38].</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
@@ -1683,6 +1686,15 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
         <p class="prev-next-title">Introduction</p>
       </div>
     </a>
+    <a class="right-next"
+       href="Remote%20Sensing%20Data%20for%20Agriculture%20Part%20I.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Remote Sensing Data for Agriculture Part I</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1705,7 +1717,7 @@ Whilst SDM tools seem well-developed in the R programming language [6, 7, 8], I 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-area">Study area</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panthera-onca-occurrence-data">Panthera onca occurrence data</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojection">Reprojection</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation">Spatial autocorrelation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-autocorrelation-and-bias">Spatial autocorrelation and bias</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-and-elevation-data">Climate and elevation data</a><ul class="nav section-nav flex-column">
