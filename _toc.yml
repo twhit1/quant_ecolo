@@ -4,3 +4,4 @@ format: jb-book
 root: docs/Introduction
 chapters:
 - file: docs/Species Distribution Modelling
+- file: docs/Remote Sensing Data for Agriculture Part I
