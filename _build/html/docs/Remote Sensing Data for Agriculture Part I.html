@@ -779,7 +779,8 @@ document.write(`
                            <span class="n">bbox</span><span class="o">=</span><span class="n">conform_bbox</span><span class="p">(</span><span class="n">aoi_bbox_geodetic</span><span class="p">),</span>
                            <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Did not receive complete results. Consider increasing max_items kwarg &#39;</span> <span class="o">+</span> \
+    <span class="k">if</span> <span class="n">search</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span> <span class="o">==</span> <span class="n">max_items</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Did not receive complete results. Consider increasing max_items kwarg &#39;</span> <span class="o">+</span> \
           <span class="sa">f</span><span class="s1">&#39;(currently </span><span class="si">{</span><span class="n">max_items</span><span class="si">}</span><span class="s1">).&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">search</span>
@@ -13127,7 +13128,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Now create a function to download results from AWS, and filter on the proportion of cloudy pixel in the S2 scene classification .</p>
+<p>Now create a function to download results from AWS, and filter on the proportion of cloudy pixels in the S2 scene classification .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_S3</span><span class="p">(</span><span class="n">href</span><span class="p">,</span> <span class="n">aoi_bbox_geodetic</span><span class="p">):</span>

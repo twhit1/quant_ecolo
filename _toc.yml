@@ -3,5 +3,9 @@
 format: jb-book
 root: docs/Introduction
 chapters:
-- file: docs/Species Distribution Modelling
-- file: docs/Remote Sensing Data for Agriculture Part I
+- file: docs/Species Distribution Modelling with Python
+- file: docs/Ecological Data Science for Sustainable Agriculture (Part I)
+- file: docs/Ecological Data Science for Sustainable Agriculture (Part II)
+- file: docs/Ecological Data Science for Sustainable Agriculture (Part III)
+- file: docs/Ecological Data Science for Sustainable Agriculture (Part IV)
+- file: docs/Hybrid Learning for Species Classification on Image Datasets
