@@ -1,7 +1,7 @@
 # Introduction
 Welcome,
 
-Find below a series of pages exploring topics in sustainable agriculture, ecology, climate adaptation and beyond, with an emphasis on enabling a deeper understanding of those topics through data.
+Find below a series of pages exploring topics in sustainable agriculture, ecology, climate change adaptation and beyond, with an emphasis on enabling a deeper understanding of those topics through data.
 
 This is a personal blog, all views are my own.
 

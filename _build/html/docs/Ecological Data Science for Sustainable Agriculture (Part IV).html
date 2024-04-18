@@ -1,0 +1,1246 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Ecological Data Science for Sustainable Agriculture (Part IV) &#8212; Topics in Quantitative Ecology and Beyond</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Ecological Data Science for Sustainable Agriculture (Part IV)';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hybrid Learning for Species Classification on Image Datasets" href="Hybrid%20Learning%20for%20Species%20Classification%20on%20Image%20Datasets.html" />
+    <link rel="prev" title="Ecological Data Science for Sustainable Agriculture (Part III)" href="Ecological%20Data%20Science%20for%20Sustainable%20Agriculture%20%28Part%20III%29.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Topics in Quantitative Ecology and Beyond</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Species%20Distribution%20Modelling%20with%20Python.html">Species Distribution Modelling with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ecological%20Data%20Science%20for%20Sustainable%20Agriculture%20%28Part%20I%29.html">Ecological Data Science for Sustainable Agriculture (Part I)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ecological%20Data%20Science%20for%20Sustainable%20Agriculture%20%28Part%20II%29.html">Ecological Data Science for Sustainable Agriculture (Part II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ecological%20Data%20Science%20for%20Sustainable%20Agriculture%20%28Part%20III%29.html">Ecological Data Science for Sustainable Agriculture (Part III)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ecological Data Science for Sustainable Agriculture (Part IV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hybrid%20Learning%20for%20Species%20Classification%20on%20Image%20Datasets.html">Hybrid Learning for Species Classification on Image Datasets</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/twhit1/quant_ecolo" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/Ecological Data Science for Sustainable Agriculture (Part IV).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ecological Data Science for Sustainable Agriculture (Part IV)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ecological-data-science-for-sustainable-agriculture-part-iv">
+<h1>Ecological Data Science for Sustainable Agriculture (Part IV)<a class="headerlink" href="#ecological-data-science-for-sustainable-agriculture-part-iv" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector processing</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">shapely</span>
+<span class="kn">import</span> <span class="nn">osgb</span>
+
+<span class="c1"># Raster processing</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">rasterio.warp</span>
+<span class="kn">import</span> <span class="nn">rasterio.mask</span>
+<span class="kn">import</span> <span class="nn">rasterio.plot</span>
+<span class="kn">import</span> <span class="nn">rasterio.features</span>
+<span class="kn">import</span> <span class="nn">rasterio.sample</span>
+<span class="kn">from</span> <span class="nn">rasterio</span> <span class="kn">import</span> <span class="n">windows</span>
+<span class="kn">import</span> <span class="nn">pyproj</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+
+<span class="c1"># Calcs and modelling</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Visualisation</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">cx</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.formatter.limits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">FIGSIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Practical</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pystac_client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">DaskClient</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">distributed_print</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../../git_packages/PhenoloPy/scripts&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">phenolopy</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">DATA_BASE_PATH</span> <span class="o">=</span> <span class="s1">&#39;../../../data/Agric_data/&#39;</span> <span class="c1"># all data under this path (global)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="s1">&#39;IYR/data/input_to_yield_ratio_honeybees.tiff&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">iyr_bees</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">iyr_nodata</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">profile</span><span class="p">[</span><span class="s1">&#39;nodata&#39;</span><span class="p">]</span>
+    <span class="n">WORKING_CRS</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">crs</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span><span class="p">]</span>
+    
+
+<span class="n">iyr_bees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">iyr_bees</span> <span class="o">==</span> <span class="n">iyr_nodata</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">iyr_bees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">iyr_bees</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/351ac9ec4dd181b5e04d0c60f9b0ebf58f0ce544dc0f50aeab754e0829f7d354.png" src="../_images/351ac9ec4dd181b5e04d0c60f9b0ebf58f0ce544dc0f50aeab754e0829f7d354.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="s1">&#39;Pollinator_Fit_Counts/data/ukpoms_publicfitcountdata_2017-2020.csv&#39;</span> <span class="p">),</span> 
+                             <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode_escape&#39;</span>
+                           <span class="p">)</span>
+
+<span class="n">sample_data</span><span class="p">[[</span><span class="s1">&#39;bumblebees&#39;</span><span class="p">,</span>
+<span class="s1">&#39;honeybees&#39;</span><span class="p">,</span>
+<span class="s1">&#39;solitary_bees&#39;</span><span class="p">,</span>
+<span class="s1">&#39;wasps&#39;</span><span class="p">,</span>
+<span class="s1">&#39;hoverflies&#39;</span><span class="p">,</span>
+<span class="s1">&#39;other_flies&#39;</span><span class="p">,</span>
+<span class="s1">&#39;butterflies_moths&#39;</span><span class="p">,</span>
+<span class="s1">&#39;beetles&#39;</span><span class="p">,</span>
+<span class="s1">&#39;insects_small&#39;</span><span class="p">,</span>
+<span class="s1">&#39;insects_other&#39;</span><span class="p">,</span>
+<span class="s1">&#39;all_insects_total&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[[</span><span class="s1">&#39;bumblebees&#39;</span><span class="p">,</span>
+<span class="s1">&#39;honeybees&#39;</span><span class="p">,</span>
+<span class="s1">&#39;solitary_bees&#39;</span><span class="p">,</span>
+<span class="s1">&#39;wasps&#39;</span><span class="p">,</span>
+<span class="s1">&#39;hoverflies&#39;</span><span class="p">,</span>
+<span class="s1">&#39;other_flies&#39;</span><span class="p">,</span>
+<span class="s1">&#39;butterflies_moths&#39;</span><span class="p">,</span>
+<span class="s1">&#39;beetles&#39;</span><span class="p">,</span>
+<span class="s1">&#39;insects_small&#39;</span><span class="p">,</span>
+<span class="s1">&#39;insects_other&#39;</span><span class="p">,</span>
+<span class="s1">&#39;all_insects_total&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_grid_handle_error</span><span class="p">(</span><span class="n">x1km_ref</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">osgb</span><span class="o">.</span><span class="n">gridder</span><span class="o">.</span><span class="n">parse_grid</span><span class="p">(</span><span class="n">x1km_ref</span><span class="p">)</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">grid_to_ll_handle_error</span><span class="p">(</span><span class="n">grid_ref</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">osgb</span><span class="o">.</span><span class="n">grid_to_ll</span><span class="p">(</span><span class="n">grid_ref</span><span class="p">)</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+
+
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_centre&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;5&#39;</span>
+
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_centre&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">parse_grid_handle_error</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grid_to_ll_handle_error</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_data</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="o">~</span><span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">is_empty</span><span class="p">]</span>
+<span class="n">sample_data</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extent</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[132000.0, 656000.0, 6000.0, 658000.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WORKING_CRS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CRS.from_epsg(27700)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">iyr_bees</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+<span class="n">sample_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d9bb0c5131664211864dee2a23fd0fff", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_data</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;honeybees&#39;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>honeybees    Axes(0.125,0.11;0.775x0.77)
+dtype: object
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "451bc3e367d246a0ac04abdd2d70f043", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sample_id</th>
+      <th>country</th>
+      <th>date</th>
+      <th>year</th>
+      <th>X1km_square</th>
+      <th>sample_projection</th>
+      <th>digitised_by</th>
+      <th>recorder_type</th>
+      <th>habitat</th>
+      <th>habitat_other_detail</th>
+      <th>target_flower</th>
+      <th>target_flower_corrected</th>
+      <th>target_other_name</th>
+      <th>target_other_name_corrected</th>
+      <th>target_flower_family</th>
+      <th>flower_cover</th>
+      <th>floral_unit_count</th>
+      <th>floral_unit</th>
+      <th>flower_context</th>
+      <th>count_start_time</th>
+      <th>cloud_cover</th>
+      <th>sunshine</th>
+      <th>wind_speed</th>
+      <th>enjoyment</th>
+      <th>difficulty</th>
+      <th>habitat_type</th>
+      <th>flower_structure</th>
+      <th>bumblebees</th>
+      <th>honeybees</th>
+      <th>solitary_bees</th>
+      <th>wasps</th>
+      <th>hoverflies</th>
+      <th>other_flies</th>
+      <th>butterflies_moths</th>
+      <th>beetles</th>
+      <th>insects_small</th>
+      <th>insects_other</th>
+      <th>all_insects_total</th>
+      <th>geometry</th>
+      <th>X1km_centre</th>
+      <th>month</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3501506</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>SK3648</td>
+      <td>OSGB</td>
+      <td>86644</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>6</td>
+      <td>flower head</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>11:55</td>
+      <td>All or mostly blue</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves moving gently all the time</td>
+      <td>Fun</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (436500.084 348502.088)</td>
+      <td>SK365485</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3493125</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>SK9482</td>
+      <td>OSGB</td>
+      <td>154133</td>
+      <td>I am familiar with identifying some wildlife g...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Hawthorn - Crataegus</td>
+      <td>Hawthorn - Crataegus</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Rosaceae</td>
+      <td>Target flowers cover about half of patch</td>
+      <td>22</td>
+      <td>individual flower</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>15:01</td>
+      <td>All or mostly blue</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves moving gently all the time</td>
+      <td>Really fun!</td>
+      <td>Okay</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>POINT (494499.828 382502.407)</td>
+      <td>SK945825</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3455170</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>SP0380</td>
+      <td>OSGB</td>
+      <td>73313</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Other - please describe below</td>
+      <td>Other - please describe below</td>
+      <td>Pulmonaria</td>
+      <td>Pulmonaria</td>
+      <td>Boraginaceae</td>
+      <td>Target flowers cover about half of patch</td>
+      <td>15</td>
+      <td>individual flower</td>
+      <td>Growing in a larger patch of many different fl...</td>
+      <td>15:47</td>
+      <td>All or mostly blue</td>
+      <td>Partly in sun and partly shaded</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>Okay</td>
+      <td>Easy</td>
+      <td>garden</td>
+      <td>closed</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (403500.416 280501.592)</td>
+      <td>SP035805</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3455025</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>ST3109</td>
+      <td>OSGB</td>
+      <td>156295</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Grassland with wild flowers (e.g. meadow)</td>
+      <td>NA</td>
+      <td>Buttercup (Ranunculus species)</td>
+      <td>Buttercup (Ranunculus species)</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Ranunculaceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>10</td>
+      <td>individual flower</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>14:36</td>
+      <td>Half blue and half cloud</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves moving gently all the time</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>semi-natural</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>POINT (331499.557 109499.046)</td>
+      <td>ST315095</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3501609</td>
+      <td>England</td>
+      <td>19/05/2018</td>
+      <td>2018</td>
+      <td>SK3648</td>
+      <td>OSGB</td>
+      <td>86644</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>1</td>
+      <td>flower head</td>
+      <td>More or less isolated</td>
+      <td>12:18</td>
+      <td>Half blue and half cloud</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>Fun</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (436500.084 348502.088)</td>
+      <td>SK365485</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3348</th>
+      <td>5619475</td>
+      <td>England</td>
+      <td>04/05/2019</td>
+      <td>2019</td>
+      <td>SK3648</td>
+      <td>OSGB</td>
+      <td>86644</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>4</td>
+      <td>flower head</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>15:23</td>
+      <td>Half blue and half cloud</td>
+      <td>Partly in sun and partly shaded</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>Fun</td>
+      <td>Easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (436500.084 348502.088)</td>
+      <td>SK365485</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>3349</th>
+      <td>5600657</td>
+      <td>England</td>
+      <td>22/04/2019</td>
+      <td>2019</td>
+      <td>SK3584</td>
+      <td>OSGB</td>
+      <td>202018</td>
+      <td>I am confident in identifying the commonly-occ...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>14</td>
+      <td>flower head</td>
+      <td>Growing in a larger patch of many different fl...</td>
+      <td>12:42</td>
+      <td>All or mostly blue</td>
+      <td>Partly in sun and partly shaded</td>
+      <td>Leaves moving gently all the time</td>
+      <td>Okay</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (435500.007 384502.031)</td>
+      <td>SK355845</td>
+      <td>04</td>
+    </tr>
+    <tr>
+      <th>3350</th>
+      <td>5600656</td>
+      <td>England</td>
+      <td>09/04/2019</td>
+      <td>2019</td>
+      <td>SK3584</td>
+      <td>OSGB</td>
+      <td>202018</td>
+      <td>I am confident in identifying the commonly-occ...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>14</td>
+      <td>flower head</td>
+      <td>Growing in a larger patch of many different fl...</td>
+      <td>12:42</td>
+      <td>All or mostly blue</td>
+      <td>Partly in sun and partly shaded</td>
+      <td>Leaves moving gently all the time</td>
+      <td>Okay</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (435500.007 384502.031)</td>
+      <td>SK355845</td>
+      <td>04</td>
+    </tr>
+    <tr>
+      <th>3351</th>
+      <td>5579063</td>
+      <td>England</td>
+      <td>01/05/2019</td>
+      <td>2019</td>
+      <td>SJ8094</td>
+      <td>OSGB</td>
+      <td>70693</td>
+      <td>I am familiar with identifying some wildlife g...</td>
+      <td>Parkland with trees</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>10</td>
+      <td>flower head</td>
+      <td>More or less isolated</td>
+      <td>16:13</td>
+      <td>All or mostly cloud</td>
+      <td>Entirely shaded</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>agricultural</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (380499.956 394501.861)</td>
+      <td>SJ805945</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>3352</th>
+      <td>5351009</td>
+      <td>England</td>
+      <td>11/04/2019</td>
+      <td>2019</td>
+      <td>SK3648</td>
+      <td>OSGB</td>
+      <td>86644</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>2</td>
+      <td>flower head</td>
+      <td>More or less isolated</td>
+      <td>15:32</td>
+      <td>All or mostly blue</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>Fun</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (436500.084 348502.088)</td>
+      <td>SK365485</td>
+      <td>04</td>
+    </tr>
+  </tbody>
+</table>
+<p>3268 rows × 41 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build an SDM based on sample data (taking into account the various categorical factors, properly encoded)</span>
+<span class="c1"># Compare against IYR and identify hotspots - areas where there are high biodiversity metrics and also a high ratio of pesticide/yield </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read this:</span>
+
+<span class="c1"># https://nsojournals.onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.05694</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get relevant layers for UK covariates and whack together an SDM workflow</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Ecological%20Data%20Science%20for%20Sustainable%20Agriculture%20%28Part%20III%29.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ecological Data Science for Sustainable Agriculture (Part III)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Hybrid%20Learning%20for%20Species%20Classification%20on%20Image%20Datasets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hybrid Learning for Species Classification on Image Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tom Whitehouse
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
