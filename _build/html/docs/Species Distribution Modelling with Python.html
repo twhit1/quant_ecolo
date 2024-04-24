@@ -353,12 +353,12 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms">Covariate histograms</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities">Features with major disconituities</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis">PCA analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis">Collinearity analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature selection</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities">Features with major disconituities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis">PCA analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis">Collinearity analysis</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
@@ -847,13 +847,12 @@ Whilst SDM tools in the R programming language are well-developed [6, 7, 8], the
 </div>
 </section>
 </section>
-</section>
 <section id="feature-selection">
-<h2>Feature selection<a class="headerlink" href="#feature-selection" title="Permalink to this heading">#</a></h2>
+<h3>Feature selection<a class="headerlink" href="#feature-selection" title="Permalink to this heading">#</a></h3>
 <p>Now proceeding with climatic and topographic features as identified above, I’m running an additional feature selection routine as outlined in [16], which entails testing pairwise Spearman rank values, and for each pair where r &gt; 0.8, discarding the feature with the lower PCA loading.</p>
 <p>For SDM applications, it’s also possible to assess histogram shape to aid in feature selection, with normally distributed or skewed bioclimatic distributions corresponding to relevant covariates, and no pattern or truncated histograms being irrelevant [24].</p>
 <section id="features-with-major-disconituities">
-<h3>Features with major disconituities<a class="headerlink" href="#features-with-major-disconituities" title="Permalink to this heading">#</a></h3>
+<h4>Features with major disconituities<a class="headerlink" href="#features-with-major-disconituities" title="Permalink to this heading">#</a></h4>
 <p>Due to calculation methodologies [25], some WorldClim variables show major discontinuities, which are visible in the continent-level plots above and will therefore be removed ([25] notes 84 publications taking such an approach)).</p>
 <p>Note that bio_8 and bio_9 are highly correlated with elevation, the latter having a higher PCA loading, and therefore these variables would be dropped in the following feature selection process regardless.</p>
 <div class="cell docutils container">
@@ -877,7 +876,7 @@ Whilst SDM tools in the R programming language are well-developed [6, 7, 8], the
 </div>
 </section>
 <section id="pca-analysis">
-<h3>PCA analysis<a class="headerlink" href="#pca-analysis" title="Permalink to this heading">#</a></h3>
+<h4>PCA analysis<a class="headerlink" href="#pca-analysis" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bio_sample_rand_df_norm</span> <span class="o">=</span> <span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
@@ -925,7 +924,7 @@ Whilst SDM tools in the R programming language are well-developed [6, 7, 8], the
 </div>
 </section>
 <section id="collinearity-analysis">
-<h3>Collinearity analysis<a class="headerlink" href="#collinearity-analysis" title="Permalink to this heading">#</a></h3>
+<h4>Collinearity analysis<a class="headerlink" href="#collinearity-analysis" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">bio_sample_rand_df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
@@ -1064,6 +1063,7 @@ Whilst SDM tools in the R programming language are well-developed [6, 7, 8], the
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="results">
@@ -1728,12 +1728,12 @@ Whilst SDM tools in the R programming language are well-developed [6, 7, 8], the
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#covariate-histograms">Covariate histograms</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities">Features with major disconituities</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis">PCA analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis">Collinearity analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature selection</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-with-major-disconituities">Features with major disconituities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-analysis">PCA analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collinearity-analysis">Collinearity analysis</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
