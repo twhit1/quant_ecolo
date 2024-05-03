@@ -62,8 +62,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Ecological Data Science for Sustainable Agriculture (Part II)';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -789,7 +787,7 @@ document.write(`
 <li><p>Species richness: the number of unique species observed</p></li>
 <li><p>Total abundance: sum of all individuals from all species</p></li>
 </ul>
-<p>The sampling rate varied between locations. This is due to varying number of location visits, and varying number of pan traps used per visit. To ensure comparability across sampling locations, biodiversity metrics are scaled accordingly: abundance is scaled to the number of pan trap samples taken, and species richness is scaled according to a rarefaction function [9].</p>
+<p>The sampling rate varied between locations. This is due to a varying number of location visits, and a varying number of pan traps used per visit. To ensure comparability across sampling locations, biodiversity metrics are scaled accordingly: abundance is scaled to the number of pan trap samples taken, and species richness is scaled according to a rarefaction function [9]. This produces expected biodiversity metrics based on a single pan-trap sample at each location.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bee_hoverfly_metrics</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
@@ -869,7 +867,7 @@ document.write(`
 </div>
 </div>
 <p>For the purposes of estimating agricultural intensity in the vicinity of each sampling location, I consider a circle of radius 2km centred on the sampling location.</p>
-<p>This represents an adaptation of the methodology described in [6], in which only the four Sentinel-2 pixels at the centre of each field used for biodiversity surveys. Implementing such a constraint here with PoMS localities cuts the sample size significantly. Given also the mobility of pollinators, a larger study area was chosen. Note that honey bees regularly travel the chosen radius (2km) to forage, and have been observed as far as 10km from the hive [11].</p>
+<p>This represents an adaptation of the methodology described in [6], which analyses only the four Sentinel-2 pixels at the centre of each field used for biodiversity surveys. Implementing such a constraint on the PoMS dataset cuts the sample size significantly. Given that pollinators are relatively mobile, a larger study area was chosen here; honey bees regularly travel the chosen radius (2km) to forage, and have been observed as far as 10km from the hive [11].</p>
 <p>An example study location (with surrounding CROME spring cereal cells) is shown below; CROME data is published on a hex grid (resolution ~40m side length).</p>
 <p>Note that the CROME data for each of these locations is downloaded outside of this script, see <a class="github reference external" href="https://github.com/twhit1/quant_ecolo/blob/dev/docs/get_crome_2019.sh">twhit1/quant_ecolo</a>.</p>
 <div class="cell tag_hide-input docutils container">
@@ -1338,10 +1336,11 @@ document.write(`
 <p>Before executing a productivity and phenology analysis based on Sentinel-2 imagery, a mask to remove “bad” pixels is defined.</p>
 <p>In this section, the process is demonstrated for one example location, before looping through all PoMS localities.</p>
 <p>Note that in place of the more frequently used NDVI index, the authors of [6] use the EVI2 index as a vegetation index, citing deficiencies with NDVI in relation to this use case.</p>
-<div class="math notranslate nohighlight">
-\[
+<br />
+$$
   EVI2 = 2.5*\frac{NIR - RED}{NIR + 2.4*RED + 1}
-\]</div>
+$$
+<br />
 <section id="example-for-one-location-and-date">
 <h4>Example for one location and date<a class="headerlink" href="#example-for-one-location-and-date" title="Permalink to this heading">#</a></h4>
 <p>Define a mask to select only the study area from a raster:</p>
@@ -1410,28 +1409,28 @@ document.write(`
 <p>Now get masks based on CROME crop designation. The method was originally applied to spring cereals [6], so return a spring cereal mask.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_crome_geoms</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Reads CROME data and converts to geometries on selected land-use codes.&#39;&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_crome_series</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Returns a geometry series of CROME spring cereals and agricultural land for a given location.&#39;&#39;&#39;</span>
     <span class="n">crome_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="n">aoi_dir</span><span class="p">,</span> <span class="s1">&#39;CROME&#39;</span><span class="p">)</span>
     <span class="n">crome_data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">crome_path</span><span class="p">)</span>
-    <span class="n">spring_cereal_geoms</span> <span class="o">=</span> <span class="n">crome_data</span><span class="p">[</span><span class="n">crome_data</span><span class="p">[</span><span class="s1">&#39;lucode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">SPRING_CEREAL_LUCODES</span><span class="p">)]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">spring_cereal_geoms</span>
+    <span class="n">crome_sc_series</span> <span class="o">=</span> <span class="n">crome_data</span><span class="p">[</span><span class="n">crome_data</span><span class="p">[</span><span class="s1">&#39;lucode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">SPRING_CEREAL_LUCODES</span><span class="p">)]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span>
+    <span class="n">crome_ag_series</span> <span class="o">=</span> <span class="n">crome_data</span><span class="p">[</span><span class="n">crome_data</span><span class="p">[</span><span class="s1">&#39;lucode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;AC&#39;</span><span class="p">,</span> <span class="s1">&#39;CA&#39;</span><span class="p">,</span> <span class="s1">&#39;LG&#39;</span><span class="p">,</span> <span class="s1">&#39;NU&#39;</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">,</span> <span class="s1">&#39;SR&#39;</span><span class="p">))]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span>
+    
+    <span class="k">return</span> <span class="n">crome_sc_series</span><span class="p">,</span> <span class="n">crome_ag_series</span>
 
 
 <span class="k">def</span> <span class="nf">get_farmed_area</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Reads CROME data and calculates the land area used for spring cereal culitvation and also (all types of) agriculture for this tile.&#39;&#39;&#39;</span>
-    <span class="n">crome_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="n">aoi_dir</span><span class="p">,</span> <span class="s1">&#39;CROME&#39;</span><span class="p">)</span>
-    <span class="n">crome_data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">crome_path</span><span class="p">)</span>
-    <span class="n">spring_cereal_area</span> <span class="o">=</span> <span class="n">crome_data</span><span class="p">[</span><span class="n">crome_data</span><span class="p">[</span><span class="s1">&#39;lucode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">SPRING_CEREAL_LUCODES</span><span class="p">)]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">agric_area</span> <span class="o">=</span> <span class="n">crome_data</span><span class="p">[</span><span class="n">crome_data</span><span class="p">[</span><span class="s1">&#39;lucode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;AC&#39;</span><span class="p">,</span> <span class="s1">&#39;CA&#39;</span><span class="p">,</span> <span class="s1">&#39;LG&#39;</span><span class="p">,</span> <span class="s1">&#39;NU&#39;</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">,</span> <span class="s1">&#39;SR&#39;</span><span class="p">))]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">spring_cereals</span><span class="p">,</span> <span class="n">ag_series</span> <span class="o">=</span> <span class="n">get_crome_sc_series</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">)</span>
+    <span class="n">spring_cereal_area</span> <span class="o">=</span> <span class="n">spring_cereals</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agric_area</span> <span class="o">=</span> <span class="n">ag_series</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">spring_cereal_area</span><span class="p">,</span> <span class="n">agric_area</span>
 
 <span class="k">def</span> <span class="nf">get_cereal_masks</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Gets cereal land-use masks based on CROME data.&#39;&#39;&#39;</span>
     <span class="c1"># For this location get CROME data (constant on a year)</span>
-    <span class="n">spring_cereal_geoms</span> <span class="o">=</span> <span class="n">get_crome_geoms</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">)</span>
+    <span class="n">spring_cereal_geoms</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_crome_series</span><span class="p">(</span><span class="n">aoi_dir</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     
     <span class="c1"># Convert shapes to rasters based on raster profile of an evi2.tif for this location (should all have the same profile)</span>
     <span class="n">evi2_path</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="n">aoi_dir</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;evi2.tif&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
@@ -1685,8 +1684,7 @@ Phenometrics calculated successfully!
 <img alt="../_images/f4591eaa2539a1c82e855ad1050a8ad39c54bada7413ae2f25d8dfc3dbbb20ac.png" src="../_images/f4591eaa2539a1c82e855ad1050a8ad39c54bada7413ae2f25d8dfc3dbbb20ac.png" />
 </div>
 </div>
-<p>Refer to the EVI2 timeseries and amplitude distributions for pixels labelled spring cereal according to CROME.</p>
-<p>The pixel-wise EVI2 time series for this location clearly shows that despite a bimodal amplitude distribution, the majority of pixels exhibit a similar peak in the early summer period.</p>
+<p>With reference to the EVI2 timeseries and amplitude distributions for pixels labelled spring cereal according to CROME, the pixel-wise EVI2 time series for this location clearly shows that despite a bimodal amplitude distribution, the majority of pixels exhibit a similar peak in the early summer period.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1954,16 +1952,16 @@ Phenometrics calculated successfully!
 <section id="discussion-and-conclusions">
 <h2>Discussion and conclusions<a class="headerlink" href="#discussion-and-conclusions" title="Permalink to this heading">#</a></h2>
 <p>As observed in the results section, a significant correlation between Sentinel-2 derived productivity parameters and pollinator biodiversity metrics as observed by the authors of [6] was not reproduced in this study. There are a number of possible explanations for this result, which are discussed in this section.</p>
-<p>The methodology applied in this study constitutes an adaptation of that presented in [6], for use with the PoMS dataset, as described in the methodology section. Notably, Sentinel-2 derived parameters are calculated on a 2km radius zone around the PoMS study location here; therefore aiming to proxy agricultural intensity in the surrounding area for each PoMS location, instead of taking the immediate vicinity as in the original study [6]. The assumptions are that firstly pollinators are mobile within a distance greater than the study area use here, and secondly, surrounding spring cereal remote sensing-derived productivity parameters can effectively proxy agricultural intensity and hence would correlate (inversely) with biodiversity metrics.</p>
-<p>Assessing the reliability of the first of those assumptions in further detail is out of the scope of this study, though the literature would suggest that is is not unreasonable (as discussed in the methodology here).</p>
-<p>On the second assumption, it is possible that correlations observed at small spatial scales as in [6] do not translate to statistics based on the surrounding area at each PoMS location, the effects being too weak to discernibly influence biodiversity metrics. Indeed spring cereal fields represent just one element of the agricultural environment at each locality. Combined with a relatively small sample size, and limitations with the resolution of the CROME dataset which causes Sentinel-2 grid pixels to be incorrectly labelled spring cereal on resampling, it would be incorrect to call into question the repeatability the methodology presented in [6] based on the findings documented in this notebook.</p>
+<p>The methodology applied in this study constitutes an adaptation of that presented in [6], for use with the PoMS dataset, as described in the methodology section. Notably, Sentinel-2 derived parameters are calculated on a 2km radius zone around the PoMS study location here; therefore aiming to proxy agricultural intensity in the surrounding area for each PoMS location, instead of taking the immediate vicinity as in the original study [6]. The assumptions are that firstly pollinators are mobile within a distance greater than the study area use here, and secondly, surrounding spring cereal remote sensing-derived productivity parameters can effectively proxy agricultural intensity and hence would correlate (negatively) with biodiversity metrics.</p>
+<p>Assessing the reliability of the first of those assumptions in further detail is out of the scope of this study, though the literature would suggest that is is not unreasonable (as discussed earlier in the methodology).</p>
+<p>On the second assumption, it is possible that correlations observed at small spatial scales as in [6] do not translate to statistics based on the surrounding area at each PoMS location, the effects being too weak to discernibly influence biodiversity metrics. Indeed spring cereal fields represent just one element of the agricultural environment surrounding each PoMS sampling location. Combined with a relatively small sample size, and limitations with the resolution of the CROME dataset which causes Sentinel-2 grid pixels to be incorrectly labelled spring cereal on resampling, it would be incorrect to call into question the repeatability of the methodology presented in [6] based on the findings documented in this notebook.</p>
 <p>Further research should focus on the following topics:</p>
 <ol class="arabic simple">
-<li><p>Derivation of remote sensing agricultural intensity proxies based on other crop types would allow greater generalisation of the type of analysis explored here.</p></li>
-<li><p>Direct comparison of remote sensing derived parameters against agricultural intensity data for broader validation of the methodology: for instance, large-scale spatial datasets of usage rates for artificial agricultural inputs such as fertilisers and pesticides exist (though are not open access), see the UKCEH’s “Land Cover plus: Fertilisers and Pesticides” product as an example.</p></li>
+<li><p>Derivation of remote sensing agricultural intensity proxies based on other crop types, which would allow greater generalisation of the type of analysis explored here.</p></li>
+<li><p>Direct comparison of remote sensing derived parameters against agricultural intensity data for broader validation of the methodology: for instance, large-scale spatial datasets of artificial agricultural input rates exist (though are not open access), see the UKCEH’s “Land Cover plus: Fertilisers and Pesticides” product as an example.</p></li>
 <li><p>Replication of the methodology presented in this notebook, maintaining greater fidelity to that presented by the authors of [6], particularly in relation to spatial scales.</p></li>
 </ol>
-<p>The next notebook in this series will focus on the third point, performing a similar analysis on much smaller study locations, owing to the much larger pool of sampling locations used for the UK’s National Plant Monitoring Scheme.</p>
+<p>The next notebook in this series will focus on the third point, performing a similar analysis on much smaller study locations, which is possible because of the larger pool of sampling locations used for the UK’s National Plant Monitoring Scheme.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
