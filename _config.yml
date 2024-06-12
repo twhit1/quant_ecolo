@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title:  Topics in Quantitative Ecology and Beyond
+title:  Data Science for Ecology and Beyond
 author: "Tom Whitehouse"
 logo: logo.png
 copyright: "2024"

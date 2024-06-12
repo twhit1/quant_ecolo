@@ -4,8 +4,8 @@ format: jb-book
 root: docs/Introduction
 chapters:
 - file: docs/Species Distribution Modelling with Python
-- file: docs/Ecological Data Science for Sustainable Agriculture (Part I)
-- file: docs/Ecological Data Science for Sustainable Agriculture (Part II)
-- file: docs/Ecological Data Science for Sustainable Agriculture (Part III)
-- file: docs/Ecological Data Science for Sustainable Agriculture (Part IV)
+- file: docs/Earth Observation Data with Python and SpatioTemporal Asset Catalogs (STACs)
+- file: docs/Measuring Biodiversity on Agricultural Land with Remote Sensing Data (Part I)
+- file: docs/Measuring Biodiversity on Agricultural Land with Remote Sensing Data (Part II)
+- file: docs/Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations
 - file: docs/Hybrid Learning for Species Classification on Image Datasets
