@@ -1,0 +1,2001 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations &#8212; Data Science for Ecology and Beyond</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hybrid Learning for Species Classification on Image Datasets" href="Hybrid%20Learning%20for%20Species%20Classification%20on%20Image%20Datasets.html" />
+    <link rel="prev" title="Measuring Biodiversity on Agricultural Land with Remote Sensing Data (Part II)" href="Measuring%20Biodiversity%20on%20Agricultural%20Land%20with%20Remote%20Sensing%20Data%20%28Part%20II%29.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Data Science for Ecology and Beyond</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Species%20Distribution%20Modelling%20with%20Python.html">Species Distribution Modelling with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Earth%20Observation%20Data%20with%20Python%20and%20SpatioTemporal%20Asset%20Catalogs%20%28STACs%29.html">Earth Observation Data with Python and SpatioTemporal Asset Catalogs (STACs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Measuring%20Biodiversity%20on%20Agricultural%20Land%20with%20Remote%20Sensing%20Data%20%28Part%20I%29.html">Measuring Biodiversity on Agricultural Land with Remote Sensing Data (Part I)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Measuring%20Biodiversity%20on%20Agricultural%20Land%20with%20Remote%20Sensing%20Data%20%28Part%20II%29.html">Measuring Biodiversity on Agricultural Land with Remote Sensing Data (Part II)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hybrid%20Learning%20for%20Species%20Classification%20on%20Image%20Datasets.html">Hybrid Learning for Species Classification on Image Datasets</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/twhit1/quant_ecolo" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#biodiversity-data-uk-poms-fit-counts">Biodiversity data: UK PoMS Fit Counts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#honey-bee-species-distribution-model-abundance">Honey bee species distribution model (abundance)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-prep-features">Load and prep features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#build-rf-model">Build RF model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pesticide-intensity-data-input-to-yield-ratio-maps">Pesticide intensity data: Input-to-Yield ratio maps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and conclusions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assessing-spatial-patterns-of-agricultural-pesticide-use-and-risks-to-pollinator-populations">
+<h1>Assessing Spatial Patterns of Agricultural Pesticide Use and Risks to Pollinator Populations<a class="headerlink" href="#assessing-spatial-patterns-of-agricultural-pesticide-use-and-risks-to-pollinator-populations" title="Permalink to this heading">#</a></h1>
+<p><strong>Published: 12/06/2024</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In spite of scarce time-series data on pollinator populations, it is evident that globally, both wild and domesticated pollinator populations are in decline [1, 2]. This is the case even in relatively undisturbed ecosystems, perhaps a result of changing climate patterns and the arrival of invasive species [3].</p>
+<p>Pesticide use for agriculture poses a more direct, and significant threat to pollinator populations, prompting EU restrictions on the use of certain pesticide groups - for instance neonicotinoids - in recent years (the Commission aims to reduce general pesticide use by 50% by 2030) [1].</p>
+<p>Given the importance of pollinators to our food systems (more than 80% of agricultural crops depend on insect pollination to some extent [4]), there is a strong case to be made for adapting those systems to function in ways that do not adversely affect the pollinator populations on which they depend.</p>
+<p>In place of a full pesticide ban, which remains unrealistic as a global short-term solution, optimisation of pesticide use, local regulations, and conservation efforts represents a more realistic and potentially effective approach.</p>
+<p><strong>Objectives</strong><br>
+This notebook aims to highlight areas in the UK in which agricultural yields are relatively low and pesticide inputs are relatively high. In the context of a pollinator abundance species distribution model, I show how this operations data presents an opportunity to optimise large-scale sustainable farming strategies to maintain productivity whilst reducing pesticide exposure for pollinators. Such a methodology could, for instance, be used to aid conservation or agricultural policy decision-making.</p>
+<p>Two datasets are used here: UK Pollinator Monitoring Scheme (PoMS) data and UK CEH pesticide to agricultural yield ratio maps.</p>
+<p>Specific objectives are as follows:</p>
+<ol class="arabic simple">
+<li><p>Build a pollinator abundance-based species distribution model (SDM) using UK PoMS data.</p></li>
+<li><p>Investigate the pesticide hazard to agricultural yield map, which itself is of practical value.</p></li>
+<li><p>Combine the datasets from objectives (1.) and (2.) to identify areas in which a high abundance of pollinators and a high pesticide to agricultural yield ratio are simultaneously observed.</p></li>
+</ol>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector processing</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">shapely</span>
+<span class="kn">import</span> <span class="nn">osgb</span>
+
+<span class="c1"># Raster processing</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">rasterio.warp</span>
+<span class="kn">import</span> <span class="nn">rasterio.mask</span>
+<span class="kn">import</span> <span class="nn">rasterio.plot</span>
+<span class="kn">import</span> <span class="nn">rasterio.features</span>
+<span class="kn">import</span> <span class="nn">rasterio.sample</span>
+<span class="kn">import</span> <span class="nn">rasterio.fill</span>
+<span class="kn">from</span> <span class="nn">rasterio</span> <span class="kn">import</span> <span class="n">windows</span>
+<span class="kn">import</span> <span class="nn">pyproj</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+
+<span class="c1"># Calcs and modelling</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">GroupKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">model_selection</span><span class="p">,</span> <span class="n">svm</span>
+<span class="kn">import</span> <span class="nn">elapid</span> <span class="k">as</span> <span class="nn">ela</span>
+
+<span class="c1"># Visualisation</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">cx</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">geoplot</span> <span class="k">as</span> <span class="nn">gplt</span>
+
+<span class="c1"># Practical</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pystac_client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">DaskClient</span><span class="p">,</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">distributed_print</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../../../git_packages/PhenoloPy/scripts&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">phenolopy</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span><span class="p">,</span> <span class="n">zscore</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">ast</span> <span class="kn">import</span> <span class="n">literal_eval</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.formatter.limits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">FIGSIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">DATA_BASE_PATH</span> <span class="o">=</span> <span class="s1">&#39;../../../data/Agric_data/&#39;</span> <span class="c1"># all data under this path (global)</span>
+
+<span class="c1"># Here use the CRS of the UK CEH pesticide maps</span>
+<span class="n">WORKING_CRS</span> <span class="o">=</span> <span class="s1">&#39;EPSG:27700&#39;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<section id="biodiversity-data-uk-poms-fit-counts">
+<h3>Biodiversity data: UK PoMS Fit Counts<a class="headerlink" href="#biodiversity-data-uk-poms-fit-counts" title="Permalink to this heading">#</a></h3>
+<p>The UK PoMS flower-insect timed count dataset [5], provides pollinator abundance observations collected by volunteers at locations across the UK. Insect counts, split by broad taxon groups, are recorded for 50cm x 50cm quadrats on 10 minute periods, for a given target plant.</p>
+<p>Here the dataset is loaded and cleaned. The cleaned dataset consists of 2578 samples taken between 2017 and 2020 (inclusive).</p>
+<p>Expand the cell to see the code.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in data</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="s1">&#39;Pollinator_Fit_Counts/data/ukpoms_publicfitcountdata_2017-2020.csv&#39;</span> <span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode_escape&#39;</span><span class="p">)</span>
+
+<span class="c1"># Type conversions</span>
+<span class="n">sample_data</span><span class="p">[[</span><span class="s1">&#39;honeybees&#39;</span><span class="p">,</span> <span class="s1">&#39;floral_unit_count&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[[</span><span class="s1">&#39;honeybees&#39;</span><span class="p">,</span> <span class="s1">&#39;floral_unit_count&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Filter to England for comparison to UK CEH pesticide maps</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;England&#39;</span><span class="p">]</span>
+
+<span class="c1"># Some wrangling of geodata -&gt;  transform to working spatial reference system</span>
+<span class="k">def</span> <span class="nf">parse_grid_handle_error</span><span class="p">(</span><span class="n">x1km_ref</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">osgb</span><span class="o">.</span><span class="n">gridder</span><span class="o">.</span><span class="n">parse_grid</span><span class="p">(</span><span class="n">x1km_ref</span><span class="p">)</span>
+        
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">grid_to_ll_handle_error</span><span class="p">(</span><span class="n">grid_ref</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">osgb</span><span class="o">.</span><span class="n">grid_to_ll</span><span class="p">(</span><span class="n">grid_ref</span><span class="p">)</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_centre&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;5&#39;</span>
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_centre&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">parse_grid_handle_error</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grid_to_ll_handle_error</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">)</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="o">~</span><span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">is_empty</span><span class="p">]</span>
+<span class="n">sample_data</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">WORKING_CRS</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Show the dataset</span>
+<span class="n">sample_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sample_id</th>
+      <th>country</th>
+      <th>date</th>
+      <th>year</th>
+      <th>X1km_square</th>
+      <th>sample_projection</th>
+      <th>digitised_by</th>
+      <th>recorder_type</th>
+      <th>habitat</th>
+      <th>habitat_other_detail</th>
+      <th>target_flower</th>
+      <th>target_flower_corrected</th>
+      <th>target_other_name</th>
+      <th>target_other_name_corrected</th>
+      <th>target_flower_family</th>
+      <th>flower_cover</th>
+      <th>floral_unit_count</th>
+      <th>floral_unit</th>
+      <th>flower_context</th>
+      <th>count_start_time</th>
+      <th>cloud_cover</th>
+      <th>sunshine</th>
+      <th>wind_speed</th>
+      <th>enjoyment</th>
+      <th>difficulty</th>
+      <th>habitat_type</th>
+      <th>flower_structure</th>
+      <th>bumblebees</th>
+      <th>honeybees</th>
+      <th>solitary_bees</th>
+      <th>wasps</th>
+      <th>hoverflies</th>
+      <th>other_flies</th>
+      <th>butterflies_moths</th>
+      <th>beetles</th>
+      <th>insects_small</th>
+      <th>insects_other</th>
+      <th>all_insects_total</th>
+      <th>geometry</th>
+      <th>month</th>
+      <th>X1km_centre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3501506</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>SK3648</td>
+      <td>OSGB</td>
+      <td>86644</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>6</td>
+      <td>flower head</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>11:55</td>
+      <td>All or mostly blue</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves moving gently all the time</td>
+      <td>Fun</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (436500.084 348502.088)</td>
+      <td>05</td>
+      <td>SK365485</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3493125</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>SK9482</td>
+      <td>OSGB</td>
+      <td>154133</td>
+      <td>I am familiar with identifying some wildlife g...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Hawthorn - Crataegus</td>
+      <td>Hawthorn - Crataegus</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Rosaceae</td>
+      <td>Target flowers cover about half of patch</td>
+      <td>22</td>
+      <td>individual flower</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>15:01</td>
+      <td>All or mostly blue</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves moving gently all the time</td>
+      <td>Really fun!</td>
+      <td>Okay</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>POINT (494499.828 382502.407)</td>
+      <td>05</td>
+      <td>SK945825</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3455170</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>SP0380</td>
+      <td>OSGB</td>
+      <td>73313</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Other - please describe below</td>
+      <td>Other - please describe below</td>
+      <td>Pulmonaria</td>
+      <td>Pulmonaria</td>
+      <td>Boraginaceae</td>
+      <td>Target flowers cover about half of patch</td>
+      <td>15</td>
+      <td>individual flower</td>
+      <td>Growing in a larger patch of many different fl...</td>
+      <td>15:47</td>
+      <td>All or mostly blue</td>
+      <td>Partly in sun and partly shaded</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>Okay</td>
+      <td>Easy</td>
+      <td>garden</td>
+      <td>closed</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (403500.416 280501.592)</td>
+      <td>05</td>
+      <td>SP035805</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3455025</td>
+      <td>England</td>
+      <td>05/05/2018</td>
+      <td>2018</td>
+      <td>ST3109</td>
+      <td>OSGB</td>
+      <td>156295</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Grassland with wild flowers (e.g. meadow)</td>
+      <td>NA</td>
+      <td>Buttercup (Ranunculus species)</td>
+      <td>Buttercup (Ranunculus species)</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Ranunculaceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>10</td>
+      <td>individual flower</td>
+      <td>Growing in a larger patch of the same flower</td>
+      <td>14:36</td>
+      <td>Half blue and half cloud</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves moving gently all the time</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>semi-natural</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>POINT (331499.557 109499.046)</td>
+      <td>05</td>
+      <td>ST315095</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3501609</td>
+      <td>England</td>
+      <td>19/05/2018</td>
+      <td>2018</td>
+      <td>SK3648</td>
+      <td>OSGB</td>
+      <td>86644</td>
+      <td>I am familiar with recognising the main groups...</td>
+      <td>Garden</td>
+      <td>NA</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>Dandelion - Taraxacum officinale</td>
+      <td>NA</td>
+      <td>NA</td>
+      <td>Asteraceae</td>
+      <td>Target flowers cover less than half of patch</td>
+      <td>1</td>
+      <td>flower head</td>
+      <td>More or less isolated</td>
+      <td>12:18</td>
+      <td>Half blue and half cloud</td>
+      <td>Entirely in sunshine</td>
+      <td>Leaves still/moving occasionally</td>
+      <td>Fun</td>
+      <td>Very easy</td>
+      <td>garden</td>
+      <td>open</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (436500.084 348502.088)</td>
+      <td>05</td>
+      <td>SK365485</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">sample_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">sample_data</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">cx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of PoMS FIT counts sampling locations&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/3052f93866f82860bf2b641702ade1e448b8be8b36596386829f30c70e3470dc.png" src="../_images/3052f93866f82860bf2b641702ade1e448b8be8b36596386829f30c70e3470dc.png" />
+</div>
+</div>
+</section>
+<section id="honey-bee-species-distribution-model-abundance">
+<h3>Honey bee species distribution model (abundance)<a class="headerlink" href="#honey-bee-species-distribution-model-abundance" title="Permalink to this heading">#</a></h3>
+<p>The pesticide loading maps investigated in the next section use toxicity weightings for honeybees (Apis mellifera) specifically. Therefore, PoMS observations for honeybees are taken as the basis for the SDM fitting process presented here.</p>
+<p>A recent systematic review of abundance-based SDMs [6] suggests that random forests perform best amongst 24 model frameworks investigated.</p>
+<p>The SDM approach presented in the previous article “Species Distribution Modelling with Python” is applied again here using random forests (with a variety of parameters tested), taking into account specific recommendations from that abundance SDM review. Worldclim climate variables [7] were used, as well as SRTM elevation data.</p>
+<section id="load-and-prep-features">
+<h4>Load and prep features<a class="headerlink" href="#load-and-prep-features" title="Permalink to this heading">#</a></h4>
+<p>Because sampling locations are given on a kilometre square grid, multiple samples are grouped within each “location” in the PoMS dataset. An inverse frequency weighting is used to ensure that this does not bias the SDM (though spatial biases at a larger scale would persist).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are many duplicate sampling locations (X1 squares) with different surveying metadata</span>
+<span class="c1"># Weight samples at the same location such that each location essentially counts for one</span>
+<span class="n">count_map</span> <span class="o">=</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">,</span> <span class="n">group_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;sample_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;loc_dupl_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">count_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">))</span>
+<span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;sample_weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sample_data</span><span class="p">[</span><span class="s1">&#39;loc_dupl_count&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now evalute bioclimatic variables at all locations sampled in the PoMS dataset.</p>
+<p>Expand the cell to see the code.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bio var mappings</span>
+<span class="n">bio_vars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;bio_19&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of coldest quarter&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;bio_18&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of warmest quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_17&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of driest quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_16&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of wettest quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_15&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation seasonality (coefficient   of   variation)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_14&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of driest period&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_13&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of wettest period&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_12&#39;</span><span class="p">:</span> <span class="s1">&#39;annual precipitation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_11&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of coldest quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_10&#39;</span><span class="p">:</span> <span class="s1">&#39;precipitation of warmest quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_9&#39;</span><span class="p">:</span> <span class="s1">&#39;mean temperature of driest quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_8&#39;</span><span class="p">:</span> <span class="s1">&#39;mean temperature  of  wettest  quarter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_7&#39;</span><span class="p">:</span> <span class="s1">&#39;temperature annual range&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_6&#39;</span><span class="p">:</span> <span class="s1">&#39;minimum temperature of coldest period&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_5&#39;</span><span class="p">:</span> <span class="s1">&#39;maximum temperature of warmest period&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_4&#39;</span><span class="p">:</span> <span class="s1">&#39;temperature season-ality  (coefficient  of  variation)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_3&#39;</span><span class="p">:</span> <span class="s1">&#39;isothermality&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_2&#39;</span><span class="p">:</span> <span class="s1">&#39;mean diurnal range&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bio_1&#39;</span><span class="p">:</span>  <span class="s1">&#39;annual mean temperature&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;elev&#39;</span><span class="p">:</span> <span class="s1">&#39;SRTM elevation&#39;</span>
+<span class="p">}</span>
+
+
+<span class="c1"># Define unique locations</span>
+<span class="n">loc_index</span> <span class="o">=</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+<span class="n">loc_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">sample_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loc_index</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loc_index</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># For each biovar get its value at the PoMS record locations</span>
+<span class="n">bio_samples</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">bio_var_paths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">bio_var</span> <span class="ow">in</span> <span class="n">bio_vars</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;../../../data/SDM_data/covar/epsg_27700/*&#39;</span> <span class="o">+</span> <span class="n">bio_var</span> <span class="o">+</span> <span class="s1">&#39;_England*.tif&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">bio_var_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">rio_ds</span><span class="p">:</span>
+        <span class="n">bio_samples</span><span class="p">[</span><span class="n">bio_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">sample_gen</span><span class="p">(</span><span class="n">rio_ds</span><span class="p">,</span> 
+                                                                          <span class="n">loc_coords</span><span class="p">,</span> 
+                                                                          <span class="n">indexes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                                                                          <span class="n">masked</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> 
+        <span class="n">nodata_val</span><span class="p">,</span> <span class="n">ref_shape</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="p">,</span> <span class="n">ref_profile</span> <span class="o">=</span> <span class="n">rio_ds</span><span class="o">.</span><span class="n">nodata</span><span class="p">,</span> <span class="n">rio_ds</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">rio_ds</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">rio_ds</span><span class="o">.</span><span class="n">profile</span>
+
+<span class="c1"># Clean no_data values </span>
+<span class="n">bio_sample_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bio_samples</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">loc_index</span><span class="p">)</span>
+<span class="n">bio_sample_df</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">bio_sample_df</span> <span class="o">==</span> <span class="n">nodata_val</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">9</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">fp</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bio_var_paths</span><span class="p">,</span> <span class="n">bio_vars</span><span class="p">,</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()):</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mask</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read_masks</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">output</span><span class="p">),</span> 
+                   <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span> 
+                   <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ref_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">],</span>
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="c1"># Just for image / display resolution mismatches, does not alter underlying values</span>
+                  <span class="p">)</span>
+    
+    <span class="c1"># occ_data.plot(ax=ax, markersize=5, color=&#39;k&#39;, marker=&#39;^&#39;, label=&#39;Occurrence records&#39;)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">bio_vars</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="c1"># fig.tight_layout()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/cc62166480fc2150005524585e4bcba3bad870cbfaf44c6bcfcfce548d442825.png" src="../_images/cc62166480fc2150005524585e4bcba3bad870cbfaf44c6bcfcfce548d442825.png" />
+</div>
+</div>
+<p>As noted in the post on “Species Distribution Modelling with Python”, some worldclim layers suffer from discontinuities, which are visible above. Dropping those with major discontinuities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bio_2&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_3&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_4&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_6&#39;</span><span class="p">,</span> <span class="s1">&#39;bio_7&#39;</span><span class="p">]</span> 
+
+<span class="n">bio_sample_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">[</span><span class="n">bio_vars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">to_drop</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mean diurnal range&#39;,
+ &#39;isothermality&#39;,
+ &#39;temperature season-ality  (coefficient  of  variation)&#39;,
+ &#39;minimum temperature of coldest period&#39;,
+ &#39;temperature annual range&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now analysing correlations and removing highly correlated features, as in “Species Distribution Modelling with Python”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bio_sample_df_norm</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
+<span class="n">base_pca</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">decomposition</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">base_pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">bio_sample_df_norm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percentage of variance explained by PC1, PC2 and PC3 respectively:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percentage of variance explained by PC1, PC2 and PC3 respectively:
+[0.5847062  0.22729    0.06444322]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pc_pair</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]:</span> <span class="c1">#, [1, 3]]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span> <span class="p">[</span><span class="n">pc_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pc_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">explained_variance_</span><span class="p">[[</span><span class="n">pc_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pc_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]),</span> 
+                             <span class="n">bio_sample_df_norm</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;PCA </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pc_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PCA </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pc_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/76fc6bcc460fad470e70f6a3b56c687c5952af07032b7c00d80a039c4d962075.png" src="../_images/76fc6bcc460fad470e70f6a3b56c687c5952af07032b7c00d80a039c4d962075.png" />
+<img alt="../_images/6ee49a3d99cab174d0872ab2880c7e3014647550c48c31d5cd77b422e78ddf6b.png" src="../_images/6ee49a3d99cab174d0872ab2880c7e3014647550c48c31d5cd77b422e78ddf6b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tick_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/8efc5ccef63f0236ddcfb071dfa22affee51dd1780f8ab3d40bf76657e74d0c1.png" src="../_images/8efc5ccef63f0236ddcfb071dfa22affee51dd1780f8ab3d40bf76657e74d0c1.png" />
+</div>
+</div>
+<p>And the pairwise correlations above a threshold (here set to 0.8):</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tick_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr_matrix</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/5ef6aeaadfc24a67f2d251506bd226fdc105622f29ad87742a8a35d671f380fe.png" src="../_images/5ef6aeaadfc24a67f2d251506bd226fdc105622f29ad87742a8a35d671f380fe.png" />
+</div>
+</div>
+<p>Identify pairwise correlated covariates, and each covariate’s score - here the norm of the PCA loadings  (later used to select amongst covariates).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_pairs</span> <span class="o">=</span> <span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
+<span class="n">corr_pairs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">corr_pairs</span><span class="p">[</span><span class="n">corr_pairs</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">covar_contributions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">bio_sample_df_norm</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span> 
+                               <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">base_pca</span><span class="o">.</span><span class="n">explained_variance_</span><span class="p">),</span> <span class="c1"># eigenvectors scaled by sqrt(eigenvalues)</span>
+                                              <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">bio_sample_df</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_ha</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pairwise Covariate Scatter Plots (Before Feature Selection)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/4e158a8b368a8a13369373063e49bfa47c2ba013df24265fdc18a5a4d5cdf0d0.png" src="../_images/4e158a8b368a8a13369373063e49bfa47c2ba013df24265fdc18a5a4d5cdf0d0.png" />
+</div>
+</div>
+<p>It is very often the case that more features are removed than required when pairwise correlated features are sequentially dropped. For instance, say we have some method of sorting features by preference (e.g. by information content, explained variance etc.) which allows us to choose which feature to keep and which to remove when considering a pair of correlated features. If we simply iterate through all of the pairwise correlated features, and drop either the pair, or in each pair the feature with the lower score, we drop more features than necessary. That is because each time a feature is removed from the model (dropped), correlated feature pairings that previously included that dropped feature no longer represent redundancies.</p>
+<p>The algorithm below takes into account this consideration, building on the approach presented in the earlier post on “Species Distribution Modelling with Python”, to retain a maximal number of uncorrelated features for the subsequent modelling process.</p>
+<p>Expand the cell to see the code.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sorted_corr_covars</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">,</span> <span class="n">covar_contributions</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; takes a set of corr pairs and returns the list of unique covars, sorted in order of most to least variance explained &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">corr_pairs</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">])),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">covar_contributions</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">remove_pop_rows</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">,</span> <span class="n">covar</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;for each row in which covar appears in corr_pairs, delete the row and set aside the paired covar into a list, which is returned at the end&#39;&#39;&#39;</span>
+    <span class="n">paired</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cleaned_corr_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">corr_pairs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">covar</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+            <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">row</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">covar</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">paired</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cleaned_corr_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cleaned_corr_pairs</span><span class="p">,</span> <span class="n">paired</span>
+
+<span class="c1"># Now loop through the list of  all the correlated covar pairs, keeping the &quot;best&quot; covar each time</span>
+<span class="c1"># Initialise</span>
+<span class="n">to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">get_sorted_corr_covars</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">,</span> <span class="n">covar_contributions</span><span class="p">)]</span> <span class="c1"># initilaise with those features that are not colinear</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Get best covar remaining and add it to the keep list</span>
+    <span class="n">best_covar</span> <span class="o">=</span> <span class="n">get_sorted_corr_covars</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">,</span> <span class="n">covar_contributions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">best_covar</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_keep</span><span class="p">:</span>
+        <span class="n">to_keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best_covar</span><span class="p">)</span>
+
+    <span class="c1"># Now modify the list of pairwise correlated covars accordingly: first delete rows where that covar appears, but keep track of which covars were in those rows (beaten)</span>
+    <span class="n">corr_pairs</span><span class="p">,</span> <span class="n">beaten</span> <span class="o">=</span> <span class="n">remove_pop_rows</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">,</span> <span class="n">best_covar</span><span class="p">)</span>
+    
+    <span class="c1"># for each of those beaten covars,  remove from the pool of covars to keep because beaten covars by definition are not kept in the model</span>
+    <span class="n">to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">to_keep</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">beaten</span><span class="p">]</span> <span class="c1"># required because keepers could contain now beaten covars from previous loop iters</span>
+    
+    <span class="c1"># delete all rows in which beaten covars appear, recording which covars were paired with them (these are potentially no longer correlated), unless those covars are in the beaten set </span>
+    <span class="k">for</span> <span class="n">covar_beaten</span> <span class="ow">in</span> <span class="n">beaten</span><span class="p">:</span>
+        <span class="n">corr_pairs</span><span class="p">,</span> <span class="n">new_keepers</span> <span class="o">=</span> <span class="n">remove_pop_rows</span><span class="p">(</span><span class="n">corr_pairs</span><span class="p">,</span> <span class="n">covar_beaten</span><span class="p">)</span>
+        <span class="n">to_keep</span> <span class="o">=</span> <span class="n">to_keep</span> <span class="o">+</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">new_keepers</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_keep</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">beaten</span><span class="p">)]</span>
+        
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">bio_sample_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">to_keep</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_ha</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pairwise Covariate Scatter Plots (After Feature Selection)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/381b7004eedd5ed6d7a1ccc3e798f3212200d904ce86d6a62802c84ce5e78dc1.png" src="../_images/381b7004eedd5ed6d7a1ccc3e798f3212200d904ce86d6a62802c84ce5e78dc1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bio_sample_df</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">to_keep</span><span class="p">]</span>
+<span class="n">bio_vars</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">bio_vars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bio_vars</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">to_keep</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just verify that the correlated features have indeed been removed:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
+<span class="n">tick_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr_matrix</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_pos</span><span class="p">,</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/7c016b0d37828e281f37d29c93976ff2c16ae967f676857150e8f0810780ddbf.png" src="../_images/7c016b0d37828e281f37d29c93976ff2c16ae967f676857150e8f0810780ddbf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bio_var_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bio_var_paths</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bio_vars</span><span class="p">]]</span>
+<span class="n">bio_sample_df</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_data</span><span class="p">[[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sample_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;X1km_square&#39;</span><span class="p">,</span> <span class="s1">&#39;honeybees&#39;</span><span class="p">,</span> <span class="s1">&#39;sample_weight&#39;</span><span class="p">]],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="c1"># dropna for those locations where the climate covar is undefined (there are only 10 such locations)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="build-rf-model">
+<h4>Build RF model<a class="headerlink" href="#build-rf-model" title="Permalink to this heading">#</a></h4>
+<p>Now build a random forest model to capture honeybee abundance information. The model built with positive observations only (no absence / pseudo-absence data) is used in [6], so remove zeros from the biodiversity data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_bio_sample_df</span> <span class="o">=</span> <span class="n">bio_sample_df</span><span class="p">[(</span><span class="n">bio_sample_df</span><span class="p">[</span><span class="s1">&#39;honeybees&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">FIGSIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Retained Bioclimatic Variables and Sampling Distribution&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fp</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bio_var_paths</span><span class="p">,</span> <span class="n">bio_vars</span><span class="p">,</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()):</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mask</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read_masks</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">output</span><span class="p">),</span> 
+                   <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span> 
+                   <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ref_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">],</span>
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="c1"># Just for image / display resolution mismatches, does not alter underlying values</span>
+                  <span class="p">)</span>
+    
+    <span class="n">sample_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtered_bio_sample_df</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">],</span> <span class="p">:]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;honeybees&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;honeybees&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="c1"># fig.colorbar(im, label=None, fraction=0.046, pad=0.04)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">bio_vars</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">],</span> <span class="n">h_pad</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/8ef9b902a50f059dc14d6448154369730900dca727ec8f437ca8b88562a9ce12.png" src="../_images/8ef9b902a50f059dc14d6448154369730900dca727ec8f437ca8b88562a9ce12.png" />
+</div>
+</div>
+<p>Now set up an sklearn RF model with log link:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##### Set up test, train features and targets #####</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">filtered_bio_sample_df</span><span class="p">[[</span><span class="s1">&#39;bio_9&#39;</span><span class="p">,</span>	<span class="s1">&#39;bio_8&#39;</span><span class="p">,</span>	<span class="s1">&#39;elev&#39;</span><span class="p">,</span>	<span class="s1">&#39;bio_16&#39;</span><span class="p">,</span>	<span class="s1">&#39;bio_14&#39;</span><span class="p">,</span>	<span class="s1">&#39;bio_1&#39;</span><span class="p">,</span>	<span class="s1">&#39;bio_5&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">filtered_bio_sample_df</span><span class="p">[[</span><span class="s1">&#39;honeybees&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;honeybees&#39;</span><span class="p">:</span> <span class="s1">&#39;target&#39;</span><span class="p">})</span>
+
+<span class="c1"># Normalization</span>
+<span class="n">X_mean</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">X_std</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="n">full_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ref_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">norm_covs</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cov</span>
+    <span class="c1"># return (cov - X_mean[i]) / X_std[i]</span>
+
+<span class="n">X_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">X_std</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cross validate grid search on hyperparameters, with an error metric as used in [6]:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scaled_mean_abs_error</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Custom error metric&#39;&#39;&#39;</span>
+    <span class="n">_y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">absolute_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">predictions</span> <span class="o">-</span> <span class="n">_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">_y</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">absolute_error</span><span class="p">)</span>
+    
+<span class="n">min_samples_split_set</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">max_depth_set</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">n_estimators_set</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">max_depths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">min_samples_splits</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n_estimatorss</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">n_estimators</span> <span class="ow">in</span> <span class="n">n_estimators_set</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Beginning n_estimators: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_set</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">min_samples_split</span> <span class="ow">in</span> <span class="n">min_samples_split_set</span><span class="p">:</span>
+            <span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
+                                       <span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span>
+                                       <span class="n">min_samples_split</span><span class="o">=</span><span class="n">min_samples_split</span><span class="p">,</span>
+                                       <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="n">cv_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                                               <span class="n">groups</span><span class="o">=</span><span class="n">filtered_bio_sample_df</span><span class="p">[</span><span class="s1">&#39;X1km_square&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="c1"># i.e. split potentially spatially autocorrelated samples</span>
+                                               <span class="n">scoring</span><span class="o">=</span><span class="n">scaled_mean_abs_error</span><span class="p">,</span>
+                                               <span class="n">fit_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;sample_weight&#39;</span><span class="p">:</span> <span class="n">filtered_bio_sample_df</span><span class="p">[</span><span class="s1">&#39;sample_weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">},</span>
+                                               <span class="n">cv</span><span class="o">=</span><span class="n">GroupKFold</span><span class="p">()))</span>
+            <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cv_score</span><span class="p">)</span>
+            <span class="n">max_depths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span>
+            <span class="n">min_samples_splits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">min_samples_split</span><span class="p">)</span>
+            <span class="n">n_estimatorss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">)</span>
+
+<span class="n">cv_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">n_estimatorss</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">max_depths</span><span class="p">,</span> <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="n">min_samples_splits</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="n">scores</span><span class="p">})</span>            
+            
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Beginning n_estimators: 10
+Beginning n_estimators: 100
+Beginning n_estimators: 500
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n_estimators</th>
+      <th>max_depth</th>
+      <th>min_samples_split</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1.808011</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1.853212</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>5</td>
+      <td>20</td>
+      <td>1.945408</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10</td>
+      <td>20</td>
+      <td>2</td>
+      <td>1.737519</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>20</td>
+      <td>5</td>
+      <td>1.749584</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>10</td>
+      <td>20</td>
+      <td>20</td>
+      <td>1.950588</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>50</td>
+      <td>2</td>
+      <td>1.721858</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>10</td>
+      <td>50</td>
+      <td>5</td>
+      <td>1.754042</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>10</td>
+      <td>50</td>
+      <td>20</td>
+      <td>1.950355</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>100</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1.800619</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>100</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1.799029</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>100</td>
+      <td>5</td>
+      <td>20</td>
+      <td>1.860815</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>100</td>
+      <td>20</td>
+      <td>2</td>
+      <td>1.715958</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>100</td>
+      <td>20</td>
+      <td>5</td>
+      <td>1.740005</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>100</td>
+      <td>20</td>
+      <td>20</td>
+      <td>1.869589</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>100</td>
+      <td>50</td>
+      <td>2</td>
+      <td>1.709160</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>100</td>
+      <td>50</td>
+      <td>5</td>
+      <td>1.745895</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>100</td>
+      <td>50</td>
+      <td>20</td>
+      <td>1.869198</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>500</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1.791223</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>500</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1.803174</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>500</td>
+      <td>5</td>
+      <td>20</td>
+      <td>1.864661</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>500</td>
+      <td>20</td>
+      <td>2</td>
+      <td>1.734111</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>500</td>
+      <td>20</td>
+      <td>5</td>
+      <td>1.769755</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>500</td>
+      <td>20</td>
+      <td>20</td>
+      <td>1.893250</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>500</td>
+      <td>50</td>
+      <td>2</td>
+      <td>1.734754</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>500</td>
+      <td>50</td>
+      <td>5</td>
+      <td>1.769982</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>500</td>
+      <td>50</td>
+      <td>20</td>
+      <td>1.892966</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now fit the best RF to the national scale rasters, as windowed rasterio processes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_results</span><span class="p">[</span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n_estimators</th>
+      <th>max_depth</th>
+      <th>min_samples_split</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>100</td>
+      <td>50</td>
+      <td>2</td>
+      <td>1.70916</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Expand the cell below to see the code applying the fitted rf model to the national-scale rasters.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                            <span class="n">max_depth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                            <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">filtered_bio_sample_df</span><span class="p">[</span><span class="s1">&#39;sample_weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Apply to full study area using windowed read</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bio_var_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">feature_windows</span> <span class="o">=</span> <span class="p">[</span><span class="n">_wind</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_wind</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">feature_windows</span> <span class="o">=</span> <span class="p">[</span><span class="n">windows</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="n">feature_windows</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_windows</span><span class="p">),</span> <span class="n">n</span><span class="p">)]</span>
+<span class="n">write_path</span> <span class="o">=</span> <span class="s1">&#39;../../../data/SDM_data/models_bee/</span><span class="si">{}</span><span class="s1">.tif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;RF__max_depth_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">max_depth</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">__n_estimators_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">__min_samples_split_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">min_samples_split</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">write_dataset</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">write_path</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">ref_profile</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">feature_window</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">feature_windows</span><span class="p">):</span>
+    <span class="n">row_slice</span><span class="p">,</span> <span class="n">col_slice</span> <span class="o">=</span> <span class="n">feature_window</span><span class="o">.</span><span class="n">toslices</span><span class="p">()</span>
+    <span class="n">_reads</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">full_range</span><span class="p">[</span><span class="n">row_slice</span><span class="p">,</span> <span class="n">col_slice</span><span class="p">]]</span> <span class="c1"># only compute where necessary</span>
+    
+    <span class="c1"># Get the covariates in this window</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bio_var_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bio_var_paths</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bio_var_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+            <span class="n">_reads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">norm_covs</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">feature_window</span><span class="p">),</span> <span class="n">i</span><span class="p">))</span> <span class="c1"># Models are trained on normalised inputs, so predictions must be generated on the same</span>
+            <span class="n">_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read_masks</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">feature_window</span><span class="p">))</span>    
+    <span class="n">_reads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">_reads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>      
+    <span class="n">_masks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">_masks</span><span class="p">)</span>
+
+    <span class="c1"># Run each model prediction and write to file</span>
+    <span class="n">_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">_masks</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">_output</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="o">~</span><span class="n">_masks</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="c1"># _output[_masks] = np.expm1(rf.predict(_reads[_masks]))</span>
+        <span class="n">_output</span><span class="p">[</span><span class="n">_masks</span><span class="p">]</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">_reads</span><span class="p">[</span><span class="n">_masks</span><span class="p">])</span>
+
+    <span class="c1"># Save results</span>
+    <span class="n">write_dataset</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_output</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">feature_window</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">write_dataset</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00,  4.11it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The maps are plotted in the results section.</p>
+</section>
+</section>
+<section id="pesticide-intensity-data-input-to-yield-ratio-maps">
+<h3>Pesticide intensity data: Input-to-Yield ratio maps<a class="headerlink" href="#pesticide-intensity-data-input-to-yield-ratio-maps" title="Permalink to this heading">#</a></h3>
+<p>Now load the input to yield ratio (IYR) data [7], which captures large-scale patterns of agricultural efficiency as measured by agricultural production relative to input levels.</p>
+<p>Here, the pesticide harm calculated for honeybees is used (based on pesticide load), normalised by agricultural yields [8]. The methodology focused on winter wheat fields, and conclusions drawn from analysis of this particular dataset would therefore only apply to wheat fields. The IYR product could be calculated for other crops with appropriate data (figures for agricultural inputs and yields).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_BASE_PATH</span><span class="p">,</span> <span class="s1">&#39;IYR/data/input_to_yield_ratio_honeybees.tiff&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">iyr_bees</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">iyr_nodata</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">profile</span><span class="p">[</span><span class="s1">&#39;nodata&#39;</span><span class="p">]</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span><span class="p">]</span>
+    
+<span class="n">iyr_bees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">iyr_bees</span> <span class="o">==</span> <span class="n">iyr_nodata</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">iyr_bees</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
+<p>In this section the honeybee abundance SDM and IYR maps are plotted.</p>
+<p>Here, the concept of reducing pesticide impact on honeybee populations whilst preserving agricultural productivity is considered, through identification of areas where pesticide use is inefficient (i.e. the ratio of pesticide use to agricultural yield is high) coincidentally with areas of high honeybee abundance. To explore this idea, the pixelwise product of the IYR and honeybee abundance (both normalised) layers is presented.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../../data/SDM_data/models_bee/&#39;</span><span class="p">,</span> <span class="s1">&#39;RF__max_depth_050__n_estimators_100__min_samples_split_02.tif&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">write_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">bee_abundance_sdm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># mask based on bioclim rasters</span>
+
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../../../data/Agric_data/IYR/data/input_to_yield_ratio_honeybees_epsg_27700_aligned.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">b_mask</span><span class="o">=~</span><span class="n">file</span><span class="o">.</span><span class="n">read_masks</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">iyr_bees_aligned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">b_mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">iyr_bees_aligned</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">fill</span><span class="o">.</span><span class="n">fillnodata</span><span class="p">(</span><span class="n">iyr_bees_aligned</span><span class="p">,</span> <span class="n">mask</span><span class="o">=~</span><span class="n">b_mask</span><span class="p">,</span> <span class="n">max_search_distance</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">FIGSIZE</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">bee_abundance_sdm</span><span class="p">,</span> 
+           <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ref_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">],</span>
+          <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Honeybee abundance SDM&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Honeybee abundance (modelled)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/bdc3030a488002394eee0bef5a6c6112d3eefd507f5ceca03d5bccb80e7b2864.png" src="../_images/bdc3030a488002394eee0bef5a6c6112d3eefd507f5ceca03d5bccb80e7b2864.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">FIGSIZE</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">iyr_bees_aligned</span><span class="p">,</span> 
+           <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ref_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">],</span>
+          <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Honeybee-specific pesticide harm IYR&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/baa9f80783ec3f7dacfb1fabc8eab4130ea4a044233576aba05a4b2584d9f25b.png" src="../_images/baa9f80783ec3f7dacfb1fabc8eab4130ea4a044233576aba05a4b2584d9f25b.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rescale_0_1</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="n">min_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">array</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">FIGSIZE</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rescale_0_1</span><span class="p">(</span><span class="n">iyr_bees_aligned</span><span class="p">)</span><span class="o">*</span><span class="n">rescale_0_1</span><span class="p">(</span><span class="n">bee_abundance_sdm</span><span class="p">),</span> 
+           <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ref_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">],</span>
+         <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;rescale_0_1(IYR)*rescale_0_1(SDM)&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bio_var_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">dataset_features</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">as_mask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">geographic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="n">test</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ratio of honeybee abundance-weighted</span><span class="se">\n</span><span class="s1">pesticide harm to agricultural yields&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/b5c10d869a509d92987beeae5c41ea5642cecea9053afbd8e833b0f522d1c521.png" src="../_images/b5c10d869a509d92987beeae5c41ea5642cecea9053afbd8e833b0f522d1c521.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">FIGSIZE</span><span class="p">)</span>
+<span class="n">scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">rescale_0_1</span><span class="p">(</span><span class="n">iyr_bees_aligned</span><span class="p">)</span><span class="o">*</span><span class="n">rescale_0_1</span><span class="p">(</span><span class="n">bee_abundance_sdm</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">iyr_bees_aligned</span><span class="o">*</span><span class="n">bee_abundance_sdm</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">scaled</span><span class="p">),</span> 
+           <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ref_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">ref_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">],</span>
+         <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+         <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bio_var_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">dataset_features</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">as_mask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">geographic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="n">test</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Thresholded ratio of honeybee abundance-weighted</span><span class="se">\n</span><span class="s1">pesticide harm to agricultural yields&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d5c14dc1df19bf3b2a7707c52b1f537a5a0ab744c7c05a99db24237e6ed501c3.png" src="../_images/d5c14dc1df19bf3b2a7707c52b1f537a5a0ab744c7c05a99db24237e6ed501c3.png" />
+</div>
+</div>
+</section>
+<section id="discussion-and-conclusions">
+<h2>Discussion and conclusions<a class="headerlink" href="#discussion-and-conclusions" title="Permalink to this heading">#</a></h2>
+<p>This notebook presents three main datasets: an abundance-based honeybee SDM, and IYR map specific to honeybee pesticide harm, and a composite of those two layers that integrates the concept of honeybee abundance into the IYR distribution. The latter can capture the tradeoff between agricultural yield, pesticide use, and harm to biodiversity (here specifically honeybees), at large- and small-scale resolutions.</p>
+<p>The honeybee abundance SDM shows higher values in the North and West of the country at the national scale, with more complex spatial patterns at smaller scales. The IYR is particularly high in the South West, with high values also observed in the Midlands and south of London. The combined maps (the last two figures in the results section) reflect the large-scale spatial patterns observed in the individual SDM and IYR maps, identifying the South West as a focus region, along with Midlands (south and west of Birmingham), the Cotswolds, and south of London.</p>
+<p>The final figure in the results section presents an arbitrarily thresholded map of the ratio of honeybee abundance-weighted pesticide harm to agricultural yields. Whilst the scaling and discretization of such a metric is dependent on the use case, this map shows how such a dataset may be used to split a region into high, medium and low priority intervention zones.</p>
+<p>Further work related to this topic could include:</p>
+<ul class="simple">
+<li><p>Performing a similar analysis with raw pesticide input data, instead of input to yield ratios, with the aim of identifying areas in which pesticide use poses a high-risk to pollinators regardless of the agricultural yield and comparing against the results presented here.</p></li>
+<li><p>Investigating the application of IYR maps for different crops (here the IYR maps were built on winter wheat data).</p></li>
+<li><p>Expanding the list of covariates in the pollinator SDM, to potentially include land use and agricultural management factors, and comparing the resulting models against simpler SDMs (such as that presented here)</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Siviter H, Linguadoca A, Ippolito A, Muth F. Pesticide licensing in the EU and protecting pollinators. Curr Biol. 2023; 33(2): R44-R48. doi: 10.1016/j.cub.2022.12.002.</p></li>
+<li><p>Gallai N, Salles JM, Settele J, Vaissière BE. Economic Valuation of the Vulnerability of World Agriculture Confronted with Pollinator Decline. Ecological Economics. 2009; 68(3): 810-821. <a class="reference external" href="https://doi.org/10.1016/j.ecolecon.2008.06.014">https://doi.org/10.1016/j.ecolecon.2008.06.014</a></p></li>
+<li><p>Ulyshen M, Horn S. Declines of Bees and Butterflies Over 15 Years in a Forested Landscape. Current Biology. 2023; 33(7): 1346-1350.e3. <a class="reference external" href="https://doi.org/10.1016/j.cub.2023.02.030">https://doi.org/10.1016/j.cub.2023.02.030</a>.</p></li>
+<li><p>Aizen MA, Aguiar S, Biesmeijer JC, et al. Global Agricultural Productivity Is Threatened by Increasing Pollinator Dependence Without a Parallel Increase in Crop Diversification. Glob Change Biol. 2019; 25: 3516–3527. <a class="reference external" href="https://doi.org/10.1111/gcb.14736">https://doi.org/10.1111/gcb.14736</a>.</p></li>
+<li><p>UK Pollinator Monitoring Scheme (2022). Flower-insect timed count data from the UK Pollinator Monitoring Scheme, 2017-2020 version 2 NERC EDS Environmental Information Data Centre.</p></li>
+<li><p>Waldock C, Stuart-Smith RD, Albouy C, Cheung WWL, Edgar GJ, Mouillot D, Tjiputra J and Pellissier L. A Quantitative Review of Abundance-Based Species Distribution Models. Ecography. 2022. 2022(1). <a class="reference external" href="https://doi.org/10.1111/ecog.05694">https://doi.org/10.1111/ecog.05694</a>.</p></li>
+<li><p>Fick SE and Hijmans RJ. WorldClim 2: New 1-Km Spatial Resolution Climate Surfaces for Global Land Areas. Int. J. Climatol. 2017; 37(12); 4302-4315. <a class="reference external" href="https://doi.org/10.1002/joc.5086">https://doi.org/10.1002/joc.5086</a>.</p></li>
+<li><p>Fincham WNW, Risser HA, Jarvis SG, Schultz C, Spurgeon DJ, Redhead JW, Storkey J, Pywell RF, Bullock JM. Input to Yield Ratio (IYR) Maps for Wheat Farming in England. 2010-2017 NERC EDS Environmental Information Data Centre. <a class="reference external" href="https://doi.org/10.5285/dfe2a4a5-2b3a-4731-ba7f-aea7e926f1dd">https://doi.org/10.5285/dfe2a4a5-2b3a-4731-ba7f-aea7e926f1dd</a>.</p></li>
+<li><p>Fincham WNW, Risser HA, Jarvis SG, Schultz C, Spurgeon DJ, Redhead JW, Storkey J, Pywell RF, Bullock JM. Mapping the Ratio of Agricultural Inputs to Yields Reveals Areas with Potentially Less Sustainable Farming. Science of the Total Environment. 2024; 909():. <a class="reference external" href="https://doi.org/10.1016/j.scitotenv.2023.168491">https://doi.org/10.1016/j.scitotenv.2023.168491</a>.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Measuring%20Biodiversity%20on%20Agricultural%20Land%20with%20Remote%20Sensing%20Data%20%28Part%20II%29.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Measuring Biodiversity on Agricultural Land with Remote Sensing Data (Part II)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Hybrid%20Learning%20for%20Species%20Classification%20on%20Image%20Datasets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hybrid Learning for Species Classification on Image Datasets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#biodiversity-data-uk-poms-fit-counts">Biodiversity data: UK PoMS Fit Counts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#honey-bee-species-distribution-model-abundance">Honey bee species distribution model (abundance)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-prep-features">Load and prep features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#build-rf-model">Build RF model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pesticide-intensity-data-input-to-yield-ratio-maps">Pesticide intensity data: Input-to-Yield ratio maps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-and-conclusions">Discussion and conclusions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tom Whitehouse
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
